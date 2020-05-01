@@ -10,4 +10,7 @@ interface APIGateway {
     @POST("/")
     fun registerUser(@Body jsonBody: JsonObject)  : Call<JsonObject>
 
+    @POST("/")
+    fun authenticateUser(@Body jsonBody: JsonObject)  : Call<JsonObject>
+
 }
