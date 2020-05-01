@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.RegisterActivity">
+
+    <EditText
+        android:id="@+id/usernameRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginTop="180dp"
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+
+        android:hint="User Name"
+        />
+
+    <EditText
+        android:id="@+id/firstNameRegister"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="6dp"
+        android:hint="First Name"
+        android:layout_below="@+id/usernameRegister"
+
+        />
+
+    <EditText
+        android:id="@+id/lastNameRegister"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="6dp"
+        android:hint="Last Name"
+        android:layout_below="@+id/firstNameRegister"
+        />
+
+    <EditText
+        android:id="@+id/correoRegister"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="6dp"
+        android:hint="Correo"
+        android:inputType="textEmailAddress"
+        android:layout_below="@+id/lastNameRegister"
+        />
+
+    <EditText
+        android:id="@+id/passwordRegister"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="6dp"
+
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:layout_below="@+id/correoRegister"
+        />
+
+
+    <Button
+        android:id="@+id/buttonRegisterRegister"
+
+        android:text="Register"
+        android:textAllCaps="false"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+
+        android:layout_below="@+id/passwordRegister"
+        />
+
+
+    <Button
+        android:id="@+id/buttonLoginRegister"
+
+        android:text="Login"
+        android:textAllCaps="false"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+
+        android:layout_alignParentBottom="true"
+
+        />
+
+</RelativeLayout>
