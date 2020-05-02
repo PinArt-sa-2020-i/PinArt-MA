@@ -1,15 +1,18 @@
 package com.example.pinart_ma.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.ActionBarContainer
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.pinart_ma.R
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_feed.*
-import java.util.zip.Inflater
+
 
 class FeedFragment: Fragment() {
     companion object {
@@ -21,11 +24,34 @@ class FeedFragment: Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onStart() {
-        super.onStart()
-        textoFeed.text = "sdf clsdajnvkñasdnivklzdsv<s"
+        //Carga feed users por default
+        changeFeed(FeedUsersFragment.newInstance())
+
+        //Cargando FeedUser
+        userButtonFeed.setOnClickListener {
+            changeFeed(FeedUsersFragment.newInstance())
+        }
+
+        //Cargando FeedTags
+        tagsButtonFeed.setOnClickListener {
+            changeFeed(FeedTagsFragment.newInstance())
+        }
     }
+
+
+
+    fun changeFeed(fragment: Fragment){
+        getChildFragmentManager().beginTransaction().apply {
+            replace(R.id.containerFeed, fragment)
+            commit()
+        }
+    }
+
+
+
 
 
 

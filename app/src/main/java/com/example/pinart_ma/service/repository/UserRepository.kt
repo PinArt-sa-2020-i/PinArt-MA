@@ -27,7 +27,6 @@ class UserRepository {
             }
     }
 
-
     fun registerUser(firstName: String, lastName: String, username: String, password: String, correo: String): MutableLiveData<Int>{
         var api: APIGateway
         val retrofit: Retrofit = Retrofit.Builder()
@@ -71,7 +70,6 @@ class UserRepository {
         // -2 - Datos incorrectos
         return liveData
     }
-
 
     fun authenticateUser(username: String, password: String): MutableLiveData<User>{
         var api: APIGateway
@@ -127,8 +125,5 @@ class UserRepository {
         })
         return liveData
     }
-
-
-
 
 }

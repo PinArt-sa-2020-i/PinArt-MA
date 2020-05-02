@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.pinart_ma.R
 import com.example.pinart_ma.ui.fragments.FeedFragment
+import com.example.pinart_ma.ui.fragments.FeedUsersFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Load Feed por default
+        val fragment = FeedFragment.newInstance()
+        openFragment(fragment)
+
 
         bottom_navigation.setOnNavigationItemSelectedListener {
                 menuItem ->
@@ -28,11 +33,9 @@ class MainActivity : AppCompatActivity() {
                         true
                     }
                     R.id.navigation_busqueda -> {
-                        texto.text = "Busqueda"
                         true
                     }
                     R.id.navigation_profile ->{
-                        texto.text = "Profile"
                         true
                     }
                     else
@@ -40,8 +43,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
         }
-
-
         //initializeUi()
     }
 
