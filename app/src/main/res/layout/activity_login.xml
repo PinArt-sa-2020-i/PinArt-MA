@@ -4,24 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context=".ui.LoginActivity">
 
+    <ImageView
+        android:id="@+id/logoLogin"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        app:srcCompat="@drawable/ic_pinart" />
+
+    <TextView
+        android:id="@+id/welcomeLogin"
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+
+        android:text="@string/bienvenido"
+        android:textAllCaps="false"
+        android:textSize="30sp"
+        android:layout_below="@+id/logoLogin"
+        android:textStyle="bold"
+
+        />
+    <!--android:layout_marginTop="220dp"-->
     <EditText
         android:id="@+id/usernameLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_below="@+id/welcomeLogin"
 
-        android:layout_marginTop="220dp"
         android:padding="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="30dp"
 
-        android:hint="User Name"
+        android:inputType="textPersonName"
+        android:hint="Usuario"
+        android:background="@drawable/rounded_edittext"
         />
-
-
-
 
     <EditText
         android:id="@+id/passwordLogin"
@@ -29,27 +54,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_edittext"
 
         android:inputType="textPassword"
-        android:hint="Password"
+        android:hint="Contraseña"
         android:layout_below="@+id/usernameLogin"
         />
 
     <Button
         android:id="@+id/buttonLoginLogin"
 
-        android:text="Login"
+        android:text="Continuar"
         android:textAllCaps="false"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_button"
+        android:textSize="20sp"
+        android:textColor="#fff"
 
         android:layout_below="@+id/passwordLogin"
 
@@ -58,7 +87,7 @@
     <Button
         android:id="@+id/buttonRegisterLogin"
 
-        android:text="Register"
+        android:text="¿Aún no tienes cuenta? Regístrate"
         android:textAllCaps="false"
 
         android:layout_width="match_parent"
@@ -70,11 +99,8 @@
         android:layout_marginBottom="20dp"
 
         android:layout_alignParentBottom="true"
-
-
+        android:background="@android:color/transparent"
         />
-
-
 
 
 </RelativeLayout>

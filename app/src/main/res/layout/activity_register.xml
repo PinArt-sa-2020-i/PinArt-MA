@@ -4,7 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.RegisterActivity">
+    tools:context=".ui.RegisterActivity"
+    android:background="@drawable/gradient_background"
+    >
+
+    <ImageView
+        android:id="@+id/logoRegister"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/ic_pinart" />
 
     <EditText
         android:id="@+id/usernameRegister"
@@ -12,12 +22,14 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
 
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="20dp"
         android:padding="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/rounded_edittext"
 
-        android:hint="User Name"
+        android:hint="Nombre de usuario"
+        android:layout_below="@+id/logoRegister"
         />
 
     <EditText
@@ -26,12 +38,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="6dp"
-        android:hint="First Name"
+        android:hint="Nombre"
         android:layout_below="@+id/usernameRegister"
-
+        android:background="@drawable/rounded_edittext"
         />
 
     <EditText
@@ -40,11 +52,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="6dp"
-        android:hint="Last Name"
+        android:hint="Apellido"
         android:layout_below="@+id/firstNameRegister"
+        android:background="@drawable/rounded_edittext"
         />
 
     <EditText
@@ -53,12 +66,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="6dp"
         android:hint="Correo"
         android:inputType="textEmailAddress"
         android:layout_below="@+id/lastNameRegister"
+        android:background="@drawable/rounded_edittext"
         />
 
     <EditText
@@ -67,37 +81,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="6dp"
 
         android:inputType="textPassword"
-        android:hint="Password"
+        android:hint="Contraseña"
         android:layout_below="@+id/correoRegister"
+        android:background="@drawable/rounded_edittext"
         />
 
 
     <Button
         android:id="@+id/buttonRegisterRegister"
 
-        android:text="Register"
+        android:text="Registrar"
         android:textAllCaps="false"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textColor="#fff"
 
         android:layout_below="@+id/passwordRegister"
+        android:background="@drawable/rounded_button"
         />
 
 
     <Button
         android:id="@+id/buttonLoginRegister"
 
-        android:text="Login"
+        android:text="¿Ya tienes una cuenta? Iniciar sesión"
         android:textAllCaps="false"
 
         android:layout_width="match_parent"
@@ -109,7 +127,7 @@
         android:layout_marginBottom="20dp"
 
         android:layout_alignParentBottom="true"
-
+        android:background="@android:color/transparent"
         />
 
 </RelativeLayout>
