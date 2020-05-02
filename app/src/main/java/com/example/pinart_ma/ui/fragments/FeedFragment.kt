@@ -1,6 +1,7 @@
 package com.example.pinart_ma.ui.fragments
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -29,19 +30,27 @@ class FeedFragment: Fragment() {
 
         //Carga feed users por default
         changeFeed(FeedUsersFragment.newInstance())
+        userButtonFeed.setBackgroundResource(R.drawable.rounded_button_feed)
+        userButtonFeed.setTextColor(Color.parseColor("#FFFFFF"))
 
         //Cargando FeedUser
         userButtonFeed.setOnClickListener {
+            userButtonFeed.setBackgroundResource(R.drawable.rounded_button_feed)
+            userButtonFeed.setTextColor(Color.parseColor("#FFFFFF"))
+            tagsButtonFeed.setBackgroundColor(Color.TRANSPARENT)
+            tagsButtonFeed.setTextColor(Color.parseColor("#000000"))
             changeFeed(FeedUsersFragment.newInstance())
         }
 
         //Cargando FeedTags
         tagsButtonFeed.setOnClickListener {
+            tagsButtonFeed.setBackgroundResource(R.drawable.rounded_button_feed)
+            tagsButtonFeed.setTextColor(Color.parseColor("#FFFFFF"))
+            userButtonFeed.setBackgroundColor(Color.TRANSPARENT)
+            userButtonFeed.setTextColor(Color.parseColor("#000000"))
             changeFeed(FeedTagsFragment.newInstance())
         }
     }
-
-
 
     fun changeFeed(fragment: Fragment){
         getChildFragmentManager().beginTransaction().apply {
@@ -49,11 +58,6 @@ class FeedFragment: Fragment() {
             commit()
         }
     }
-
-
-
-
-
 
 }
 

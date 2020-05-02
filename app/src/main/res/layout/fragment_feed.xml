@@ -5,29 +5,43 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
+
             <TextView
                 android:id="@+id/siguiendoTextViewFeed"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:text="Siguiendo"/>
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:text="Siguiendo"
+
+                />
 
             <Button
                 android:id="@+id/userButtonFeed"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:text="Usuarios"/>
+                android:layout_height="wrap_content"
+                android:text="Usuarios"
+                android:background="@android:color/transparent"
+                />
 
             <Button
                 android:id="@+id/tagsButtonFeed"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:text="Etiquetas" />
+                android:layout_height="wrap_content"
+                android:text="Etiquetas"
+                android:background="@android:color/transparent"
+                />
 
         </LinearLayout>
 
@@ -35,13 +49,10 @@
             android:id="@+id/containerFeed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F3F3F3"
-            >
-        </FrameLayout>
+            android:background="#F3F3F3"></FrameLayout>
 
 
     </LinearLayout>
-
 
 
 </FrameLayout>
