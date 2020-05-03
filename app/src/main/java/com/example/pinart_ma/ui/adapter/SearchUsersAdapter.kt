@@ -1,13 +1,18 @@
 package com.example.pinart_ma.ui.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.Tag
 import com.example.pinart_ma.service.model.User
+import com.example.pinart_ma.ui.MainActivity
+import com.example.pinart_ma.ui.RegisterActivity
+import com.example.pinart_ma.ui.fragments.SearchInitFragment
 import kotlinx.android.synthetic.main.list_item_search_user.view.*
 
 class SearchUsersAdapter(var userList: ArrayList<User>) : RecyclerView.Adapter<SearchUsersAdapter.UserViewHolder>(){
@@ -34,6 +39,12 @@ class SearchUsersAdapter(var userList: ArrayList<User>) : RecyclerView.Adapter<S
 
     class UserViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bindUser(user: User){
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, MainActivity::class.java)
+                intent.putExtra("typeFragment", "otherProfileFragment")
+                intent.putExtra("idUsuario", user.id.toString())
+                itemView.context.startActivity(intent)
+            }
             itemView.nameTextViewListSearchItemUser.text = user.username
         }
     }
