@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         val fragment = FeedFragment.newInstance()
         openFragment(fragment)
 
+        bottom_navigation.itemIconTintList = null;
 
         bottom_navigation.setOnNavigationItemSelectedListener {
                 menuItem ->

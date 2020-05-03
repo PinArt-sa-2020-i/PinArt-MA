@@ -36,6 +36,7 @@ class UserFeedAdapter(var feedUsers:  ArrayList<Multimedia>) : RecyclerView.Adap
         fun bindUserFeed(feedUser: Multimedia){
             itemView.textViewListFeedItem.text = feedUser.descripcion
             Picasso.get().load(feedUser.url).into(itemView.imageViewListFeedItem);
+            itemView.imageViewListFeedItem.clipToOutline = true;
         }
 
     }

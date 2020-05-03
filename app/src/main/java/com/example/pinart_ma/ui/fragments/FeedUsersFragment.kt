@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProviders.of
 import androidx.lifecycle.ViewModelStores.of
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.Multimedia
 import com.example.pinart_ma.ui.adapter.UserFeedAdapter
@@ -56,7 +57,7 @@ class FeedUsersFragment: Fragment() {
                 feed.add(multimediaList[i])
             }
             Toast.makeText(context, feed.size.toString(), Toast.LENGTH_SHORT).show()
-            recyclerViewFeedUsers.layoutManager =  GridLayoutManager(context, 2)
+            recyclerViewFeedUsers.layoutManager =  StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             recyclerViewFeedUsers.adapter = UserFeedAdapter(feed)
 
         })
