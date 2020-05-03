@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.ViewModelProviders.of
 import androidx.lifecycle.ViewModelStores.of
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.Multimedia
@@ -55,7 +56,7 @@ class FeedUsersFragment: Fragment() {
                 feed.add(multimediaList[i])
             }
             Toast.makeText(context, feed.size.toString(), Toast.LENGTH_SHORT).show()
-            recyclerViewFeedUsers.layoutManager=  LinearLayoutManager(context)
+            recyclerViewFeedUsers.layoutManager =  GridLayoutManager(context, 2)
             recyclerViewFeedUsers.adapter = UserFeedAdapter(feed)
 
         })
