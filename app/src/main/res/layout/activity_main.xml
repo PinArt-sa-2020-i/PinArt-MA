@@ -20,10 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/colorPrimary"
-            app:itemIconTint="@color/colorPrimaryDark"
-            app:itemTextColor="@color/colorAccent"
             app:menu="@menu/bottom_navigation_menu"
-
+            app:labelVisibilityMode="unlabeled"
             />
     </FrameLayout>
 

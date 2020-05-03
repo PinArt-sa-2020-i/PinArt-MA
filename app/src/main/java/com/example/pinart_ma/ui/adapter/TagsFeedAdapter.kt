@@ -31,6 +31,7 @@ class TagsFeedAdapter(var  feedTags: ArrayList<Multimedia>): RecyclerView.Adapte
         fun bindTagFeed(feedTag: Multimedia){
             itemView.textViewListFeedItem.text = feedTag.descripcion
             Picasso.get().load(feedTag.url).into(itemView.imageViewListFeedItem);
+            itemView.imageViewListFeedItem.clipToOutline = true;
         }
     }
 }
