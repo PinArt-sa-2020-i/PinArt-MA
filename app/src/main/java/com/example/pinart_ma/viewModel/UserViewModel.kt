@@ -12,4 +12,11 @@ class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
 
     fun getAllUsers(token: String?) = userRepository.getAllUsers(token)
 
+    fun getUserById(token: String?, idUsuario: String?) = userRepository.getUserById(token, idUsuario)
+
+    fun getAllUserFollow(token: String?) = userRepository.getAllUserFollow(token)
+
+    fun deleteUserFollow(token: String?, idFollow: String?) = userRepository.deleteUserFollow(token, idFollow)
+
+    fun createUserFollow(token: String?, idFollower: String?, idFollowing: String?) = userRepository.createUserFollow(token, idFollower, idFollowing)
 }

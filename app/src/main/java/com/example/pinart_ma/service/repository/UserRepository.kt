@@ -1,5 +1,6 @@
 package com.example.pinart_ma.service.repository
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.pinart_ma.service.model.Multimedia
 import com.example.pinart_ma.service.model.User
@@ -113,16 +114,13 @@ class UserRepository {
                         var lastnameAux: String = authenticateUser.get("lastName").asString
                         var token: String = authenticateUser.get("token").asString
 
-                        liveData.value = User(idAux, usernameAux, firstnameAux, lastnameAux, token)
+                        liveData.value = User(idAux, usernameAux, firstnameAux, lastnameAux, null, token)
                     }
                 }
             }
         })
         return liveData
     }
-
-
-
 
     fun getAllUsers(token: String?): MutableLiveData<MutableList<User>> {
         var api: APIGateway
@@ -166,6 +164,7 @@ class UserRepository {
                                 userJsonAux.get("username").asString,
                                 userJsonAux.get("firstName").asString,
                                 userJsonAux.get("lastName").asString,
+                                null,
                                 null)
 
                             userList.add(userAux)
@@ -177,5 +176,198 @@ class UserRepository {
         })
         return liveData
     }
+
+    fun getUserById(token: String?, userId: String?): MutableLiveData<User> {
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<User> = MutableLiveData<User>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "query{ userById(id: $userId){ id firstName lastName username correo }}")
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+        var callApi = api.getUserById(token, gsonObject)
+
+        //Se realiza la llamada
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = null
+            }
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null){liveData.value = null}
+                else{
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+
+                    if (dataAux is JsonNull) {liveData.value = null}
+                    else{
+                        var data: JsonObject = dataAux as JsonObject
+
+                        var userJson: JsonObject = data.getAsJsonObject("userById")
+
+                        liveData.value = User(
+                            userJson.get("id").asInt,
+                            userJson.get("username").asString,
+                            userJson.get("firstName").asString,
+                            userJson.get("lastName").asString,
+                            userJson.get("correo").asString,
+                            null)
+                    }
+                }
+            }
+        })
+        return liveData
+    }
+
+    fun getAllUserFollow(token: String?): MutableLiveData<ArrayList<ArrayList<String>>>{
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<ArrayList<ArrayList<String>>> = MutableLiveData<ArrayList<ArrayList<String>>>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "query{ allUserFollow{ id userFollower{ id } userFollowing { id } } }")
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+        var callApi = api.getUserById(token, gsonObject)
+
+        //Se realiza la llamada
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = null
+            }
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null){liveData.value = arrayListOf()}
+                else{
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+
+                    if (dataAux is JsonNull) {liveData.value = arrayListOf()}
+                    else{
+                        var data: JsonObject = dataAux as JsonObject
+
+                        var listfollowsJson: JsonArray = data.getAsJsonArray("allUserFollow")
+                        var listFollows: ArrayList<ArrayList<String>> = arrayListOf()
+
+                        for (i in 0 until listfollowsJson.size()){
+                            var followJson : JsonObject = listfollowsJson[i] as JsonObject
+                            var followerJson: JsonObject = followJson.get("userFollower") as JsonObject
+                            var followingJson: JsonObject = followJson.get("userFollowing") as JsonObject
+
+                            var follow : ArrayList<String> = arrayListOf(
+                                followJson.get("id").asString,
+                                followerJson.get("id").asString,
+                                followingJson.get("id").asString
+                                )
+                            listFollows.add(follow)
+                        }
+                        liveData.value = listFollows
+
+
+                    }
+                }
+            }
+        })
+        return liveData
+    }
+
+
+    fun deleteUserFollow(token: String?, idFollow: String?): MutableLiveData<Int>{
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<Int> = MutableLiveData<Int>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "mutation{deleteUserFollow(id: $idFollow)}")
+
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+        var callApi = api.default(token, gsonObject)
+
+        //Se realiza la llamada
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = null
+            }
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null){liveData.value = 0}
+                else{
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+                    if(dataAux is JsonNull){liveData.value = 0}
+                    else{liveData.value = 1}
+                }
+            }
+        })
+        return liveData
+    }
+
+    fun createUserFollow(token: String?, idFollower: String?, idFollowing: String?): MutableLiveData<Int>{
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<Int> = MutableLiveData<Int>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "mutation{ createUserFollow(userfollow:{ userFollower_id: $idFollower userFollowing_id: $idFollowing } ){ id}}")
+
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+        var callApi = api.default(token, gsonObject)
+
+        //Se realiza la llamada
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = null
+            }
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null){liveData.value = 0}
+                else{
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+                    if(dataAux is JsonNull){
+                        liveData.value = 0
+                    }
+                    else{
+                        var data: JsonObject = response?.body()?.get("data") as JsonObject
+                        var followAux: JsonElement = data.get("createUserFollow") as JsonElement
+                        if(followAux is JsonNull){
+                            liveData.value = 0
+                        }
+                        else{
+                            var follow: JsonObject = data.get("createUserFollow") as JsonObject
+                            liveData.value = follow.get("id").asInt
+                        }
+                    }
+                }
+            }
+        })
+        return liveData
+    }
+
+
+
 
 }

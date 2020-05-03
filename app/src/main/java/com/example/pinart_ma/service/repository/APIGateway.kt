@@ -26,4 +26,10 @@ interface APIGateway {
     @POST("/")
     fun getAllUser(@Header("Authorization") token:String?, @Body jsonBody: JsonObject)  : Call<JsonObject>
 
+    @POST("/")
+    fun getUserById(@Header("Authorization") token:String?, @Body jsonBody: JsonObject)  : Call<JsonObject>
+
+    @POST("/")
+    fun default(@Header("Authorization") token:String?, @Body jsonBody: JsonObject)  : Call<JsonObject>
+
 }

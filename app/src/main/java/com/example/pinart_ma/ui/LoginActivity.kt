@@ -8,8 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.pinart_ma.R
+import com.example.pinart_ma.ui.fragments.FeedFragment
 import com.example.pinart_ma.utils.InjectorUtils
 import com.example.pinart_ma.viewModel.UserViewModel
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_login.*
 
 
@@ -35,7 +37,9 @@ class LoginActivity : AppCompatActivity() {
         val myPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val id = myPreferences.getString("id", "unknown")
         if(id != "unknown"){
-            startActivity(Intent(this,  MainActivity::class.java))
+            var intent: Intent = Intent(this,  MainActivity::class.java)
+            intent.putExtra("typeFragment", "feedFragment")
+            startActivity(intent)
             finish();
         }
     }
@@ -56,7 +60,9 @@ class LoginActivity : AppCompatActivity() {
                 else{
                     saveDataCacheFake("id", user.id.toString())
                     saveDataCacheFake("token", user.token.toString())
-                    startActivity(Intent(this,  MainActivity::class.java))
+                    var intent: Intent = Intent(this,  MainActivity::class.java)
+                    intent.putExtra("typeFragment", "feedFragment")
+                    startActivity(intent)
                     finish();
                 }
         })
