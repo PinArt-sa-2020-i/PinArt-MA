@@ -21,6 +21,7 @@ import com.example.pinart_ma.utils.InjectorUtils
 import com.example.pinart_ma.viewModel.TagViewModel
 import com.example.pinart_ma.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_search.*
+import android.graphics.Color
 
 class SearchFragment: Fragment() {
     companion object {
@@ -45,6 +46,8 @@ class SearchFragment: Fragment() {
         changeFragment(SearchInitFragment.newInstance())
 
         //Pone los funcionalidades botones
+        buttonUsersSearch.setBackgroundResource(R.drawable.border_bottom)
+        buttonUsersSearch.setTextColor(Color.parseColor("#000000"))
         addFuntionalityButtons()
 
         //Load User data
@@ -70,11 +73,19 @@ class SearchFragment: Fragment() {
     fun addFuntionalityButtons(){
         buttonUsersSearch.setOnClickListener {
             typeSearch = "users"
+            buttonUsersSearch.setBackgroundResource(R.drawable.border_bottom)
+            buttonUsersSearch.setTextColor(Color.parseColor("#000000"))
+            buttonTagsSearch.setBackgroundColor(Color.TRANSPARENT)
+            buttonTagsSearch.setTextColor(Color.parseColor("#BDBDBD"))
             proccesSearch(searchViewSearch.query)
         }
 
         buttonTagsSearch.setOnClickListener {
             typeSearch = "tags"
+            buttonTagsSearch.setBackgroundResource(R.drawable.border_bottom)
+            buttonTagsSearch.setTextColor(Color.parseColor("#000000"))
+            buttonUsersSearch.setBackgroundColor(Color.TRANSPARENT)
+            buttonUsersSearch.setTextColor(Color.parseColor("#BDBDBD"))
             proccesSearch(searchViewSearch.query)
         }
     }

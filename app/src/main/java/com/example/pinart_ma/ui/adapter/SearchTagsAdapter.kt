@@ -58,7 +58,8 @@ class SearchTagsAdapter(var tagsList : ArrayList<Tag>) : RecyclerView.Adapter<Se
                 itemView.context.startActivity(intent)
 
             }
-            itemView.textViewListSearchItem.text = tag.name
+            itemView.nameTextViewListSearchTags.text = tag.name
+            itemView.descriptionTextViewListSearchTags.text = tag.description
         }
 
     }

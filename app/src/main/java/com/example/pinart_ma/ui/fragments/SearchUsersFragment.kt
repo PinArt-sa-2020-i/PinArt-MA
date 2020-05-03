@@ -36,6 +36,7 @@ class SearchUsersFragment(var adapter: SearchUsersAdapter) : Fragment() {
         try {
             if(recycler.adapter?.itemCount == 0){
                 notResultsTextViewSearchUsers.visibility = View.VISIBLE
+                notResultsTextViewSearchUsers.text = "No se encuentran usuarios que coincidan."
             }
         }
         catch (e: Exception) {
