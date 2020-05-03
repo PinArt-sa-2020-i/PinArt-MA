@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.example.pinart_ma.R
 import com.example.pinart_ma.ui.fragments.FeedFragment
 import com.example.pinart_ma.ui.fragments.FeedUsersFragment
+import com.example.pinart_ma.ui.fragments.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
                         true
                     }
                     R.id.navigation_busqueda -> {
+                        val fragment = SearchFragment.newInstance()
+                        openFragment(fragment)
                         true
                     }
                     R.id.navigation_profile ->{

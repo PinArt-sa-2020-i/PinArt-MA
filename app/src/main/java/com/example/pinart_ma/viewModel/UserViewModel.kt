@@ -10,4 +10,6 @@ class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
 
     fun authenticateUser(username: String, password: String) = userRepository.authenticateUser(username, password)
 
+    fun getAllUsers(token: String?) = userRepository.getAllUsers(token)
+
 }

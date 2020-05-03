@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/titleTextViewSearchTags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search Tags"
+        android:textSize="10dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSearchTags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:layout_below="@+id/titleTextViewSearchTags"/>
+
+    <TextView
+        android:id="@+id/notResultsTextViewSearchTags"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleTextViewSearchTags"
+        android:background="#ff00ff"
+        android:textSize="30dp"
+        android:text="NO SE ENCONTRARON RESULTADOS"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

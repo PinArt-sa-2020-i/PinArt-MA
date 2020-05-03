@@ -156,26 +156,32 @@ class MultimediaRepository {
                 liveData.value = null
             }
             override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
-                if (response?.body().toString() == null){liveData.value = null}
+                if (response?.body().toString() == null){liveData.value = arrayListOf()}
                 else{
                     var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
 
-                    if (dataAux is JsonNull) {liveData.value = null}
+                    if (dataAux is JsonNull) {liveData.value = arrayListOf()}
                     else{
                         var data: JsonObject = dataAux as JsonObject
-                        var multimediaJsonList: JsonArray = data.getAsJsonArray("getTagsFeed")
-                        var multimediaList: MutableList<Multimedia> = mutableListOf<Multimedia>()
 
-                        for(i in 0 until multimediaJsonList.size()){
-                            var multimediaJsonAux: JsonObject = multimediaJsonList[i] as JsonObject
-                            var multimediaAux = Multimedia(
-                                multimediaJsonAux.get("id").asString,
-                                multimediaJsonAux.get("url").asString,
-                                multimediaJsonAux.get("descripcion").asString)
+                        var multimediaJsonListAux: JsonElement = data.get("getTagsFeed") as JsonElement
+                        if(multimediaJsonListAux is JsonNull){liveData.value = arrayListOf()}
+                        else{
+                            var multimediaJsonList: JsonArray = data.getAsJsonArray("getTagsFeed")
+                            var multimediaList: MutableList<Multimedia> = mutableListOf<Multimedia>()
 
-                            multimediaList.add(multimediaAux)
+                            for(i in 0 until multimediaJsonList.size()){
+                                var multimediaJsonAux: JsonObject = multimediaJsonList[i] as JsonObject
+                                var multimediaAux = Multimedia(
+                                    multimediaJsonAux.get("id").asString,
+                                    multimediaJsonAux.get("url").asString,
+                                    multimediaJsonAux.get("descripcion").asString)
+
+                                multimediaList.add(multimediaAux)
+                            }
+                            liveData.value = multimediaList
                         }
-                        liveData.value = multimediaList
+
                     }
                 }
             }

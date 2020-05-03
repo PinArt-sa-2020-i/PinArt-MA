@@ -23,4 +23,7 @@ interface APIGateway {
     @POST("/")
     fun getFeedTags(@Header("Authorization") token:String?, @Body jsonBody: JsonObject)  : Call<JsonObject>
 
+    @POST("/")
+    fun getAllUser(@Header("Authorization") token:String?, @Body jsonBody: JsonObject)  : Call<JsonObject>
+
 }

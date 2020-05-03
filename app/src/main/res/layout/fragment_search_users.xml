@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titleTextViewSearchUsers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search Users"
+        android:textSize="10dp"
+        />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSearchUsers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:layout_below="@+id/titleTextViewSearchUsers"/>
+
+    <TextView
+        android:id="@+id/notResultsTextViewSearchUsers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleTextViewSearchUsers"
+        android:background="#ff00ff"
+        android:textSize="30dp"
+        android:text="NO SE ENCONTRARON RESULTADOS"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

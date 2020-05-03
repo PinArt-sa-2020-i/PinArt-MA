@@ -1,11 +1,9 @@
 package com.example.pinart_ma.service.repository
 
 import androidx.lifecycle.MutableLiveData
+import com.example.pinart_ma.service.model.Multimedia
 import com.example.pinart_ma.service.model.User
-import com.google.gson.JsonElement
-import com.google.gson.JsonNull
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
+import com.google.gson.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -116,10 +114,64 @@ class UserRepository {
                         var token: String = authenticateUser.get("token").asString
 
                         liveData.value = User(idAux, usernameAux, firstnameAux, lastnameAux, token)
-
                     }
+                }
+            }
+        })
+        return liveData
+    }
 
 
+
+
+    fun getAllUsers(token: String?): MutableLiveData<MutableList<User>> {
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<MutableList<User>> = MutableLiveData<MutableList<User>>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "query{ allUsers { id firstName lastName username correo } }")
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+        var callApi = api.getAllUser(token, gsonObject)
+
+        //Se realiza la llamada
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = null
+            }
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null){liveData.value = arrayListOf()}
+                else{
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+
+                    if (dataAux is JsonNull) {liveData.value = arrayListOf()}
+                    else{
+                        var data: JsonObject = dataAux as JsonObject
+
+                        var userJsonList: JsonArray = data.getAsJsonArray("allUsers")
+                        var userList: MutableList<User> = mutableListOf<User>()
+
+                        for(i in 0 until userJsonList.size()){
+                            var userJsonAux: JsonObject = userJsonList[i] as JsonObject
+                            var userAux = User(
+                                userJsonAux.get("id").asInt,
+                                userJsonAux.get("username").asString,
+                                userJsonAux.get("firstName").asString,
+                                userJsonAux.get("lastName").asString,
+                                null)
+
+                            userList.add(userAux)
+                        }
+                        liveData.value = userList
+                    }
                 }
             }
         })
