@@ -1,28 +1,30 @@
 package com.example.pinart_ma.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.pinart_ma.R
-import com.example.pinart_ma.ui.fragments.FeedFragment
-import com.example.pinart_ma.ui.fragments.FeedUsersFragment
-import com.example.pinart_ma.ui.fragments.SearchFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.pinart_ma.ui.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity() : AppCompatActivity() {
 
 
+
+    var numFragment: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Se obtienen el fragment por default
+        var defaultFragment = recuperarFragment(intent)
+
         // Load Feed por default
-        val fragment = FeedFragment.newInstance()
-        openFragment(fragment)
+        openFragment(defaultFragment)
 
         bottom_navigation.itemIconTintList = null;
 
@@ -40,6 +42,8 @@ class MainActivity : AppCompatActivity() {
                         true
                     }
                     R.id.navigation_profile ->{
+                        val fragment = MyProfileFragment.newInstance()
+                        openFragment(fragment)
                         true
                     }
                     else
@@ -47,7 +51,18 @@ class MainActivity : AppCompatActivity() {
                 }
 
         }
-        //initializeUi()
+    }
+
+
+    override fun onBackPressed() {
+        numFragment--
+        if(numFragment == 0){
+            finish()
+        }
+        else{
+            super.onBackPressed() // Invoca al método
+        }
+
     }
 
     private fun openFragment(fragment: Fragment) {
@@ -55,8 +70,23 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.container, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
+        numFragment++
     }
 
+
+    private fun recuperarFragment(intent: Intent) : Fragment{
+            when(intent.getStringExtra("typeFragment")){
+                "feedFragment" -> {
+                    return FeedFragment.newInstance()
+                }
+                "otherProfileFragment" ->{
+                    return OtherProfileFragment.newInstance(intent.getStringExtra("idUsuario"))
+                }
+                else -> {
+                    return SearchInitFragment.newInstance()
+                }
+            }
+    }
 
     /*
 

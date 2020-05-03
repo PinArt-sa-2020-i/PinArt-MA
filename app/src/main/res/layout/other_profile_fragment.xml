@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/userNameTextViewOtherProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        />
+
+    <TextView
+        android:id="@+id/firstNameTextViewOtherProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        />
+
+    <TextView
+        android:id="@+id/lastNameTextViewOtherProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        />
+
+    <Button
+        android:id="@+id/seguirButtonOtherProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Not Found"/>
+
+    <FrameLayout
+        android:id="@+id/containerOtherProfileFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>
