@@ -44,6 +44,7 @@ class SearchTagsFragment(var adapter: SearchTagsAdapter): Fragment() {
         try {
             if(recycler.adapter?.itemCount == 0){
                 notResultsTextViewSearchTags.visibility = View.VISIBLE
+                notResultsTextViewSearchTags.text = "No se encuentran etiquetas que coincidan."
             }
         }
         catch (e: Exception) {

@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    >
 
-    <TextView
-        android:id="@+id/titleTextViewSearchUsers"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Search Users"
-        android:textSize="10dp"
-        />
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context=".ui.MainActivity"
+    >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSearchUsers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewSearchUsers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:layout_below="@+id/titleTextViewSearchUsers"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/notResultsTextViewSearchUsers"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/titleTextViewSearchUsers"
-        android:background="#ff00ff"
-        android:textSize="30dp"
-        android:text="NO SE ENCONTRARON RESULTADOS"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorSecondary"
+        android:textStyle="bold"
         android:visibility="gone"
         />
 

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.Tag
 import com.example.pinart_ma.service.model.User
+import kotlinx.android.synthetic.main.fragment_search_users.view.*
 import kotlinx.android.synthetic.main.list_item_search_user.view.*
 
 class SearchUsersAdapter(var userList: ArrayList<User>) : RecyclerView.Adapter<SearchUsersAdapter.UserViewHolder>(){
@@ -34,7 +35,8 @@ class SearchUsersAdapter(var userList: ArrayList<User>) : RecyclerView.Adapter<S
 
     class UserViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bindUser(user: User){
-            itemView.nameTextViewListSearchItemUser.text = user.username
+            itemView.usernameTextViewListSearchItemUser.text = user.username
+            itemView.nameTextViewListSearchItemUser.text = (user.firstname + " " + user.lastname)
         }
     }
 
@@ -42,6 +44,7 @@ class SearchUsersAdapter(var userList: ArrayList<User>) : RecyclerView.Adapter<S
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
+
                 if(charSearch.isEmpty()){
                     usersFilterList=userList
 
