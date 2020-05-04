@@ -16,6 +16,7 @@ import com.example.pinart_ma.utils.InjectorUtils
 import com.example.pinart_ma.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.my_profile_fragment.*
 import kotlinx.android.synthetic.main.other_profile_fragment.*
+import android.graphics.Color
 
 class OtherProfileFragment(var idUsuario: String): Fragment() {
     companion object {
@@ -61,8 +62,7 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
 
     fun mostrarInfoUsuario(context: Context?){
         userNameTextViewOtherProfile.text = user.username
-        firstNameTextViewOtherProfile.text = user.firstname
-        lastNameTextViewOtherProfile.text = user.lastname
+        nameTextViewOtherProfile.text = (user.firstname + " " + user.lastname)
     }
 
     private fun loadMultimediaFragment() {
@@ -94,10 +94,14 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
             }
 
             if(isFollow == true){
-                seguirButtonOtherProfile.text = "Dejar de seguir usuario"
+                seguirButtonOtherProfile.setBackgroundResource(R.drawable.rounded_search)
+                seguirButtonOtherProfile.setTextColor(Color.parseColor("#000000"))
+                seguirButtonOtherProfile.text = "Dejar de seguir"
             }
             else{
-                seguirButtonOtherProfile.text = "Seguir usuario"
+                seguirButtonOtherProfile.setBackgroundResource(R.drawable.rounded_followbutton)
+                seguirButtonOtherProfile.setTextColor(Color.parseColor("#FFFFFF"))
+                seguirButtonOtherProfile.text = "Seguir"
             }
         })
     }
@@ -116,7 +120,9 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
                 if (response == 0){}
                 else{
                     idFollow = response.toString()
-                    seguirButtonOtherProfile.text = "Dejar de seguir usuario"
+                    seguirButtonOtherProfile.setBackgroundResource(R.drawable.rounded_search)
+                    seguirButtonOtherProfile.setTextColor(Color.parseColor("#000000"))
+                    seguirButtonOtherProfile.text = "Dejar de seguir"
                 }
             })
         }
@@ -126,7 +132,9 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
                 if (response == 0){}
                 else{
                     idFollow = "0"
-                    seguirButtonOtherProfile.text = "Seguir usuario"
+                    seguirButtonOtherProfile.setBackgroundResource(R.drawable.rounded_followbutton)
+                    seguirButtonOtherProfile.setTextColor(Color.parseColor("#FFFFFF"))
+                    seguirButtonOtherProfile.text = "Seguir"
                 }
             })
         }
