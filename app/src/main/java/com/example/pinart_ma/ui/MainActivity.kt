@@ -85,6 +85,9 @@ class MainActivity() : AppCompatActivity() {
                 "tagFragment" -> {
                     return TagFragment.newInstance(intent.getStringExtra("idTag"))
                 }
+                "myProfileFragment" -> {
+                    return MyProfileFragment.newInstance()
+                }
                 else -> {
                     return SearchInitFragment.newInstance()
                 }

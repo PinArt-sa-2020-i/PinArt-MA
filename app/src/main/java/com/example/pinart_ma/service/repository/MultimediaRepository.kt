@@ -1,7 +1,5 @@
 package com.example.pinart_ma.service.repository
 
-import android.graphics.Bitmap
-import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.pinart_ma.service.model.Multimedia
@@ -16,7 +14,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.ByteArrayOutputStream
 import java.io.File
 
 
@@ -70,10 +67,13 @@ class MultimediaRepository {
 
                         for(i in 0 until multimediaJsonList.size()){
                             var multimediaJsonAux: JsonObject = multimediaJsonList[i] as JsonObject
+
                             var multimediaAux: Multimedia = Multimedia(
                                                             multimediaJsonAux.get("id").asString,
                                                             multimediaJsonAux.get("url").asString,
-                                                            multimediaJsonAux.get("descripcion").asString)
+                                                            multimediaJsonAux.get("descripcion").asString,
+                                                            multimediaJsonAux.get("usuario_creador_id").asString,null)
+
 
                             multimediaList.add(multimediaAux)
                         }
@@ -98,7 +98,7 @@ class MultimediaRepository {
 
         //Mapeo los datos
         val jsonObj_ = JSONObject()
-        jsonObj_.put("query", "query{ getUsersFeed(idUsuario: \"$idUser\"){ id descripcion url } }")
+        jsonObj_.put("query", "query{ getUsersFeed(idUsuario: \"$idUser\"){ id descripcion url usuario_creador_id} }")
         var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
 
 
@@ -125,7 +125,8 @@ class MultimediaRepository {
                             var multimediaAux = Multimedia(
                                 multimediaJsonAux.get("id").asString,
                                 multimediaJsonAux.get("url").asString,
-                                multimediaJsonAux.get("descripcion").asString)
+                                multimediaJsonAux.get("descripcion").asString,
+                                multimediaJsonAux.get("usuario_creador_id").asString,null)
 
                             multimediaList.add(multimediaAux)
                         }
@@ -150,7 +151,7 @@ class MultimediaRepository {
 
         //Mapeo los datos
         val jsonObj_ = JSONObject()
-        jsonObj_.put("query", "query{ getTagsFeed(idUsuario: \"$idUser\"){id descripcion url } }")
+        jsonObj_.put("query", "query{ getTagsFeed(idUsuario: \"$idUser\"){id descripcion url usuario_creador_id} }")
         var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
 
 
@@ -181,7 +182,8 @@ class MultimediaRepository {
                                 var multimediaAux = Multimedia(
                                     multimediaJsonAux.get("id").asString,
                                     multimediaJsonAux.get("url").asString,
-                                    multimediaJsonAux.get("descripcion").asString)
+                                    multimediaJsonAux.get("descripcion").asString,
+                                    multimediaJsonAux.get("usuario_creador_id").asString,null)
 
                                 multimediaList.add(multimediaAux)
                             }
@@ -322,7 +324,8 @@ class MultimediaRepository {
                                 var multimediaAux: Multimedia = Multimedia(
                                     multimediaJsonAux.get("id").asString,
                                     multimediaJsonAux.get("url").asString,
-                                    multimediaJsonAux.get("descripcion").asString)
+                                    multimediaJsonAux.get("descripcion").asString,
+                                    multimediaJsonAux.get("usuario_creador_id").asString,null)
 
                                 multimediaList.add(multimediaAux)
                             }
@@ -336,5 +339,65 @@ class MultimediaRepository {
         return liveData
     }
 
+
+    fun getMultimediaById(token: String?, idMultimedia: String?): MutableLiveData<Multimedia> {
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<Multimedia> = MutableLiveData<Multimedia>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "query{ getMultimediaById(id: \"$idMultimedia\"){ id descripcion url  id_bucket usuario_creador_id etiquetas_relacionadas_ids } }")
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+
+        var callApi = api.getMultimediaById(token, gsonObject)
+
+        //Se realiza la llamada
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = null
+            }
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null){liveData.value = null}
+                else{
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+
+                    if (dataAux is JsonNull) {liveData.value = null}
+                    else{
+                        var data: JsonObject = dataAux as JsonObject
+                        var getMultimediaByIdAux : JsonElement = data.get("getMultimediaById") as JsonElement
+                        if(getMultimediaByIdAux is JsonNull){
+                            liveData.value = null
+                        }
+                        else{
+                            var getMultimediaById : JsonObject = getMultimediaByIdAux as JsonObject
+
+                            var etiquetasAsociadas: JsonArray = getMultimediaById.getAsJsonArray("etiquetas_relacionadas_ids")
+                            var etiquetas: ArrayList<String> = arrayListOf()
+                            for(i in 0 until  etiquetasAsociadas.size()){
+                                etiquetas.add(etiquetasAsociadas[i].asString)
+                            }
+
+                            var multimedia: Multimedia = Multimedia(
+                                getMultimediaById.get("id").asString,
+                                getMultimediaById.get("url").asString,
+                                getMultimediaById.get("descripcion").asString,
+                                getMultimediaById.get("usuario_creador_id").asString,
+                                etiquetas)
+                            liveData.value = multimedia
+                        }
+                    }
+                }
+            }
+        })
+        return liveData
+    }
 
 }

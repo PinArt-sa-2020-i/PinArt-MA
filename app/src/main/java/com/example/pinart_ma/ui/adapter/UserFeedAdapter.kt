@@ -1,5 +1,6 @@
 package com.example.pinart_ma.ui.adapter
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.Multimedia
+import com.example.pinart_ma.ui.ViewImageActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_feed.view.*
 import java.util.ArrayList
@@ -34,6 +36,14 @@ class UserFeedAdapter(var feedUsers:  ArrayList<Multimedia>) : RecyclerView.Adap
     class UserFeedViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
         fun bindUserFeed(feedUser: Multimedia){
+
+            itemView.setOnClickListener{
+                val intent = Intent(itemView.context, ViewImageActivity::class.java)
+                intent.putExtra("idMultimedia", feedUser.id)
+                itemView.context.startActivity(intent)
+            }
+
+
             itemView.textViewListFeedItem.text = feedUser.descripcion
             Picasso.get().load(feedUser.url).into(itemView.imageViewListFeedItem);
             itemView.imageViewListFeedItem.clipToOutline = true;

@@ -1,11 +1,14 @@
 package com.example.pinart_ma.ui.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.Multimedia
+import com.example.pinart_ma.ui.MainActivity
+import com.example.pinart_ma.ui.ViewImageActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_feed.view.*
 
@@ -29,6 +32,13 @@ class TagsFeedAdapter(var  feedTags: ArrayList<Multimedia>): RecyclerView.Adapte
     class TagFeedViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
         fun bindTagFeed(feedTag: Multimedia){
+
+            itemView.setOnClickListener{
+                val intent = Intent(itemView.context, ViewImageActivity::class.java)
+                intent.putExtra("idMultimedia", feedTag.id)
+                itemView.context.startActivity(intent)
+            }
+
             itemView.textViewListFeedItem.text = feedTag.descripcion
             Picasso.get().load(feedTag.url).into(itemView.imageViewListFeedItem);
             itemView.imageViewListFeedItem.clipToOutline = true;
