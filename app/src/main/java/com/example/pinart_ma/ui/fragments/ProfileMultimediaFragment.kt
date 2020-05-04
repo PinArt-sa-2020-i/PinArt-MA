@@ -51,7 +51,7 @@ class ProfileMultimediaFragment(var idUsuario: String?, var mine: Boolean) : Fra
                 }
                 Toast.makeText(context, multimedia.size.toString(), Toast.LENGTH_SHORT).show()
 
-                recyclerViewProfileMultimedia.layoutManager = LinearLayoutManager(context)
+                recyclerViewProfileMultimedia.layoutManager = StaggeredGridLayoutManager( 2, StaggeredGridLayoutManager.VERTICAL)
                 recyclerViewProfileMultimedia.adapter = ProfileMultimediaAdapter(multimedia, mine)
 
         })

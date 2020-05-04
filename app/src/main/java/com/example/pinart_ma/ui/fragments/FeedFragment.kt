@@ -29,9 +29,10 @@ class FeedFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Carga feed users por default
-        changeFeed(FeedUsersFragment.newInstance())
-        userButtonFeed.setBackgroundResource(R.drawable.rounded_button_feed)
-        userButtonFeed.setTextColor(Color.parseColor("#FFFFFF"))
+        changeFeed(FeedTagsFragment.newInstance())
+
+        tagsButtonFeed.setBackgroundResource(R.drawable.rounded_button_feed)
+        tagsButtonFeed.setTextColor(Color.parseColor("#FFFFFF"))
 
         //Cargando FeedUser
         userButtonFeed.setOnClickListener {
