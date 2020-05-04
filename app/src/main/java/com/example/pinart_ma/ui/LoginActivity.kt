@@ -8,10 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.pinart_ma.R
-import com.example.pinart_ma.ui.fragments.FeedFragment
 import com.example.pinart_ma.utils.InjectorUtils
 import com.example.pinart_ma.viewModel.UserViewModel
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_login.*
 
 

@@ -11,4 +11,6 @@ class MultimediaViewModel(private val multimediaRepository: MultimediaRepository
 
     fun getFeedTags(token: String?, idUser: String?) = multimediaRepository.getFeedTags(token, idUser)
 
+    fun getMultimediaByTag(token: String?, idTag: String?) = multimediaRepository.getMultimediaByTag(token, idTag)
+
 }
