@@ -10,6 +10,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.CheckBox
@@ -20,6 +21,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.pinart_ma.R
 import com.example.pinart_ma.utils.InjectorUtils
 import com.example.pinart_ma.viewModel.MultimediaViewModel
+import com.example.pinart_ma.viewModel.TagViewModel
 import kotlinx.android.synthetic.main.activity_add_multimedia.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -28,31 +30,60 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class AddMultimediaActivity: AppCompatActivity() {
 
     var  fileX: File? = null
-
+    val selectedTags: MutableList<String> = mutableListOf()
+    val checkBoxList: MutableList<CheckBox> = mutableListOf()
+    val tagList: MutableList<String> = mutableListOf()
+    val tagListIds: MutableMap<String, String> = mutableMapOf()
+    
     companion object{
         private val IMAGE_PICK_CODE = 1000
         private val PERMISSION_CODE = 1001
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val tagList: MutableList<String> = mutableListOf("pepe", "papo", "papa","pipo", "pipu", "destructor", "masticadores", "esternocledomastoideo")
-        val checkBoxList: MutableList<CheckBox> = mutableListOf()
-        val selectedTags: MutableList<String> = mutableListOf()
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_add_multimedia)
+        
+        
+        var tagFactory = InjectorUtils.providerTagViewModelFactory()
+        var tagViewModel = ViewModelProviders.of(this, tagFactory).get(TagViewModel::class.java)
 
+
+        val myPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        var token: String? = myPreferences.getString("token", "unknown")
+
+        tagViewModel.getAllTags(token).observe(this, Observer { 
+                tagListObserver ->
+                for (i in 0 until tagListObserver.size){
+                    tagList.add(tagListObserver[i].name)
+                    tagListIds.put(tagListObserver[i].name, tagListObserver[i].id)
+                }
+                loadFuntionality()
+        })
+        
+        
+        
+
+        //initializeUi()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        
+    }
+    
+    fun loadFuntionality(){
         for (i in 0 until tagList.size) {
             val ch = CheckBox(this)
             ch.text = tagList[i]
             checkBoxList.add(ch)
             tagsRow.addView(checkBoxList[i])
-
         }
 
         img_pick_btn.setOnClickListener{
@@ -83,8 +114,6 @@ class AddMultimediaActivity: AppCompatActivity() {
                 Toast.makeText(this, "Informacion incompleta", Toast.LENGTH_SHORT).show()
             }
         }
-
-        //initializeUi()
     }
 
     private fun pickImageFromGallery() {
@@ -144,15 +173,36 @@ class AddMultimediaActivity: AppCompatActivity() {
             MultimediaViewModel::class.java)
         
         multimediaViewModel!!.upLoadFileBucket(fileX).observe(this, Observer {
-                a ->
-                Log.d("TAG", a)
+                idBucket ->
+                if(idBucket == null){}
+                else{
+                    val myPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+                    
+                    var id: String? = myPreferences.getString("id", "unknown")
+                    var descripcion: String? = description.text.toString()
+                    var idEtiquetas: ArrayList<String?> = arrayListOf()
+                    var url_imagen: String? = "https://pinart-images-storage.s3.amazonaws.com/"+idBucket
+                    var formato: String? = "JPG"
+                    var tamano: String? = "Tamano"
+                    
+                    for (i in 0 until selectedTags.size){
+                        idEtiquetas.add(tagListIds[selectedTags[i]])
+                    }
+
+                    selectedTags as ArrayList<String>
+                    
+                    multimediaViewModel!!.addMultimedia(id, descripcion, idEtiquetas, url_imagen, formato, tamano, idBucket).observe(this, Observer { 
+                        result ->
+                        Log.d("TAG", result.toString())
+                    })
+                }
+            
             
         })
 
 
-
-
-
+        
+      
         /*
         var multimediaFactory = InjectorUtils.providerMultimediaViewModelFactory()
         var multimediaViewModel = ViewModelProviders.of(this, multimediaFactory).get(

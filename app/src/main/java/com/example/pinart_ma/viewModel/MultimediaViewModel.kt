@@ -13,7 +13,23 @@ class MultimediaViewModel(private val multimediaRepository: MultimediaRepository
 
     fun getFeedTags(token: String?, idUser: String?) = multimediaRepository.getFeedTags(token, idUser)
 
-    fun addMultimedia(file: File?) = multimediaRepository.addMultimedia(file)
+    fun addMultimedia(
+        idUser: String?,
+        descripcion: String?,
+        idEtiquetas: ArrayList<String?>,
+        url_imagen: String?,
+        formato: String?,
+        tamano: String?,
+        idBucket: String?
+    ) = multimediaRepository.addMultimedia(
+        idUser,
+        descripcion,
+        idEtiquetas,
+        url_imagen,
+        formato,
+        tamano,
+        idBucket
+    )
 
     fun upLoadFileBucket(file: File?) = multimediaRepository.upLoadFileBucket(file)
 
