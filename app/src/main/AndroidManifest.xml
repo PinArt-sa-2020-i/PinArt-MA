@@ -20,8 +20,8 @@
         <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
@@ -29,6 +29,7 @@
         <activity android:name=".ui.RegisterAddTagsActivity" ></activity>
         <activity android:name=".ui.MainActivity"></activity>
         <activity android:name=".ui.AddMultimediaActivity"></activity>
+        <activity android:name=".ui.ConfigurationActivity"></activity>
     </application>
 
 </manifest>

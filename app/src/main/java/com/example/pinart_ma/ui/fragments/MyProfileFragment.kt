@@ -20,6 +20,7 @@ import com.example.pinart_ma.viewModel.MultimediaViewModel
 import com.example.pinart_ma.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.my_profile_fragment.*
 import android.graphics.Color
+import com.example.pinart_ma.ui.ConfigurationActivity
 
 class MyProfileFragment: Fragment() {
 
@@ -43,6 +44,11 @@ class MyProfileFragment: Fragment() {
 
         myProfileUploadMultimedia.setOnClickListener {
             var intent = Intent(activity, AddMultimediaActivity::class.java)
+            startActivity(intent)
+        }
+
+        myProfileConfigurations.setOnClickListener {
+            var intent = Intent(activity, ConfigurationActivity::class.java)
             startActivity(intent)
         }
 
