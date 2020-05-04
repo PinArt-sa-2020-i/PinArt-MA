@@ -1,17 +1,23 @@
 package com.example.pinart_ma.service.repository
 
-import android.preference.PreferenceManager
+import android.graphics.Bitmap
+import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.pinart_ma.service.model.Multimedia
-import com.example.pinart_ma.service.model.User
 import com.google.gson.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.ByteArrayOutputStream
+import java.io.File
+
 
 class MultimediaRepository {
 
@@ -187,5 +193,39 @@ class MultimediaRepository {
             }
         })
         return liveData
+    }
+
+    fun addMultimedia( file: File?) : MutableLiveData<String>{
+        return MutableLiveData()
+    }
+
+    fun upLoadFileBucket(file: File?): MutableLiveData<String>{
+        var api: BucketMS
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl("http://ec2-3-227-65-124.compute-1.amazonaws.com:8081")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(BucketMS::class.java)
+
+        val byteArrayOutputStream = ByteArrayOutputStream()
+
+        val call: Call<JsonObject> = api.addImagen2(MultipartBody.Part.createFormData("file", ".jpg", RequestBody.create(MediaType.parse("image/*"), file)))
+
+        var idBucket :MutableLiveData<String> = MutableLiveData<String>()
+
+        idBucket.value = "siiiiiiiiiiiiu"
+        call.enqueue(object : Callback<JsonObject?> {
+            override fun onFailure(call: Call<JsonObject?>?, t: Throwable?) {
+                idBucket.value = t.toString()
+
+            }
+
+            override fun onResponse(call: Call<JsonObject?>?, response: Response<JsonObject?>?) {
+                idBucket.value = response?.body()?.get("message").toString()
+                Log.d("TAGARDIÑO", response?.code().toString())
+            }
+
+        })
+        return idBucket
     }
 }
