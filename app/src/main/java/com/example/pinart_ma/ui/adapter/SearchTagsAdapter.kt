@@ -8,7 +8,7 @@ import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.Tag
-import com.example.pinart_ma.ui.RegisterActivity
+import com.example.pinart_ma.ui.MainActivity
 import kotlinx.android.synthetic.main.list_item_search_tag.view.*
 import kotlin.collections.ArrayList
 
@@ -54,7 +54,9 @@ class SearchTagsAdapter(var tagsList : ArrayList<Tag>) : RecyclerView.Adapter<Se
                 itemView.context.startActivity(intent)
                 * */
 
-                val intent = Intent(itemView.context, RegisterActivity::class.java)
+                val intent = Intent(itemView.context, MainActivity::class.java)
+                intent.putExtra("typeFragment", "tagFragment")
+                intent.putExtra("idTag", tag.id)
                 itemView.context.startActivity(intent)
 
             }

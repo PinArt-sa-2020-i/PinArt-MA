@@ -1,7 +1,7 @@
 package com.example.pinart_ma.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -37,12 +37,6 @@ class RegisterActivity : AppCompatActivity() {
         val correo: String = correoRegister.text.toString()
         val password: String = passwordRegister.text.toString()
 
-        /*
-        when{
-            TextUtils.isEmpty(firstName) -> Toast.makeText(this,  "Este campo es requerido", Toast.LENGTH_SHORT)
-        }
-        */
-
         var userFactory = InjectorUtils.provideUserViewModelFactory()
 
         var userViewModel = ViewModelProviders.of(this, userFactory).get(UserViewModel::class.java);
@@ -52,7 +46,10 @@ class RegisterActivity : AppCompatActivity() {
                 Log.d("TAG", id.toString())
                 if(id > 0){
                     Toast.makeText(this, "Registro Correcto: $id", Toast.LENGTH_LONG).show()
-                    onBackPressed();
+                    var intent: Intent = Intent(this, RegisterAddTagsActivity::class.java)
+                    intent.putExtra("userName", userName)
+                    intent.putExtra("password", password)
+                    startActivity(intent)
                 }
                 else{
                     Toast.makeText(this, "Error: Registro Fallido", Toast.LENGTH_SHORT).show()

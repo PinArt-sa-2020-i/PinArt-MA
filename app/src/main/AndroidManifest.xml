@@ -25,6 +25,8 @@
 
         <activity android:name=".ui.RegisterActivity" ></activity>
 
+        <activity android:name=".ui.RegisterAddTagsActivity" ></activity>
+
 
         <activity android:name=".ui.MainActivity"></activity>
     </application>

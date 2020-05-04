@@ -82,6 +82,9 @@ class MainActivity() : AppCompatActivity() {
                 "otherProfileFragment" ->{
                     return OtherProfileFragment.newInstance(intent.getStringExtra("idUsuario"))
                 }
+                "tagFragment" -> {
+                    return TagFragment.newInstance(intent.getStringExtra("idTag"))
+                }
                 else -> {
                     return SearchInitFragment.newInstance()
                 }
@@ -89,10 +92,8 @@ class MainActivity() : AppCompatActivity() {
     }
 
     /*
-
     val myPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val myEditor = myPreferences.edit()
         val name = myPreferences.getString("id", "unknown")
-
      */
 }
