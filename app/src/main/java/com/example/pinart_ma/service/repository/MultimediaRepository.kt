@@ -1,17 +1,24 @@
 package com.example.pinart_ma.service.repository
 
-import android.preference.PreferenceManager
+import android.graphics.Bitmap
+import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.pinart_ma.service.model.Multimedia
-import com.example.pinart_ma.service.model.User
 import com.google.gson.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.ByteArrayOutputStream
+import java.io.File
+
 
 class MultimediaRepository {
 
@@ -188,6 +195,87 @@ class MultimediaRepository {
         return liveData
     }
 
+
+    fun addMultimedia(idUser: String?, descripcion: String?, idEtiquetas: ArrayList<String?>,
+                      url_imagen: String?, formato: String?, tamano: String?, idBucket: String?) : MutableLiveData<Int>{
+        var api: APIMultimedia
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl("http://ec2-18-214-200-193.compute-1.amazonaws.com:3000")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIMultimedia::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<Int> = MutableLiveData<Int>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("idUsuario", idUser)
+        jsonObj_.put("descripcion", descripcion)
+        jsonObj_.put("url_imagen", url_imagen)
+        jsonObj_.put("formato", formato)
+        jsonObj_.put("tamano", tamano)
+        jsonObj_.put("id_bucket", idBucket)
+
+        var idEtiquetasArr: JSONArray = JSONArray()
+
+        for (i in 0 until idEtiquetas.size){
+            idEtiquetasArr.put(idEtiquetas[i])
+        }
+
+        jsonObj_.put("idEtiquetas", idEtiquetasArr)
+
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+        Log.d("TAG", gsonObject.toString())
+        var callApi = api.addMultimedia(gsonObject)
+
+        callApi.enqueue(object : Callback<JsonObject>{
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = 0
+            }
+
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if(response?.code() == 200){
+                    liveData.value = 1
+                }
+                else{
+                    Log.d("Tag", response?.toString())
+                    liveData.value = 0
+                }
+            }
+        })
+
+        return liveData
+    }
+
+    fun upLoadFileBucket(file: File?): MutableLiveData<String>{
+
+        var api: BucketMS
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl("http://ec2-3-227-65-124.compute-1.amazonaws.com:8081")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(BucketMS::class.java)
+
+        var requestBody: RequestBody = RequestBody.create(MediaType.parse("image/*"), file)
+        val call: Call<JsonObject> = api.addImagen(MultipartBody.Part.createFormData("file", ".jpg", requestBody))
+
+        var idBucket :MutableLiveData<String> = MutableLiveData<String>()
+
+
+        call.enqueue(object : Callback<JsonObject?> {
+            override fun onFailure(call: Call<JsonObject?>?, t: Throwable?) {
+                idBucket.value = null
+            }
+
+            override fun onResponse(call: Call<JsonObject?>?, response: Response<JsonObject?>?) {
+                idBucket.value = response?.body()?.get("message")?.asString
+            }
+
+        })
+        return idBucket
+    }
+
     fun getMultimediaByTag(token: String?, idTag: String?): MutableLiveData<MutableList<Multimedia>> {
         var api: APIGateway
         val retrofit: Retrofit = Retrofit.Builder()
@@ -247,5 +335,6 @@ class MultimediaRepository {
         })
         return liveData
     }
+
 
 }
