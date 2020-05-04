@@ -36,5 +36,6 @@ class MultimediaViewModel(private val multimediaRepository: MultimediaRepository
 
     fun getMultimediaByTag(token: String?, idTag: String?) = multimediaRepository.getMultimediaByTag(token, idTag)
 
+    fun getMultimediaById(token: String?, idMultimedia: String?) = multimediaRepository.getMultimediaById(token, idMultimedia)
 
 }

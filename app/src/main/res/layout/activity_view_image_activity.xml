@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonEliminarImagen"
+        android:text="Eliminar Imagen"
+        android:visibility="gone"
+        ></Button>
+
+    <ImageView
+        android:id="@+id/imageViewViewImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+
+    <TextView
+        android:id="@+id/descripcionTextViewViewImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Descripcion Default"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/userNameTextViewViewImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User Default"
+        android:textSize="25dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/containerRecyclerViewViewImage"
+    ></androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>
