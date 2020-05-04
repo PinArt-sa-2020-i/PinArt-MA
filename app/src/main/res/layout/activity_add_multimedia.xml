@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-<ScrollView
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
+    android:padding="20dp"
     >
--->
+
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tagRow">
+
+    >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,15 +26,14 @@
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
 
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="50dp"
                 android:padding="10dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
 
                 android:background="@drawable/rounded_edittext"
-                android:hint="Descripcion"
+                android:hint="Descripción"
                 />
 
 
@@ -44,7 +45,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="6dp"
-                android:hint="Escoge Tags relacionados"
+                android:hint="Escoge etiquetas relacionadas"
                 />
 
 
@@ -55,7 +56,6 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/addTag"
                 android:orientation="vertical">
 
             </LinearLayout>
@@ -64,18 +64,17 @@
             <ImageView
                 android:id="@+id/image_view"
                 android:scaleType="centerCrop"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:padding="10dp"
-                android:layout_below="@+id/tagsRow"
                 android:background="@drawable/rounded_image"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center"
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/image_view"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="10dp"
@@ -91,7 +90,8 @@
                     android:textColor="@color/colorPrimary"
                     android:background="@drawable/rounded_followbutton"
                     android:textStyle="bold"
-                    android:layout_marginRight="10dp"
+                    android:layout_margin="10dp"
+                    android:padding="5dp"
                     />
 
                 <Button
@@ -103,7 +103,8 @@
                     android:textStyle="bold"
                     android:textColor="@color/colorSecondary"
                     android:background="@drawable/rounded_search"
-                    android:layout_marginLeft="10dp"
+                    android:layout_margin="10dp"
+                    android:padding="5dp"
                     />
 
             </LinearLayout>
@@ -111,8 +112,6 @@
 
     </ScrollView>
 
+</RelativeLayout>
 
-<!--
-</ScrollView>
--->
 

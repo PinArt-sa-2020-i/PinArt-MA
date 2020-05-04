@@ -50,7 +50,8 @@ class AddMultimediaActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_multimedia)
-        
+
+        image_view.clipToOutline = true
         
         var tagFactory = InjectorUtils.providerTagViewModelFactory()
         var tagViewModel = ViewModelProviders.of(this, tagFactory).get(TagViewModel::class.java)
@@ -101,7 +102,7 @@ class AddMultimediaActivity: AppCompatActivity() {
         }
 
         saveImage.setOnClickListener {
-            if(description.text.isNotEmpty() and tagList.isNotEmpty() and img_pick_btn.text.equals("Imagen seleccionada")){
+            if(description.text.isNotEmpty() and tagList.isNotEmpty() and img_pick_btn.text.equals("Cambiar imagen")){
                 for(checkBox in checkBoxList){
                     if(checkBox.isChecked){
                         selectedTags.add(checkBox.text.toString())
@@ -145,7 +146,7 @@ class AddMultimediaActivity: AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
             getFile(data)
-            img_pick_btn.text = "Imagen seleccionada"
+            img_pick_btn.text = "Cambiar imagen"
             img_pick_btn.setBackgroundResource(R.drawable.rounded_search)
             img_pick_btn.setTextColor(Color.parseColor("#000000"))
             image_view.setImageURI(Uri.fromFile(fileX))
@@ -203,11 +204,7 @@ class AddMultimediaActivity: AppCompatActivity() {
                     })
                 }
             
-            
         })
-
-
-        
       
         /*
         var multimediaFactory = InjectorUtils.providerMultimediaViewModelFactory()
