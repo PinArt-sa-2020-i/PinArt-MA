@@ -114,43 +114,39 @@ class AddMultimediaActivity: AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
-
-            
-            var bitmap: Bitmap? = MediaStore.Images.Media.getBitmap(this.contentResolver, data?.data)
-            val wrapper= ContextWrapper(applicationContext)
-            var file = wrapper.getDir("Images", Context.MODE_PRIVATE)
-            file = File(file,"${UUID.randomUUID()}.jpg")
-
-            val stream: OutputStream = FileOutputStream(file)
-            bitmap?.compress(Bitmap.CompressFormat.JPEG,100,stream)
-            stream.flush()
-            stream.close()
-
-            fileX = File(file.absolutePath)
-            
-            
-            
-            
-            
-            
+            getFile(data)
             img_pick_btn.text = "Image Selected"
-            //image_view.setImageURI(data?.data)
-
             image_view.setImageURI(Uri.fromFile(fileX))
         }
     }
 
+    fun getFile(data: Intent?){
+        var bitmap: Bitmap? = MediaStore.Images.Media.getBitmap(this.contentResolver, data?.data)
+        val wrapper= ContextWrapper(applicationContext)
+        var file = wrapper.getDir("Images", Context.MODE_PRIVATE)
+        
+        file = File(file,"${UUID.randomUUID()}.jpg")
+        
+        val stream: OutputStream = FileOutputStream(file)
+        
+        bitmap?.compress(Bitmap.CompressFormat.JPEG,100,stream)
+        
+        stream.flush()
+        stream.close()
+        
+        fileX = File(file.absolutePath)
+        
+    }
+    
     fun addMultimedia(){
         var multimediaFactory = InjectorUtils.providerMultimediaViewModelFactory()
         var multimediaViewModel = ViewModelProviders.of(this, multimediaFactory).get(
             MultimediaViewModel::class.java)
         
-        
-
-
         multimediaViewModel!!.upLoadFileBucket(fileX).observe(this, Observer {
                 a ->
-            Log.d("TAGARDO", a)
+                Log.d("TAG", a)
+            
         })
 
 

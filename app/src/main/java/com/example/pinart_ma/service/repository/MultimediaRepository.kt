@@ -200,6 +200,7 @@ class MultimediaRepository {
     }
 
     fun upLoadFileBucket(file: File?): MutableLiveData<String>{
+
         var api: BucketMS
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("http://ec2-3-227-65-124.compute-1.amazonaws.com:8081")
@@ -207,22 +208,19 @@ class MultimediaRepository {
             .build()
         api = retrofit.create(BucketMS::class.java)
 
-        val byteArrayOutputStream = ByteArrayOutputStream()
-
-        val call: Call<JsonObject> = api.addImagen2(MultipartBody.Part.createFormData("file", ".jpg", RequestBody.create(MediaType.parse("image/*"), file)))
+        var requestBody: RequestBody = RequestBody.create(MediaType.parse("image/*"), file)
+        val call: Call<JsonObject> = api.addImagen(MultipartBody.Part.createFormData("file", ".jpg", requestBody))
 
         var idBucket :MutableLiveData<String> = MutableLiveData<String>()
 
-        idBucket.value = "siiiiiiiiiiiiu"
+        
         call.enqueue(object : Callback<JsonObject?> {
             override fun onFailure(call: Call<JsonObject?>?, t: Throwable?) {
                 idBucket.value = t.toString()
-
             }
 
             override fun onResponse(call: Call<JsonObject?>?, response: Response<JsonObject?>?) {
                 idBucket.value = response?.body()?.get("message").toString()
-                Log.d("TAGARDIÑO", response?.code().toString())
             }
 
         })
