@@ -31,6 +31,7 @@ import java.io.FileOutputStream
 import java.io.OutputStream
 import java.util.*
 import kotlin.collections.ArrayList
+import android.graphics.Color
 
 
 class AddMultimediaActivity: AppCompatActivity() {
@@ -100,7 +101,7 @@ class AddMultimediaActivity: AppCompatActivity() {
         }
 
         saveImage.setOnClickListener {
-            if(description.text.isNotEmpty() and tagList.isNotEmpty() and img_pick_btn.text.equals("Image Selected")){
+            if(description.text.isNotEmpty() and tagList.isNotEmpty() and img_pick_btn.text.equals("Imagen seleccionada")){
                 for(checkBox in checkBoxList){
                     if(checkBox.isChecked){
                         selectedTags.add(checkBox.text.toString())
@@ -144,8 +145,13 @@ class AddMultimediaActivity: AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
             getFile(data)
-            img_pick_btn.text = "Image Selected"
+            img_pick_btn.text = "Imagen seleccionada"
+            img_pick_btn.setBackgroundResource(R.drawable.rounded_search)
+            img_pick_btn.setTextColor(Color.parseColor("#000000"))
             image_view.setImageURI(Uri.fromFile(fileX))
+
+            saveImage.setBackgroundResource(R.drawable.rounded_followbutton)
+            saveImage.setTextColor(Color.parseColor("#FFFFFF"))
         }
     }
 

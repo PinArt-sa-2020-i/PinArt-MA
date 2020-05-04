@@ -1,96 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<!--
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.RegisterActivity">
+    android:background="@drawable/gradient_background"
+    >
+-->
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.RegisterActivity"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        >
 
     <EditText
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-
-        android:layout_marginTop="80dp"
-        android:padding="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-
-        android:hint="Descripcion"
-        />
-
-    <LinearLayout
-        android:id="@+id/tagRow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/description"
-        >
-        <TextView
-            android:id="@+id/addTag"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="6dp"
-            android:hint="Escoge al menos un Tag"
-            />
-    </LinearLayout>
-
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/tagRow">
-        <LinearLayout
-            android:id="@+id/tagsRow"
+            android:id="@+id/description"
             android:layout_width="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+
+            android:background="@drawable/rounded_edittext"
+            android:hint="Descripcion"
+            />
+
+        <LinearLayout
+            android:id="@+id/tagRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/description"
+            >
+            <TextView
+                android:id="@+id/addTag"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="6dp"
+                android:hint="Escoge al menos un Tag"
+                />
         </LinearLayout>
-    </ScrollView>
 
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/tagRow">
+            <LinearLayout
+                android:id="@+id/tagsRow"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+        </ScrollView>
 
+        <ImageView
+            android:id="@+id/image_view"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:layout_below="@+id/scrollView"
+            android:background="@drawable/rounded_image"
+            />
 
-    <ImageView
-        android:id="@+id/image_view"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_pinart"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:padding="10dp"
-        android:layout_below="@+id/scrollView"
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_view"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            >
 
-    <Button
-        android:id="@+id/img_pick_btn"
-        android:layout_width="500dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:padding="10dp"
-        android:text="Seleccionar Imagen"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/image_view"
-        />
+            <Button
+                android:id="@+id/img_pick_btn"
+                android:text="Seleccionar Imagen"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/rounded_followbutton"
+                android:textStyle="bold"
+                android:layout_marginRight="10dp"
+                />
 
-    <Button
-        android:id="@+id/saveImage"
+            <Button
+                android:id="@+id/saveImage"
+                android:text="Guardar Imagen"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textColor="@color/colorSecondary"
+                android:background="@drawable/rounded_search"
+                android:layout_marginLeft="10dp"
+                />
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        </LinearLayout>
 
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_below="@+id/img_pick_btn"
-        android:padding="10dp"
-        android:text="Guardar Imagen"
+    </RelativeLayout>
+<!--
+</ScrollView>
+-->
 
-        android:textAllCaps="false"
-        />
-
-</RelativeLayout>
