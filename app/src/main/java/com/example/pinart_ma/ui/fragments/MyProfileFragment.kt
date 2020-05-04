@@ -40,7 +40,8 @@ class MyProfileFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         loadMultimediaFragment()
-        addMultimediaButton.setOnClickListener {
+
+        myProfileUploadMultimedia.setOnClickListener {
             var intent = Intent(activity, AddMultimediaActivity::class.java)
             startActivity(intent)
         }
