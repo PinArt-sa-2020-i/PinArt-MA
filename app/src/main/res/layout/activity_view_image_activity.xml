@@ -3,7 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonEliminarImagen"
+        android:text="Eliminar Imagen"
+        android:visibility="gone"
+        ></Button>
 
     <ImageView
         android:id="@+id/imageViewViewImage"

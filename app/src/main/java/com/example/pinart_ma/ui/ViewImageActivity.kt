@@ -3,6 +3,7 @@ package com.example.pinart_ma.ui
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -83,6 +84,8 @@ class ViewImageActivity() : AppCompatActivity() {
                         intent.putExtra("typeFragment", "myProfileFragment")
                         startActivity(intent)
                     }
+                    buttonEliminarImagen.visibility = View.VISIBLE
+
                 }else{
                     userNameTextViewViewImage.setOnClickListener {
                         var intent: Intent = Intent(this, MainActivity::class.java)
