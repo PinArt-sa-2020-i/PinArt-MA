@@ -1,6 +1,7 @@
 package com.example.pinart_ma.ui.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.Multimedia
 import com.example.pinart_ma.service.model.User
+import com.example.pinart_ma.ui.AddMultimediaActivity
 import com.example.pinart_ma.utils.InjectorUtils
 import com.example.pinart_ma.viewModel.MultimediaViewModel
 import com.example.pinart_ma.viewModel.UserViewModel
@@ -26,6 +28,7 @@ class MyProfileFragment: Fragment() {
     lateinit var user: User
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         var view = inflater.inflate(R.layout.my_profile_fragment, container, false)
         loadUser(context)
         return view
@@ -34,6 +37,10 @@ class MyProfileFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadMultimediaFragment()
+        addMultimediaButton.setOnClickListener {
+            var intent = Intent(activity, AddMultimediaActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
