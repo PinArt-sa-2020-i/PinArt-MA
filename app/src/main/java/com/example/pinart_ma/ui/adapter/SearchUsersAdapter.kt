@@ -5,15 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pinart_ma.R
-import com.example.pinart_ma.service.model.Tag
 import com.example.pinart_ma.service.model.User
-import kotlinx.android.synthetic.main.fragment_search_users.view.*
 import com.example.pinart_ma.ui.MainActivity
-import com.example.pinart_ma.ui.RegisterActivity
-import com.example.pinart_ma.ui.fragments.SearchInitFragment
 import kotlinx.android.synthetic.main.list_item_search_user.view.*
 
 class SearchUsersAdapter(var userList: ArrayList<User>) : RecyclerView.Adapter<SearchUsersAdapter.UserViewHolder>(){
