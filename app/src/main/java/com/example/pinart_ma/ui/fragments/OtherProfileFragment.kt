@@ -62,7 +62,9 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
 
     fun mostrarInfoUsuario(context: Context?){
         userNameTextViewOtherProfile.text = user.username
-        nameTextViewOtherProfile.text = (user.firstname + " " + user.lastname)
+        //nameTextViewOtherProfile.text = (user.firstname + " " + user.lastname)  Dejar por si se puede mover esta parte
+        otherProfileFollowers.text = "? seguidores"
+        otherProfileFollowing.text = "? siguiendo"
     }
 
     private fun loadMultimediaFragment() {

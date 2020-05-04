@@ -16,6 +16,7 @@ import com.example.pinart_ma.utils.InjectorUtils
 import com.example.pinart_ma.viewModel.MultimediaViewModel
 import com.example.pinart_ma.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.my_profile_fragment.*
+import android.graphics.Color
 
 class MyProfileFragment: Fragment() {
 
@@ -33,8 +34,24 @@ class MyProfileFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadMultimediaFragment()
 
+        loadMultimediaFragment()
+        myProfileMultimedia.setBackgroundResource(R.drawable.rounded_button_feed)
+        myProfileMultimedia.setTextColor(Color.parseColor("#FFFFFF"))
+
+        myProfileMultimedia.setOnClickListener{
+            myProfileMultimedia.setBackgroundResource(R.drawable.rounded_button_feed)
+            myProfileMultimedia.setTextColor(Color.parseColor("#FFFFFF"))
+            myProfileTableros.setBackgroundColor(Color.TRANSPARENT)
+            myProfileTableros.setTextColor(Color.parseColor("#000000"))
+        }
+
+        myProfileTableros.setOnClickListener{
+            myProfileTableros.setBackgroundResource(R.drawable.rounded_button_feed)
+            myProfileTableros.setTextColor(Color.parseColor("#FFFFFF"))
+            myProfileMultimedia.setBackgroundColor(Color.TRANSPARENT)
+            myProfileMultimedia.setTextColor(Color.parseColor("#000000"))
+        }
     }
 
 
@@ -61,9 +78,10 @@ class MyProfileFragment: Fragment() {
 
 
     fun mostrarInfoUsuario(context: Context?){
+        nameMyProfile.text = (user.firstname + " " + user.lastname)
         userNameMyProfile.text = user.username
-        firstNameMyProfile.text = user.firstname
-        lastNameMyProfile.text = user.lastname
+        myProfileFollowers.text = "? seguidores"
+        myProfileFollowing.text = "? siguiendo"
     }
 
 

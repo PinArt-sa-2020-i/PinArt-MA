@@ -34,6 +34,38 @@
         android:textAlignment="center"
         />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        >
+
+        <Button
+            android:id="@+id/otherProfileFollowers"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/colorSecondary"
+            android:background="@android:color/transparent"
+            android:textStyle="bold"
+            android:paddingRight="20dp"
+            android:textAllCaps="false"
+            />
+
+        <Button
+            android:id="@+id/otherProfileFollowing"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondary"
+            android:background="@android:color/transparent"
+            android:paddingLeft="20dp"
+            android:textAllCaps="false"
+            />
+
+    </LinearLayout>
+
+
+    <!-- Dejar por si se puede hacer que se corra esta parte
     <TextView
         android:id="@+id/nameTextViewOtherProfile"
         android:layout_width="match_parent"
@@ -43,6 +75,7 @@
         android:textColor="@color/colorDefault"
         android:textAlignment="center"
         />
+     -->
 
     <Button
         android:id="@+id/seguirButtonOtherProfile"
