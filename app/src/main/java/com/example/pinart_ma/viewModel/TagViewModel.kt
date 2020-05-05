@@ -13,4 +13,6 @@ class TagViewModel(private val tagRepository: TagRepository) : ViewModel() {
     fun getTagFolledByUser(token: String?, idUsuario: String?) = tagRepository.getTagFolledByUser(token, idUsuario)
 
     fun followTag(token: String?, idUsuario: String?, idTag: String?) = tagRepository.followTag(token, idUsuario, idTag)
+
+    fun unFollowTag(token: String?, idUsuario: String?, idTag: String?) = tagRepository.unFollowTag(token, idUsuario, idTag)
 }

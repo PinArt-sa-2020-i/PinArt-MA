@@ -133,6 +133,14 @@ class TagFragment(var idTag: String?) : Fragment() {
             })
         }
         else{
+            tagViewModel!!.unFollowTag(token, id, idTag).observe(viewLifecycleOwner, Observer {
+                result ->
+                if(result == 0){}
+                else{
+                    followTag = false
+                    buttonFollowTag.text = "Seguir"
+                }
+            })
 
         }
 
