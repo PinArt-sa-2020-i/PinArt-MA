@@ -84,7 +84,8 @@ class ViewImageActivity() : AppCompatActivity() {
                         intent.putExtra("typeFragment", "myProfileFragment")
                         startActivity(intent)
                     }
-                    buttonEliminarImagen.visibility = View.VISIBLE
+                    loadFuntionalityDeleteButton()
+
 
                 }else{
                     userNameTextViewViewImage.setOnClickListener {
@@ -121,9 +122,33 @@ class ViewImageActivity() : AppCompatActivity() {
             //Se llama al recyler view
             containerRecyclerViewViewImage.layoutManager = LinearLayoutManager(this)
             containerRecyclerViewViewImage.adapter = ViewImageTagsAdapter(tags)
-
-
         })
+    }
+
+
+    fun loadFuntionalityDeleteButton(){
+        buttonEliminarImagen.visibility = View.VISIBLE
+        idMultimedia = intent.getStringExtra("idMultimedia")
+
+        var multimediaFactory = InjectorUtils.providerMultimediaViewModelFactory()
+        var multimediaViewModel = ViewModelProviders.of(this, multimediaFactory).get(MultimediaViewModel::class.java)
+
+        val myPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        var token: String? = myPreferences.getString("token", "unknown")
+
+        buttonEliminarImagen.setOnClickListener {
+            multimediaViewModel!!.deleteMultimediaById(token, idMultimedia).observe(this, Observer {
+                resultado ->
+                if(resultado == 0){finish()}
+                else{
+                    var intent: Intent = Intent(this,  MainActivity::class.java)
+                    intent.putExtra("typeFragment", "myProfileFragment")
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent)
+                    finish();
+                }
+            })
+        }
 
     }
 }

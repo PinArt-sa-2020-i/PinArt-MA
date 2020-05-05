@@ -400,4 +400,49 @@ class MultimediaRepository {
         return liveData
     }
 
+    fun deleteMultimediaById(token: String?, idMultimedia: String?): MutableLiveData<Int> {
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<Int> = MutableLiveData<Int>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "mutation{ deleteMultimedia(idMultimedia: \"$idMultimedia\")}")
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+        var callApi = api.getMultimediaById(token, gsonObject)
+
+        //Se realiza la llamada
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = null
+            }
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null){liveData.value = 0}
+                else{
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+
+                    if (dataAux is JsonNull) {liveData.value = 0}
+                    else{
+                        var data: JsonObject = dataAux as JsonObject
+                        var deleteMultimediaAux : JsonElement = data.get("deleteMultimedia") as JsonElement
+                        if(deleteMultimediaAux is JsonNull){
+                            liveData.value = 0
+                        }
+                        else{
+                            liveData.value = 1
+                        }
+                    }
+                }
+            }
+        })
+        return liveData
+    }
+
 }
