@@ -201,32 +201,16 @@ class AddMultimediaActivity: AppCompatActivity() {
                     multimediaViewModel!!.addMultimedia(id, descripcion, idEtiquetas, url_imagen, formato, tamano, idBucket).observe(this, Observer { 
                         result ->
                         Log.d("TAG", result.toString())
+
+                        var intent: Intent = Intent(this,  MainActivity::class.java)
+                        intent.putExtra("typeFragment", "myProfileFragment")
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent)
+                        finish();
                     })
                 }
             
         })
-      
-        /*
-        var multimediaFactory = InjectorUtils.providerMultimediaViewModelFactory()
-        var multimediaViewModel = ViewModelProviders.of(this, multimediaFactory).get(
-            MultimediaViewModel::class.java)
-
-        val myPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val id: String? = myPreferences.getString("id", "unknown")
-        var token: String? = myPreferences.getString("token", "unknown")
-
-
-        multimediaViewModel!!.getFeedTags(token, id).observe(viewLifecycleOwner, Observer {
-                multimediaList ->
-                for(i in 0 until multimediaList.size){
-                    feed.add(multimediaList[i])
-                }
-                Toast.makeText(context, feed.size.toString(), Toast.LENGTH_SHORT).show()
-                recyclerViewFeedUsers.layoutManager=  StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                recyclerViewFeedUsers.adapter = TagsFeedAdapter(feed)
-
-        })
-         */
     }
 
     
