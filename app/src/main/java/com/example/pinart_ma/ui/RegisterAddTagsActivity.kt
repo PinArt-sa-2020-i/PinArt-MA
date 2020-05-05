@@ -59,144 +59,120 @@ class RegisterAddTagsActivity : AppCompatActivity(){
         viajesTagRegisterAddTags.setOnClickListener {
             selectTags[0] = !selectTags[0]
             if(selectTags[0] == true){
-                viajesTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_followbutton)
-                viajesTagRegisterAddTags.setTextColor(Color.parseColor("#FFFFFF"))
+                viajesTagRegisterAddTags.setBackgroundColor(Color.rgb(72, 201, 176 ))
             }
             else{
-                viajesTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_search)
-                viajesTagRegisterAddTags.setTextColor(Color.parseColor("#000000"))
+                viajesTagRegisterAddTags.setBackgroundColor(Color.rgb(209, 242, 235 ))
             }
         }
 
         recetasTagRegisterAddTags.setOnClickListener {
             selectTags[1] = !selectTags[1]
             if(selectTags[1] == true){
-                recetasTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_followbutton)
-                recetasTagRegisterAddTags.setTextColor(Color.parseColor("#FFFFFF"))
+                recetasTagRegisterAddTags.setBackgroundColor(Color.rgb(72, 201, 176 ))
             }
             else{
-                recetasTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_search)
-                recetasTagRegisterAddTags.setTextColor(Color.parseColor("#000000"))
+                recetasTagRegisterAddTags.setBackgroundColor(Color.rgb(209, 242, 235 ))
             }
         }
 
         deportesTagRegisterAddTags.setOnClickListener {
             selectTags[2] = !selectTags[2]
             if(selectTags[2] == true){
-                deportesTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_followbutton)
-                deportesTagRegisterAddTags.setTextColor(Color.parseColor("#FFFFFF"))
+                deportesTagRegisterAddTags.setBackgroundColor(Color.rgb(72, 201, 176 ))
             }
             else{
-                deportesTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_search)
-                deportesTagRegisterAddTags.setTextColor(Color.parseColor("#000000"))
+                deportesTagRegisterAddTags.setBackgroundColor(Color.rgb(209, 242, 235 ))
             }
         }
 
         noticiasTagRegisterAddTags.setOnClickListener {
             selectTags[3] = !selectTags[3]
             if(selectTags[3] == true){
-                noticiasTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_followbutton)
-                noticiasTagRegisterAddTags.setTextColor(Color.parseColor("#FFFFFF"))
+                noticiasTagRegisterAddTags.setBackgroundColor(Color.rgb(72, 201, 176 ))
             }
             else{
-                noticiasTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_search)
-                noticiasTagRegisterAddTags.setTextColor(Color.parseColor("#000000"))
+                noticiasTagRegisterAddTags.setBackgroundColor(Color.rgb(209, 242, 235 ))
             }
         }
 
         musicaTagRegisterAddTags.setOnClickListener {
             selectTags[4] = !selectTags[4]
             if(selectTags[4] == true){
-                musicaTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_followbutton)
-                musicaTagRegisterAddTags.setTextColor(Color.parseColor("#FFFFFF"))
+                musicaTagRegisterAddTags.setBackgroundColor(Color.rgb(72, 201, 176 ))
             }
             else{
-                musicaTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_search)
-                musicaTagRegisterAddTags.setTextColor(Color.parseColor("#000000"))
+                musicaTagRegisterAddTags.setBackgroundColor(Color.rgb(209, 242, 235 ))
             }
         }
 
         peliculasSeriesTagRegisterAddTags.setOnClickListener {
             selectTags[5] = !selectTags[5]
             if(selectTags[5] == true){
-                peliculasSeriesTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_followbutton)
-                peliculasSeriesTagRegisterAddTags.setTextColor(Color.parseColor("#FFFFFF"))
+                peliculasSeriesTagRegisterAddTags.setBackgroundColor(Color.rgb(72, 201, 176 ))
             }
             else{
-                peliculasSeriesTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_search)
-                peliculasSeriesTagRegisterAddTags.setTextColor(Color.parseColor("#000000"))
+                peliculasSeriesTagRegisterAddTags.setBackgroundColor(Color.rgb(209, 242, 235 ))
             }
         }
 
         humorTagRegisterAddTags.setOnClickListener {
             selectTags[6] = !selectTags[6]
             if(selectTags[6] == true){
-                humorTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_followbutton)
-                humorTagRegisterAddTags.setTextColor(Color.parseColor("#FFFFFF"))
+                humorTagRegisterAddTags.setBackgroundColor(Color.rgb(72, 201, 176 ))
             }
             else{
-                humorTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_search)
-                humorTagRegisterAddTags.setTextColor(Color.parseColor("#000000"))
+                humorTagRegisterAddTags.setBackgroundColor(Color.rgb(209, 242, 235 ))
             }
         }
 
         gamesTagRegisterAddTags.setOnClickListener {
             selectTags[7] = !selectTags[7]
             if(selectTags[7] == true){
-                gamesTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_followbutton)
-                gamesTagRegisterAddTags.setTextColor(Color.parseColor("#FFFFFF"))
+                gamesTagRegisterAddTags.setBackgroundColor(Color.rgb(72, 201, 176 ))
             }
             else{
-                gamesTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_search)
-                gamesTagRegisterAddTags.setTextColor(Color.parseColor("#000000"))
+                gamesTagRegisterAddTags.setBackgroundColor(Color.rgb(209, 242, 235 ))
             }
         }
 
         paisajesTagRegisterAddTags.setOnClickListener {
             selectTags[8] = !selectTags[8]
             if(selectTags[8] == true){
-                paisajesTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_followbutton)
-                paisajesTagRegisterAddTags.setTextColor(Color.parseColor("#FFFFFF"))
+                paisajesTagRegisterAddTags.setBackgroundColor(Color.rgb(72, 201, 176 ))
             }
             else{
-                paisajesTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_search)
-                paisajesTagRegisterAddTags.setTextColor(Color.parseColor("#000000"))
+                paisajesTagRegisterAddTags.setBackgroundColor(Color.rgb(209, 242, 235 ))
             }
         }
 
         autosTagRegisterAddTags.setOnClickListener {
             selectTags[9] = !selectTags[9]
             if(selectTags[9] == true){
-                autosTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_followbutton)
-                autosTagRegisterAddTags.setTextColor(Color.parseColor("#FFFFFF"))
+                autosTagRegisterAddTags.setBackgroundColor(Color.rgb(72, 201, 176 ))
             }
             else{
-                autosTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_search)
-                autosTagRegisterAddTags.setTextColor(Color.parseColor("#000000"))
+                autosTagRegisterAddTags.setBackgroundColor(Color.rgb(209, 242, 235 ))
             }
         }
 
         fitnessTagRegisterAddTags.setOnClickListener {
             selectTags[10] = !selectTags[10]
             if(selectTags[10] == true){
-                fitnessTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_followbutton)
-                fitnessTagRegisterAddTags.setTextColor(Color.parseColor("#FFFFFF"))
+                fitnessTagRegisterAddTags.setBackgroundColor(Color.rgb(72, 201, 176 ))
             }
             else{
-                fitnessTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_search)
-                fitnessTagRegisterAddTags.setTextColor(Color.parseColor("#000000"))
+                fitnessTagRegisterAddTags.setBackgroundColor(Color.rgb(209, 242, 235 ))
             }
         }
 
         modaTagRegisterAddTags.setOnClickListener {
             selectTags[11] = !selectTags[11]
             if(selectTags[11] == true){
-                modaTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_followbutton)
-                modaTagRegisterAddTags.setTextColor(Color.parseColor("#FFFFFF"))
+                modaTagRegisterAddTags.setBackgroundColor(Color.rgb(72, 201, 176 ))
             }
             else{
-                modaTagRegisterAddTags.setBackgroundResource(R.drawable.rounded_search)
-                modaTagRegisterAddTags.setTextColor(Color.parseColor("#000000"))
+                modaTagRegisterAddTags.setBackgroundColor(Color.rgb(209, 242, 235 ))
             }
         }
 
