@@ -1,60 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    android:background="@drawable/gradient_background"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <Button
             android:id="@+id/viajesTagRegisterAddTags"
             android:text="Viajes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#D1F2EB"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_search"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
             />
 
         <Button
             android:id="@+id/recetasTagRegisterAddTags"
             android:text="Recetas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#D1F2EB"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_search"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            />
 
         <Button
             android:id="@+id/deportesTagRegisterAddTags"
             android:text="Deportes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#D1F2EB"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_search"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <Button
             android:id="@+id/noticiasTagRegisterAddTags"
             android:text="Noticias"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#D1F2EB"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_search"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            />
 
         <Button
             android:id="@+id/musicaTagRegisterAddTags"
             android:text="Musica"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#D1F2EB"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_search"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            />
 
         <Button
             android:id="@+id/peliculasSeriesTagRegisterAddTags"
             android:text="Peliculas / Series"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#D1F2EB"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_search"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -64,23 +90,32 @@
         <Button
             android:id="@+id/humorTagRegisterAddTags"
             android:text="Humor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#D1F2EB"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_search"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            />
 
         <Button
             android:id="@+id/gamesTagRegisterAddTags"
             android:text="Games"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#D1F2EB"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_search"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            />
 
         <Button
             android:id="@+id/paisajesTagRegisterAddTags"
             android:text="Paisajes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#D1F2EB"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_search"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -90,23 +125,32 @@
         <Button
             android:id="@+id/autosTagRegisterAddTags"
             android:text="Autos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#D1F2EB"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_search"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            />
 
         <Button
             android:id="@+id/fitnessTagRegisterAddTags"
             android:text="Fitness"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#D1F2EB"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_search"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            />
 
         <Button
             android:id="@+id/modaTagRegisterAddTags"
             android:text="Moda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#D1F2EB"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_search"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            />
     </LinearLayout>
 
     <Button
@@ -114,6 +158,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Continuar"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/colorPrimary"
+        android:layout_margin="20dp"
         >
 
     </Button>
