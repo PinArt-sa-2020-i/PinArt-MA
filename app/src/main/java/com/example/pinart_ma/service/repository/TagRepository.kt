@@ -270,5 +270,59 @@ class TagRepository {
     }
 
 
+    fun unFollowTag(token: String?, idUser: String?, idTag: String?): MutableLiveData<Int> {
+
+        //Se crea el retrofic api
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<Int> = MutableLiveData<Int>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "mutation{ removeLabelUser(idUser: $idUser, idLabel:$idTag) }")
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+
+
+        //Se realiza la llamada
+        var callApi = api.default(token, gsonObject)
+
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = 0
+            }
+
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null) {
+                    liveData.value = 0
+                } else {
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+
+                    if (dataAux is JsonNull) {
+                        liveData.value = 0
+                    } else {
+                        var data: JsonObject = dataAux as JsonObject
+                        var removeLabelUserAux : JsonElement = data.get("removeLabelUser") as JsonElement
+
+                        if (removeLabelUserAux is JsonNull){
+                            liveData.value = 0
+                        }
+                        else{
+                            liveData.value = 1
+                        }
+                    }
+                }
+            }
+        })
+        return liveData
+    }
+
+
 
 }

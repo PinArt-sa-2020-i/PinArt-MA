@@ -29,6 +29,7 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
         var view = inflater.inflate(R.layout.other_profile_fragment, container, false)
         loadUser(context)
         loadFollowButton(context)
+        loadFollow(context)
         loadMultimediaFragment()
 
         return view
@@ -63,8 +64,7 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
     fun mostrarInfoUsuario(context: Context?){
         userNameTextViewOtherProfile.text = user.username
         //nameTextViewOtherProfile.text = (user.firstname + " " + user.lastname)  Dejar por si se puede mover esta parte
-        otherProfileFollowers.text = "? seguidores"
-        otherProfileFollowing.text = "? siguiendo"
+
     }
 
     private fun loadMultimediaFragment() {
@@ -126,6 +126,7 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
                     seguirButtonOtherProfile.setTextColor(Color.parseColor("#000000"))
                     seguirButtonOtherProfile.text = "Dejar de seguir"
                 }
+                loadFollow(context)
             })
         }
         else{
@@ -138,8 +139,34 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
                     seguirButtonOtherProfile.setTextColor(Color.parseColor("#FFFFFF"))
                     seguirButtonOtherProfile.text = "Seguir"
                 }
+                loadFollow(context)
             })
         }
     }
 
+
+    fun loadFollow(context: Context?){
+        val myPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val id = myPreferences.getString("id", "unknown")
+        val token = myPreferences.getString("token", "unknown")
+
+        var userFactory = InjectorUtils.provideUserViewModelFactory()
+        var userViewModel = ViewModelProviders.of(this, userFactory).get(UserViewModel::class.java);
+
+        userViewModel!!.getAllUserFollow(token).observe(viewLifecycleOwner, Observer {
+                userFollows ->
+            var followers: Int = 0
+            var following: Int = 0
+            for (i in 0 until userFollows.size) {
+                if (userFollows[i][2] == idUsuario) {
+                    followers++
+                }
+                if (userFollows[i][1] == idUsuario) {
+                    following++
+                }
+            }
+            otherProfileFollowers.text = "$followers seguidores"
+            otherProfileFollowing.text = "$following siguiendo"
+        })
+    }
 }

@@ -126,11 +126,14 @@ class SearchFragment: Fragment() {
 
         val myPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         var token: String? = myPreferences.getString("token", "unknown")
+        var id: String? = myPreferences.getString("id", "unknown")
 
         userViewModel!!.getAllUsers(token).observe(viewLifecycleOwner, Observer {
             userList ->
             for (i in 0 until userList.size){
-                usersList.add(userList[i])
+                if(userList[i].id.toString() != id){
+                    usersList.add(userList[i])
+                }
             }
         })
     }

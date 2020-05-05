@@ -34,6 +34,7 @@ class MyProfileFragment: Fragment() {
 
         var view = inflater.inflate(R.layout.my_profile_fragment, container, false)
         loadUser(context)
+        loadFollow(context)
         return view
     }
 
@@ -97,8 +98,8 @@ class MyProfileFragment: Fragment() {
     fun mostrarInfoUsuario(context: Context?){
         nameMyProfile.text = (user.firstname + " " + user.lastname)
         userNameMyProfile.text = user.username
-        myProfileFollowers.text = "? seguidores"
-        myProfileFollowing.text = "? siguiendo"
+        //myProfileFollowers.text = "? seguidores"
+        //myProfileFollowing.text = "? siguiendo"
     }
 
 
@@ -111,5 +112,26 @@ class MyProfileFragment: Fragment() {
         transaction.replace(R.id.containerMyProfileFragment, ProfileMultimediaFragment.newInstance(id, true))
         transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    fun loadFollow(context: Context?){
+        val myPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val id = myPreferences.getString("id", "unknown")
+        val token = myPreferences.getString("token", "unknown")
+
+        var userFactory = InjectorUtils.provideUserViewModelFactory()
+        var userViewModel = ViewModelProviders.of(this, userFactory).get(UserViewModel::class.java);
+
+        userViewModel!!.getAllUserFollow(token).observe(viewLifecycleOwner, Observer {
+            userFollows ->
+            var followers: Int = 0
+            var following: Int = 0
+            for (i in 0 until userFollows.size){
+                if(userFollows[i][2] == id){ followers++}
+                if(userFollows[i][1] == id){ following++}
+            }
+            myProfileFollowers.text = "$followers seguidores"
+            myProfileFollowing.text = "$following siguiendo"
+        })
     }
 }
