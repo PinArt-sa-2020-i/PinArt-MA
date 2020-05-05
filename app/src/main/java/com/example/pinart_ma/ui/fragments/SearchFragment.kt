@@ -134,7 +134,6 @@ class SearchFragment: Fragment() {
                 if(userList[i].id.toString() != id){
                     usersList.add(userList[i])
                 }
-
             }
         })
     }
