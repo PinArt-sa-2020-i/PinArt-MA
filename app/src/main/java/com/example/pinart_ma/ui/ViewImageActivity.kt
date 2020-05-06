@@ -4,10 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.Multimedia
 import com.example.pinart_ma.service.model.Tag
@@ -33,7 +36,6 @@ class ViewImageActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_image_activity)
         loadMultimedia()
-
     }
 
     fun loadMultimedia(){
@@ -120,7 +122,8 @@ class ViewImageActivity() : AppCompatActivity() {
             }
 
             //Se llama al recyler view
-            containerRecyclerViewViewImage.layoutManager = LinearLayoutManager(this)
+            containerRecyclerViewViewImage.layoutManager = GridLayoutManager(this,3)
+
             containerRecyclerViewViewImage.adapter = ViewImageTagsAdapter(tags)
         })
     }

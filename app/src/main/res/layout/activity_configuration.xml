@@ -4,18 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <Button
-        android:id="@+id/logOut"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:padding="10dp"
-        android:text="Cerrar Sesion"
-        android:layout_height="wrap_content"
-        ></Button>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/logOut"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="10dp"
+            android:text="Cerrar Sesion"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/rounded_followbutton"
+            />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
