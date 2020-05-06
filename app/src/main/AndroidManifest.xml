@@ -25,12 +25,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.RegisterActivity" ></activity>
-        <activity android:name=".ui.ViewImageActivity" ></activity>
-        <activity android:name=".ui.RegisterAddTagsActivity" ></activity>
-        <activity android:name=".ui.MainActivity"></activity>
-        <activity android:name=".ui.AddMultimediaActivity"></activity>
-        <activity android:name=".ui.ConfigurationActivity"></activity>
+        <activity android:name=".ui.RegisterActivity" />
+        <activity android:name=".ui.ViewImageActivity" />
+        <activity android:name=".ui.RegisterAddTagsActivity" />
+        <activity android:name=".ui.MainActivity"/>
+        <activity android:name=".ui.AddMultimediaActivity"/>
+        <activity android:name=".ui.ConfigurationActivity"/>
     </application>
 
 </manifest>
