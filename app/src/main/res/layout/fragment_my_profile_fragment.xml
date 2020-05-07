@@ -124,7 +124,16 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/ic_upload"
+            android:layout_toLeftOf="@+id/cerrarSesionConfigurations"
+            android:layout_centerInParent="true"
+            />
+        <Button
+            android:id="@+id/cerrarSesionConfigurations"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="#ff0000"
             android:layout_toLeftOf="@+id/myProfileConfigurations"
+            android:layout_marginLeft="15dp"
             android:layout_centerInParent="true"
             />
 

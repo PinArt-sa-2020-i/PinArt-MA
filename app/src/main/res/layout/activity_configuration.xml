@@ -1,27 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/imagenProfile"
+        android:scaleType="centerCrop"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_image"
+        android:src="@drawable/ic_pinart"
+        android:adjustViewBounds="true"
+        android:layout_gravity="center"
+        />
+    <Button
+        android:id="@+id/loadPhotoConfiguration"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="Selecccionar foto"
         >
-        <Button
-            android:id="@+id/logOut"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:padding="10dp"
-            android:text="Cerrar Sesion"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
-            android:background="@drawable/rounded_followbutton"
-            />
 
-    </LinearLayout>
+    </Button>
+    <TextView
+        android:id="@+id/userNameConfiguration"
+        android:textSize="15dp"
+        android:text="Username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></TextView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/fistNameConfiguration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fist name"
+        android:textSize="15dp"
+        ></TextView>
+
+    <TextView
+        android:id="@+id/lastNameConfiguration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="last name"
+        android:textSize="15dp"
+        >
+    </TextView>
+
+    <TextView
+        android:id="@+id/correoConfiguration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="correo"
+        android:textSize="15dp"
+        >
+    </TextView>
+
+    <EditText
+        android:id="@+id/generoConfiguration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="genero"
+        android:textSize="15dp"
+        ></EditText>
+
+    <EditText
+        android:id="@+id/descripcionConfiguration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="descripcion"
+        android:textSize="15dp"
+        ></EditText>
+
+    <EditText
+        android:id="@+id/telefonoConfiguration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="telefono"
+        android:textSize="15dp"
+        ></EditText>
+
+    <EditText
+        android:id="@+id/edadConfiguration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="edad"
+        android:textSize="15dp"
+        ></EditText>
+
+    <Button
+        android:id="@+id/descartarConfiguration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Descartar Cambios"
+        ></Button>
+
+    <Button
+        android:id="@+id/guardarConfiguration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar Cambios"
+        ></Button>
+
+
+</LinearLayout>
