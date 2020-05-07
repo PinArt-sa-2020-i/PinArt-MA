@@ -1,6 +1,8 @@
 package com.example.pinart_ma.ui.adapter
 
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,9 +19,12 @@ import java.util.ArrayList
 
 class UserFeedAdapter(var feedUsers:  ArrayList<Multimedia>) : RecyclerView.Adapter<UserFeedAdapter.UserFeedViewHolder>() {
 
+    lateinit var context: Context
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserFeedViewHolder {
         var layoutInFlate = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item_feed, parent, false)
+        context = parent.context
         return UserFeedViewHolder(layoutInFlate)
     }
 
@@ -29,13 +34,13 @@ class UserFeedAdapter(var feedUsers:  ArrayList<Multimedia>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: UserFeedViewHolder, position: Int) {
         var itemUserFeed = feedUsers[position]
-        holder.bindUserFeed(itemUserFeed)
+        holder.bindUserFeed(itemUserFeed, context)
     }
 
 
     class UserFeedViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
-        fun bindUserFeed(feedUser: Multimedia){
+        fun bindUserFeed(feedUser: Multimedia, context: Context){
 
             itemView.setOnClickListener{
                 val intent = Intent(itemView.context, ViewImageActivity::class.java)
@@ -43,10 +48,18 @@ class UserFeedAdapter(var feedUsers:  ArrayList<Multimedia>) : RecyclerView.Adap
                 itemView.context.startActivity(intent)
             }
 
+            if(feedUser.url.substring(feedUser.url.length-3, feedUser.url.length) == "gif"){
+                val urlGif = feedUser.url
+                val uri: Uri = Uri.parse(urlGif)
+                Glide.with(context).load(uri).fitCenter().into(itemView.imageViewListFeedItem)
+                itemView.imageViewListFeedItem.clipToOutline = true;
+            }
+            else{
+                Picasso.get().load(feedUser.url).into(itemView.imageViewListFeedItem);
+                itemView.imageViewListFeedItem.clipToOutline = true;
+            }
 
-            itemView.textViewListFeedItem.text = feedUser.descripcion
-            Picasso.get().load(feedUser.url).into(itemView.imageViewListFeedItem);
-            itemView.imageViewListFeedItem.clipToOutline = true;
+
         }
 
     }

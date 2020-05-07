@@ -56,7 +56,6 @@ class FeedUsersFragment: Fragment() {
             for(i in 0 until multimediaList.size){
                 feed.add(multimediaList[i])
             }
-            Toast.makeText(context, feed.size.toString(), Toast.LENGTH_SHORT).show()
             recyclerViewFeedUsers.layoutManager =  StaggeredGridLayoutManager( 2, StaggeredGridLayoutManager.VERTICAL)
             recyclerViewFeedUsers.adapter = UserFeedAdapter(feed)
 

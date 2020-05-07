@@ -109,7 +109,6 @@ class AddMultimediaActivity: AppCompatActivity() {
                     }
                 }
 
-                Toast.makeText(this, selectedTags.toString(), Toast.LENGTH_SHORT).show()
                 addMultimedia()
 
             }else{

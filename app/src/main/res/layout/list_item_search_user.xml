@@ -28,7 +28,6 @@
             android:src="@drawable/ic_profile"
             android:padding="6dp"
             android:background="@drawable/circle_image"
-            android:tint="@color/colorPrimary"
             />
 
         <LinearLayout

@@ -49,7 +49,6 @@ class ProfileMultimediaFragment(var idUsuario: String?, var mine: Boolean) : Fra
                 for(i in 0 until multimediaUserLive.size){
                     multimedia.add(multimediaUserLive[i])
                 }
-                Toast.makeText(context, multimedia.size.toString(), Toast.LENGTH_SHORT).show()
 
                 recyclerViewProfileMultimedia.layoutManager = StaggeredGridLayoutManager( 2, StaggeredGridLayoutManager.VERTICAL)
                 recyclerViewProfileMultimedia.adapter = ProfileMultimediaAdapter(multimedia, mine)

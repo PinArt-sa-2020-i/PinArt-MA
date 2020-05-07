@@ -136,7 +136,7 @@ class UserRepository {
 
         //Mapeo los datos
         val jsonObj_ = JSONObject()
-        jsonObj_.put("query", "query{ allUsers { id firstName lastName username correo } }")
+        jsonObj_.put("query", "query{ allUsers{ id firstName lastName username correo profiles{ foto }}}")
         var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
 
         var callApi = api.getAllUser(token, gsonObject)
@@ -160,13 +160,23 @@ class UserRepository {
 
                         for(i in 0 until userJsonList.size()){
                             var userJsonAux: JsonObject = userJsonList[i] as JsonObject
+
+                            var profiles: JsonArray =userJsonAux.get("profiles") as JsonArray
+                            var profile: JsonObject = profiles[0] as JsonObject
+
+
+                            var fotoAux: JsonElement = profile.get("foto") as JsonElement
+                            var foto: String?
+                            if(fotoAux is JsonNull){foto=null}
+                            else{foto = profile.get("foto").asString}
+
                             var userAux = User(
                                 userJsonAux.get("id").asInt,
                                 userJsonAux.get("username").asString,
                                 userJsonAux.get("firstName").asString,
                                 userJsonAux.get("lastName").asString,
                                 null,
-                                null, null, null, null, null, null)
+                                null, null, foto, null, null, null)
 
                             userList.add(userAux)
                         }

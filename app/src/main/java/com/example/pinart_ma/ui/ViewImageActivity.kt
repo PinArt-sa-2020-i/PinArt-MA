@@ -1,6 +1,7 @@
 package com.example.pinart_ma.ui
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.Multimedia
 import com.example.pinart_ma.service.model.Tag
@@ -52,6 +54,16 @@ class ViewImageActivity() : AppCompatActivity() {
             if(multimediaAux == null){finish()}
             else{
                 multimedia = multimediaAux
+                if(multimedia.url.substring(multimedia.url.length-3, multimedia.url.length) == "gif"){
+                    val urlGif = multimedia.url
+                    val uri: Uri = Uri.parse(urlGif)
+                    Glide.with(baseContext).load(uri).fitCenter().into(imageViewViewImage)
+                    imageViewViewImage.clipToOutline = true;
+                }
+                else{
+                    Picasso.get().load(multimedia.url).into(imageViewViewImage);
+                    imageViewViewImage.clipToOutline = true;
+                }
                 Picasso.get().load(multimediaAux.url).into(imageViewViewImage);
                 descripcionTextViewViewImage.text = multimediaAux.descripcion
 

@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.User
 import com.example.pinart_ma.ui.MainActivity
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.android.synthetic.main.list_item_search_user.view.*
 
 class SearchUsersAdapter(var userList: ArrayList<User>) : RecyclerView.Adapter<SearchUsersAdapter.UserViewHolder>(){
@@ -37,6 +39,12 @@ class SearchUsersAdapter(var userList: ArrayList<User>) : RecyclerView.Adapter<S
         fun bindUser(user: User){
             itemView.usernameTextViewListSearchItemUser.text = user.username
             itemView.nameTextViewListSearchItemUser.text = (user.firstname + " " + user.lastname)
+
+
+            if(user.foto == null){
+                Picasso.get().load("https://uwosh.edu/deanofstudents/wp-content/uploads/sites/156/2019/02/profile-default.jpg").into(itemView.imageProfielSearch)}
+            else{
+                Picasso.get().load(user.foto).into(itemView.imageProfielSearch) }
 
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, MainActivity::class.java)
