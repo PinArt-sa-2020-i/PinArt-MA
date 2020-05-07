@@ -17,6 +17,7 @@ import com.example.pinart_ma.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.android.synthetic.main.other_profile_fragment.*
 import android.graphics.Color
+import com.squareup.picasso.Picasso
 
 class OtherProfileFragment(var idUsuario: String): Fragment() {
     companion object {
@@ -50,7 +51,7 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
         userViewModel!!.getUserById(token, idUsuario).observe(viewLifecycleOwner, Observer {
                 userData ->
             if(userData==null){
-                user = User(0, "Bot-001", "Boot", "001", null, null)
+                user = User(0, "Bot-001", "Boot", "001", null, null, null, null, null, null, null)
                 mostrarInfoUsuario(context)
             }
             else{
@@ -64,7 +65,10 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
     fun mostrarInfoUsuario(context: Context?){
         userNameTextViewOtherProfile.text = user.username
         //nameTextViewOtherProfile.text = (user.firstname + " " + user.lastname)  Dejar por si se puede mover esta parte
-
+        if(user.foto == null){
+            Picasso.get().load("https://uwosh.edu/deanofstudents/wp-content/uploads/sites/156/2019/02/profile-default.jpg").into(imageOtherProfile)}
+        else{
+            Picasso.get().load(user.foto).into(imageOtherProfile) }
     }
 
     private fun loadMultimediaFragment() {

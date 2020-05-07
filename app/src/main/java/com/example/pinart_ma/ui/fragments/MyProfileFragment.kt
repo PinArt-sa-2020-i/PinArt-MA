@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_my_profile.*
 import android.graphics.Color
 import com.example.pinart_ma.ui.ConfigurationActivity
 import com.example.pinart_ma.ui.LoginActivity
+import com.squareup.picasso.Picasso
 
 class MyProfileFragment: Fragment() {
 
@@ -84,7 +85,7 @@ class MyProfileFragment: Fragment() {
         userViewModel!!.getUserById(token, id).observe(viewLifecycleOwner, Observer {
                 userData ->
                 if(userData==null){
-                    user = User(0, "Bot-001", "Boot", "001", null, null)
+                    user = User(0, "Bot-001", "Boot", "001", null, null, null, null, null, null, null)
                     mostrarInfoUsuario(context)
                 }
                 else{
@@ -98,6 +99,10 @@ class MyProfileFragment: Fragment() {
     fun mostrarInfoUsuario(context: Context?){
         nameMyProfile.text = (user.firstname + " " + user.lastname)
         userNameMyProfile.text = user.username
+
+        if(user.foto == null){
+            Picasso.get().load("https://uwosh.edu/deanofstudents/wp-content/uploads/sites/156/2019/02/profile-default.jpg").into(imageMyProfile)}
+        else{Picasso.get().load(user.foto).into(imageMyProfile) }
         //myProfileFollowers.text = "? seguidores"
         //myProfileFollowing.text = "? siguiendo"
     }

@@ -44,7 +44,7 @@ class RegisterActivity : AppCompatActivity() {
         userViewModel!!.registerUser(firstName, lastName, userName, password, correo).observe(this, Observer {
                 id ->
                 Log.d("TAG", id.toString())
-                if(id > 0){
+                if(id >= 0){
                     Toast.makeText(this, "Registro Correcto: $id", Toast.LENGTH_LONG).show()
                     var intent: Intent = Intent(this, RegisterAddTagsActivity::class.java)
                     intent.putExtra("userName", userName)
@@ -52,7 +52,7 @@ class RegisterActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 else{
-                    Toast.makeText(this, "Error: Registro Fallido", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error: Registro Fallido: $id", Toast.LENGTH_SHORT).show()
                 }
         })
     }
