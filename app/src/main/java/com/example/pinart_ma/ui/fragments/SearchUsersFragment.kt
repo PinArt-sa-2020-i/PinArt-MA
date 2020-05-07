@@ -1,5 +1,6 @@
 package com.example.pinart_ma.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +27,8 @@ class SearchUsersFragment(var adapter: SearchUsersAdapter) : Fragment() {
 
     fun loadRecycleView(view: View){
         var recycler: RecyclerView = view.findViewById(R.id.recyclerViewSearchUsers)
-        recycler.layoutManager = LinearLayoutManager(recycler.context)
+        //recycler.layoutManager = LinearLayoutManager(recycler.context)
+        recycler.layoutManager = FixLayoutManager(recycler.context)
         recycler.setHasFixedSize(true)
         recycler.adapter = adapter
     }
@@ -45,3 +47,15 @@ class SearchUsersFragment(var adapter: SearchUsersAdapter) : Fragment() {
     }
 
 }
+
+
+class FixLayoutManager(var context: Context?) : LinearLayoutManager(context) {
+
+    override fun supportsPredictiveItemAnimations(): Boolean {
+        return false
+    }
+
+
+
+}
+

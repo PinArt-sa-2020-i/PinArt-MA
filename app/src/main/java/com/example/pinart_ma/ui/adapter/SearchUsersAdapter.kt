@@ -1,6 +1,7 @@
 package com.example.pinart_ma.ui.adapter
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,8 +32,13 @@ class SearchUsersAdapter(var userList: ArrayList<User>) : RecyclerView.Adapter<S
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val user = usersFilterList[position]
-        holder.bindUser(user)
+        if(position >= usersFilterList.size){
+            holder.bindUser(User(0, "Bot-001", "Bot", "001", null, null, null, null, null, null, null))
+        }
+        else{
+            val user = usersFilterList[position]
+            holder.bindUser(user)
+        }
     }
 
     class UserViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
