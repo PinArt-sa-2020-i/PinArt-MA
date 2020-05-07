@@ -14,7 +14,7 @@ import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.User
 import com.example.pinart_ma.utils.InjectorUtils
 import com.example.pinart_ma.viewModel.UserViewModel
-import kotlinx.android.synthetic.main.fragment_my_profile_fragment.*
+import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.android.synthetic.main.other_profile_fragment.*
 import android.graphics.Color
 

@@ -15,11 +15,10 @@ import com.example.pinart_ma.service.model.User
 import com.example.pinart_ma.ui.AddMultimediaActivity
 import com.example.pinart_ma.utils.InjectorUtils
 import com.example.pinart_ma.viewModel.UserViewModel
-import kotlinx.android.synthetic.main.fragment_my_profile_fragment.*
+import kotlinx.android.synthetic.main.fragment_my_profile.*
 import android.graphics.Color
 import com.example.pinart_ma.ui.ConfigurationActivity
 import com.example.pinart_ma.ui.LoginActivity
-import kotlinx.android.synthetic.main.activity_configuration.*
 
 class MyProfileFragment: Fragment() {
 
@@ -31,7 +30,7 @@ class MyProfileFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        var view = inflater.inflate(R.layout.fragment_my_profile_fragment, container, false)
+        var view = inflater.inflate(R.layout.fragment_my_profile, container, false)
         loadUser(context)
         loadFollow(context)
         return view
