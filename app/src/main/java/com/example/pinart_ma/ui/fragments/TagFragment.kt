@@ -20,6 +20,7 @@ import com.example.pinart_ma.viewModel.MultimediaViewModel
 import com.example.pinart_ma.viewModel.TagViewModel
 import kotlinx.android.synthetic.main.fragment_feed_users.*
 import kotlinx.android.synthetic.main.tag_fragment.*
+import android.graphics.Color
 
 class TagFragment(var idTag: String?) : Fragment() {
 
@@ -41,6 +42,7 @@ class TagFragment(var idTag: String?) : Fragment() {
         loadDataTag(context)
         loadFollowButton(context)
         loadMultimediaTag(context)
+
         buttonFollowTag.setOnClickListener {
             loadFuntionalityButton(context)
         }
@@ -86,9 +88,13 @@ class TagFragment(var idTag: String?) : Fragment() {
             }
 
             if(followTag == true){
+                buttonFollowTag.setBackgroundResource(R.drawable.rounded_search)
+                buttonFollowTag.setTextColor(Color.parseColor("#000000"))
                 buttonFollowTag.text = "Dejar de Seguir"
             }
             else{
+                buttonFollowTag.setBackgroundResource(R.drawable.rounded_followbutton)
+                buttonFollowTag.setTextColor(Color.parseColor("#FFFFFF"))
                 buttonFollowTag.text = "Seguir"
             }
         })
@@ -128,6 +134,8 @@ class TagFragment(var idTag: String?) : Fragment() {
                 else{
                     followTag = true
                     buttonFollowTag.text = "Dejar de Seguir"
+                    buttonFollowTag.setBackgroundResource(R.drawable.rounded_search)
+                    buttonFollowTag.setTextColor(Color.parseColor("#000000"))
                 }
 
             })
@@ -139,6 +147,8 @@ class TagFragment(var idTag: String?) : Fragment() {
                 else{
                     followTag = false
                     buttonFollowTag.text = "Seguir"
+                    buttonFollowTag.setBackgroundResource(R.drawable.rounded_followbutton)
+                    buttonFollowTag.setTextColor(Color.parseColor("#FFFFFF"))
                 }
             })
 

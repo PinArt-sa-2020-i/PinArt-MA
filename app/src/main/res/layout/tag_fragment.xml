@@ -1,39 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="20dp"
     >
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        >
 
         <TextView
             android:id="@+id/nameTagTag"
-            android:text="No Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
             />
         <Button
             android:id="@+id/buttonFollowTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No found"/>
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/descriptionTagTag"
-        android:text="No Description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:textColor="@color/colorDefault"
+        android:textSize="20dp"
+        android:textAlignment="center"
         />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/containerTagFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
 
     </androidx.recyclerview.widget.RecyclerView>
 
