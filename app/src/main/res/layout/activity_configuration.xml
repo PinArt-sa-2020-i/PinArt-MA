@@ -1,108 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewAddMultimedia"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:padding="20dp"
+    >
 
-    <ImageView
-        android:id="@+id/imagenProfile"
-        android:scaleType="centerCrop"
-        android:layout_width="wrap_content"
-        android:layout_height="250dp"
-        android:padding="10dp"
-        android:background="@drawable/rounded_image"
-        android:src="@drawable/ic_pinart"
-        android:adjustViewBounds="true"
-        android:layout_gravity="center"
-        />
-    <Button
-        android:id="@+id/loadPhotoConfiguration"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="wrap_content"
-        android:text="Selecccionar foto"
         >
 
-    </Button>
-    <TextView
-        android:id="@+id/userNameConfiguration"
-        android:textSize="15dp"
-        android:text="Username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/fistNameConfiguration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="fist name"
-        android:textSize="15dp"
-        ></TextView>
+            <ImageView
+                android:id="@+id/imagenProfile"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_margin="10dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_profile"
+                android:padding="20dp"
+                android:background="@drawable/circle_image"
+                android:tint="@color/colorPrimary"
+                />
 
-    <TextView
-        android:id="@+id/lastNameConfiguration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="last name"
-        android:textSize="15dp"
-        >
-    </TextView>
+            <Button
+                android:id="@+id/loadPhotoConfiguration"
+                android:textAllCaps="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/rounded_followbutton"
+                android:text="Selecccionar foto"
+                android:layout_gravity="center"
+                />
 
-    <TextView
-        android:id="@+id/correoConfiguration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="correo"
-        android:textSize="15dp"
-        >
-    </TextView>
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/generoConfiguration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="genero"
-        android:textSize="15dp"
-        ></EditText>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
 
-    <EditText
-        android:id="@+id/descripcionConfiguration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="descripcion"
-        android:textSize="15dp"
-        ></EditText>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
 
-    <EditText
-        android:id="@+id/telefonoConfiguration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="telefono"
-        android:textSize="15dp"
-        ></EditText>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorDefault"
+                    android:text="Nombre de usuario"
+                    />
 
-    <EditText
-        android:id="@+id/edadConfiguration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="edad"
-        android:textSize="15dp"
-        ></EditText>
+                <TextView
+                    android:id="@+id/userNameConfiguration"
+                    android:text="Username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorSecondary"
+                    android:textAllCaps="false"
+                    android:layout_marginBottom="10dp"
+                    />
 
-    <Button
-        android:id="@+id/descartarConfiguration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Descartar Cambios"
-        ></Button>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorDefault"
+                    android:text="Correo"
+                    />
 
-    <Button
-        android:id="@+id/guardarConfiguration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Guardar Cambios"
-        ></Button>
+                <TextView
+                    android:id="@+id/correoConfiguration"
+                    android:text="email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorSecondary"
+                    android:textAllCaps="false"
+                    android:layout_marginBottom="15dp"
+                    />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorDefault"
+                    android:text="Genero"
+                    />
 
-</LinearLayout>
+                <EditText
+                    android:id="@+id/generoConfiguration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Agregar"
+                    android:background="@android:color/transparent"
+                    android:layout_marginBottom="15dp"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorSecondary"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorDefault"
+                    android:text="Acerca de ti"
+                    />
+
+                <EditText
+                    android:id="@+id/descripcionConfiguration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Agregar"
+                    android:background="@android:color/transparent"
+                    android:layout_marginBottom="15dp"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorSecondary"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="6dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorDefault"
+                    android:text="Nombres"
+                    />
+
+                <TextView
+                    android:id="@+id/firstNameConfiguration"
+                    android:text="fist name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorSecondary"
+                    android:textAllCaps="false"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorDefault"
+                    android:text="Apellidos"
+                    />
+
+                <TextView
+                    android:id="@+id/lastNameConfiguration"
+                    android:text="last name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorSecondary"
+                    android:textAllCaps="false"
+                    android:layout_marginBottom="15dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorDefault"
+                    android:text="Telefono"
+                    />
+
+                <EditText
+                    android:id="@+id/telefonoConfiguration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Agregar"
+                    android:background="@android:color/transparent"
+                    android:layout_marginBottom="15dp"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorSecondary"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorDefault"
+                    android:text="Edad"
+                    />
+
+                <EditText
+                    android:id="@+id/edadConfiguration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Agregar"
+                    android:background="@android:color/transparent"
+                    android:layout_marginBottom="15dp"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorSecondary"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            >
+
+            <Button
+                android:id="@+id/descartarConfiguration"
+                android:text="Descartar Cambios"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/rounded_button"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="20dp"
+                />
+
+            <Button
+                android:id="@+id/guardarConfiguration"
+                android:text="Guardar Cambios"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/rounded_followbutton"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginLeft="6dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
