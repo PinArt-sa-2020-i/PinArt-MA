@@ -15,10 +15,11 @@ import com.example.pinart_ma.service.model.User
 import com.example.pinart_ma.ui.AddMultimediaActivity
 import com.example.pinart_ma.utils.InjectorUtils
 import com.example.pinart_ma.viewModel.UserViewModel
-import kotlinx.android.synthetic.main.fragment_my_profile_fragment.*
+import kotlinx.android.synthetic.main.fragment_my_profile.*
 import android.graphics.Color
 import com.example.pinart_ma.ui.ConfigurationActivity
 import com.example.pinart_ma.ui.LoginActivity
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_configuration.*
 
 class MyProfileFragment: Fragment() {
@@ -31,7 +32,7 @@ class MyProfileFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        var view = inflater.inflate(R.layout.fragment_my_profile_fragment, container, false)
+        var view = inflater.inflate(R.layout.fragment_my_profile, container, false)
         loadUser(context)
         loadFollow(context)
         return view
@@ -85,7 +86,7 @@ class MyProfileFragment: Fragment() {
         userViewModel!!.getUserById(token, id).observe(viewLifecycleOwner, Observer {
                 userData ->
                 if(userData==null){
-                    user = User(0, "Bot-001", "Boot", "001", null, null)
+                    user = User(0, "Bot-001", "Boot", "001", null, null, null, null, null, null, null)
                     mostrarInfoUsuario(context)
                 }
                 else{
@@ -99,6 +100,8 @@ class MyProfileFragment: Fragment() {
     fun mostrarInfoUsuario(context: Context?){
         nameMyProfile.text = (user.firstname + " " + user.lastname)
         userNameMyProfile.text = user.username
+        if(user.foto == null){Picasso.get().load("https://uwosh.edu/deanofstudents/wp-content/uploads/sites/156/2019/02/profile-default.jpg").into(imageMyProfile)}
+        else{Picasso.get().load(user.foto).into(imageMyProfile) }
         //myProfileFollowers.text = "? seguidores"
         //myProfileFollowing.text = "? siguiendo"
     }

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.pinart_ma.service.model.Multimedia
 import com.example.pinart_ma.service.model.User
 import com.google.gson.*
+import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -114,7 +115,7 @@ class UserRepository {
                         var lastnameAux: String = authenticateUser.get("lastName").asString
                         var token: String = authenticateUser.get("token").asString
 
-                        liveData.value = User(idAux, usernameAux, firstnameAux, lastnameAux, null, token)
+                        liveData.value = User(idAux, usernameAux, firstnameAux, lastnameAux, null, token, null, null, null, null, null)
                     }
                 }
             }
@@ -165,7 +166,7 @@ class UserRepository {
                                 userJsonAux.get("firstName").asString,
                                 userJsonAux.get("lastName").asString,
                                 null,
-                                null)
+                                null, null, null, null, null, null)
 
                             userList.add(userAux)
                         }
@@ -190,7 +191,7 @@ class UserRepository {
 
         //Mapeo los datos
         val jsonObj_ = JSONObject()
-        jsonObj_.put("query", "query{ userById(id: $userId){ id firstName lastName username correo }}")
+        jsonObj_.put("query", "query{ userById(id: $userId){ id firstName lastName username correo profiles{ genero foto descripcion noTelefono edad }}}")
         var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
 
         var callApi = api.getUserById(token, gsonObject)
@@ -211,13 +212,50 @@ class UserRepository {
 
                         var userJson: JsonObject = data.getAsJsonObject("userById")
 
+                        var profiles: JsonArray =userJson.get("profiles") as JsonArray
+                        var profile: JsonObject = profiles[0] as JsonObject
+
+
+                        var generoAux: JsonElement = profile.get("genero") as JsonElement
+                        var genero: String?
+                        if(generoAux is JsonNull){genero=null}
+                        else{genero = profile.get("genero").asString}
+
+                        var fotoAux: JsonElement = profile.get("foto") as JsonElement
+                        var foto: String?
+                        if(fotoAux is JsonNull){foto=null}
+                        else{foto = profile.get("foto").asString}
+
+
+                        var descripcionAux: JsonElement = profile.get("descripcion") as JsonElement
+                        var descripcion: String?
+                        if(descripcionAux is JsonNull){descripcion=null}
+                        else{descripcion = profile.get("descripcion").asString}
+
+
+                        var noTelefonoAux: JsonElement = profile.get("noTelefono") as JsonElement
+                        var noTelefono: String?
+                        if(noTelefonoAux is JsonNull){noTelefono=null}
+                        else{noTelefono = profile.get("noTelefono").asString}
+
+                        var edadAux: JsonElement = profile.get("edad") as JsonElement
+                        var edad: String?
+                        if(edadAux is JsonNull){edad=null}
+                        else{edad = profile.get("edad").asString}
+
                         liveData.value = User(
                             userJson.get("id").asInt,
                             userJson.get("username").asString,
                             userJson.get("firstName").asString,
                             userJson.get("lastName").asString,
                             userJson.get("correo").asString,
-                            null)
+                            null,
+                            genero,
+                            foto,
+                            descripcion,
+                            noTelefono,
+                            edad
+                        )
                     }
                 }
             }
@@ -367,6 +405,61 @@ class UserRepository {
         return liveData
     }
 
+
+
+    fun updateUserProfile(token: String?,
+                          idUser:String?,
+                          foto: String?,
+                          descripcion: String,
+                          noTelefono: String,
+                          edad: String,
+                          genero: String): MutableLiveData<Int>{
+
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<Int> = MutableLiveData<Int>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "mutation{ updateProfile(id: 0, profile: { userId: $idUser countryId: 1 foto: \"$foto\" descripcion: \"$descripcion\" noTelefono: \"$noTelefono\" edad: \"$edad\" genero: \"$genero\" })}")
+
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+        var callApi = api.default(token, gsonObject)
+
+        //Se realiza la llamada
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = 0
+            }
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null){liveData.value = 0}
+                else{
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+                    if(dataAux is JsonNull){
+                        liveData.value = 0
+                    }
+                    else{
+                        var data: JsonObject = response?.body()?.get("data") as JsonObject
+                        var followAux: JsonElement = data.get("updateProfile") as JsonElement
+                        if(followAux is JsonNull){
+                            liveData.value = 0
+                        }
+                        else{
+                            liveData.value = 1
+                        }
+                    }
+                }
+            }
+        })
+        return liveData
+    }
 
 
 

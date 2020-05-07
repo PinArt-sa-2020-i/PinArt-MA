@@ -166,10 +166,10 @@ class SearchFragment: Fragment() {
     }
 
     fun createDataUser() : ArrayList<User>{
-        return  arrayListOf( User(1, "CamiloGil", "Camilo", "Gil", null, null),
-                             User(2, "Andres", "Camilo", "Gil", null, null),
-                             User(3, "Tom", "Camilo", "Gil", null, null),
-                             User(4, "Mesier", "Camilo", "Gil", null, null))
+        return  arrayListOf( User(1, "CamiloGil", "Camilo", "Gil", null, null, null, null, null, null, null),
+                             User(2, "Andres", "Camilo", "Gil", null, null, null, null, null, null, null),
+                             User(3, "Tom", "Camilo", "Gil", null, null, null, null, null, null, null),
+                             User(4, "Mesier", "Camilo", "Gil", null, null, null, null, null, null, null))
 
     }
 

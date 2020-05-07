@@ -43,8 +43,8 @@ class AddMultimediaActivity: AppCompatActivity() {
     val tagListIds: MutableMap<String, String> = mutableMapOf()
     
     companion object{
-        private val IMAGE_PICK_CODE = 1000
-        private val PERMISSION_CODE = 1001
+        val IMAGE_PICK_CODE = 1000
+        val PERMISSION_CODE = 1001
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

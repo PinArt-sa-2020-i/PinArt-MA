@@ -19,4 +19,7 @@ class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
     fun deleteUserFollow(token: String?, idFollow: String?) = userRepository.deleteUserFollow(token, idFollow)
 
     fun createUserFollow(token: String?, idFollower: String?, idFollowing: String?) = userRepository.createUserFollow(token, idFollower, idFollowing)
+
+    fun updateUserProfile(token: String?, idUser:String?, foto: String?, descripcion: String, noTelefono: String, edad: String,genero: String)
+            = userRepository.updateUserProfile(token, idUser, foto, descripcion, noTelefono, edad, genero)
 }
