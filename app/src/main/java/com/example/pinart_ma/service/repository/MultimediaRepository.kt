@@ -72,7 +72,7 @@ class MultimediaRepository {
                                                             multimediaJsonAux.get("id").asString,
                                                             multimediaJsonAux.get("url").asString,
                                                             multimediaJsonAux.get("descripcion").asString,
-                                                            multimediaJsonAux.get("usuario_creador_id").asString,null)
+                                                            multimediaJsonAux.get("usuario_creador_id").asString,null, null)
 
 
                             multimediaList.add(multimediaAux)
@@ -133,7 +133,7 @@ class MultimediaRepository {
                                     multimediaJsonAux.get("id").asString,
                                     multimediaJsonAux.get("url").asString,
                                     multimediaJsonAux.get("descripcion").asString,
-                                    multimediaJsonAux.get("usuario_creador_id").asString,null)
+                                    multimediaJsonAux.get("usuario_creador_id").asString,null, null)
 
 
                                 multimediaList.add(multimediaAux)
@@ -189,7 +189,7 @@ class MultimediaRepository {
                                 multimediaJsonAux.get("id").asString,
                                 multimediaJsonAux.get("url").asString,
                                 multimediaJsonAux.get("descripcion").asString,
-                                multimediaJsonAux.get("usuario_creador_id").asString,null)
+                                multimediaJsonAux.get("usuario_creador_id").asString,null, null)
 
                             multimediaList.add(multimediaAux)
                         }
@@ -246,7 +246,7 @@ class MultimediaRepository {
                                     multimediaJsonAux.get("id").asString,
                                     multimediaJsonAux.get("url").asString,
                                     multimediaJsonAux.get("descripcion").asString,
-                                    multimediaJsonAux.get("usuario_creador_id").asString,null)
+                                    multimediaJsonAux.get("usuario_creador_id").asString,null, null)
 
                                 multimediaList.add(multimediaAux)
                             }
@@ -388,7 +388,7 @@ class MultimediaRepository {
                                     multimediaJsonAux.get("id").asString,
                                     multimediaJsonAux.get("url").asString,
                                     multimediaJsonAux.get("descripcion").asString,
-                                    multimediaJsonAux.get("usuario_creador_id").asString,null)
+                                    multimediaJsonAux.get("usuario_creador_id").asString,null, null)
 
                                 multimediaList.add(multimediaAux)
                             }
@@ -416,7 +416,7 @@ class MultimediaRepository {
 
         //Mapeo los datos
         val jsonObj_ = JSONObject()
-        jsonObj_.put("query", "query{ getMultimediaById(id: \"$idMultimedia\"){ id descripcion url  id_bucket usuario_creador_id etiquetas_relacionadas_ids } }")
+        jsonObj_.put("query", "query{ getMultimediaById(id: \"$idMultimedia\"){ id descripcion url  id_bucket usuario_creador_id etiquetas_relacionadas_ids tableros_agregados_ids} }")
         var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
 
 
@@ -448,12 +448,20 @@ class MultimediaRepository {
                                 etiquetas.add(etiquetasAsociadas[i].asString)
                             }
 
+                            var tablerosAsociados: JsonArray = getMultimediaById.getAsJsonArray("tableros_agregados_ids")
+                            var tableros: ArrayList<String> = arrayListOf()
+                            for(i in 0 until  tablerosAsociados.size()){
+                                tableros.add(tablerosAsociados[i].asString)
+                            }
+
                             var multimedia: Multimedia = Multimedia(
                                 getMultimediaById.get("id").asString,
                                 getMultimediaById.get("url").asString,
                                 getMultimediaById.get("descripcion").asString,
                                 getMultimediaById.get("usuario_creador_id").asString,
-                                etiquetas)
+                                etiquetas,
+                                tableros
+                                )
                             liveData.value = multimedia
                         }
                     }

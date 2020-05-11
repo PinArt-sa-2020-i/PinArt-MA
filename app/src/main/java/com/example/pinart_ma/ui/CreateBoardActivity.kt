@@ -20,7 +20,7 @@ class CreateBoardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_board)
-        setFinishOnTouchOutside(false);
+        //setFinishOnTouchOutside(false);
 
         buttonCreateCreateBoard.setOnClickListener {
             createBoard()

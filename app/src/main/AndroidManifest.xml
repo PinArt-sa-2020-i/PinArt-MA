@@ -34,13 +34,17 @@
         <activity android:name=".ui.MainActivity"/>
         <activity android:name=".ui.AddMultimediaActivity"/>
         <activity android:name=".ui.ConfigurationActivity"/>
+        <activity android:name=".ui.SaveMultimediaInBoardActivity"/>
+        <activity android:name=".ui.CreateBoardActivity"/>
 
+
+        <!--
         <activity
             android:name=".ui.CreateBoardActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog"
             android:excludeFromRecents="true"
             />
-
+         -->
     </application>
 
 </manifest>

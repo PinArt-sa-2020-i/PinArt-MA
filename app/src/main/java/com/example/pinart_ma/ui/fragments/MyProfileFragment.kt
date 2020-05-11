@@ -137,7 +137,7 @@ class MyProfileFragment: Fragment() {
         val id = myPreferences.getString("id", "unknown")
 
         val transaction = childFragmentManager.beginTransaction()
-        transaction.replace(R.id.containerMyProfileFragment, ListBoardsFragment(id, true))
+        transaction.replace(R.id.containerMyProfileFragment, ListBoardsFragment(id, false))
         transaction.addToBackStack(null)
         transaction.commit()
     }

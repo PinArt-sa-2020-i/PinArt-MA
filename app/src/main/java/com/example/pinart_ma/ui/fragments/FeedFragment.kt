@@ -3,6 +3,7 @@ package com.example.pinart_ma.ui.fragments
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -50,6 +51,14 @@ class FeedFragment: Fragment() {
             userButtonFeed.setBackgroundColor(Color.TRANSPARENT)
             userButtonFeed.setTextColor(Color.parseColor("#000000"))
             changeFeed(FeedTagsFragment.newInstance())
+        }
+
+        boardsButtonFeed.setOnClickListener {
+            val myPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+            val token = myPreferences.getString("token", "unknown")
+            val id = myPreferences.getString("id", "unknown")
+
+            changeFeed(ListBoardsFragment.newInstance(id, true))
         }
     }
 

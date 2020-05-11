@@ -22,7 +22,7 @@ import com.example.pinart_ma.viewModel.MultimediaViewModel
 import kotlinx.android.synthetic.main.fragment_list_boards.*
 import kotlinx.android.synthetic.main.profile_multimedia_fragment.*
 
-class ListBoardsFragment(var idUsuario : String?, var mine: Boolean) : Fragment() {
+class ListBoardsFragment(var idUsuario : String?, var feed: Boolean) : Fragment() {
     companion object {
         fun newInstance(idUsuario: String?, mine: Boolean): ListBoardsFragment = ListBoardsFragment(idUsuario, mine)
     }
@@ -50,16 +50,27 @@ class ListBoardsFragment(var idUsuario : String?, var mine: Boolean) : Fragment(
         var boardViewModel = ViewModelProviders.of(this, boardFactory).get(BoardViewModel::class.java)
 
 
-        boardViewModel!!.getBoardsUser(token, idUsuario).observe(viewLifecycleOwner, Observer {
-            boardsResponse ->
-            for(boardAux in boardsResponse){
-                boards.add(boardAux)
+        if(feed == false){
+            boardViewModel!!.getBoardsUser(token, idUsuario).observe(viewLifecycleOwner, Observer {
+                boardsResponse ->
+                for(boardAux in boardsResponse){
+                    boards.add(boardAux)
+                }
+                conatinerRecyclerViewListBoards.layoutManager = LinearLayoutManager(context)
+                conatinerRecyclerViewListBoards.adapter = BoardsFeedAdapter(boards, this)
+            })
+        }
+        else{
+            boardViewModel!!.getBoardsFollowByUser(token, idUsuario).observe(viewLifecycleOwner, Observer {
+                    boardsResponse ->
+                for(boardAux in boardsResponse){
+                    boards.add(boardAux)
+                }
+                conatinerRecyclerViewListBoards.layoutManager = LinearLayoutManager(context)
+                conatinerRecyclerViewListBoards.adapter = BoardsFeedAdapter(boards, this)
+            })
+        }
 
-            }
-
-            conatinerRecyclerViewListBoards.layoutManager = LinearLayoutManager(context)
-            conatinerRecyclerViewListBoards.adapter = BoardsFeedAdapter(boards, this)
-        })
 
     }
 }
