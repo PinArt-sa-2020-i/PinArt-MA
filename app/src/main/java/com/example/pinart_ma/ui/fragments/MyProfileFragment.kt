@@ -17,7 +17,9 @@ import com.example.pinart_ma.utils.InjectorUtils
 import com.example.pinart_ma.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_my_profile.*
 import android.graphics.Color
+import android.util.Log
 import com.example.pinart_ma.ui.ConfigurationActivity
+import com.example.pinart_ma.ui.CreateBoardActivity
 import com.example.pinart_ma.ui.LoginActivity
 import com.squareup.picasso.Picasso
 
@@ -40,9 +42,10 @@ class MyProfileFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loadMultimediaFragment()
 
         loadLogOutButton(context)
+
+
 
         myProfileUploadMultimedia.setOnClickListener {
             var intent = Intent(activity, AddMultimediaActivity::class.java)
@@ -54,7 +57,14 @@ class MyProfileFragment: Fragment() {
             startActivity(intent)
         }
 
-        loadMultimediaFragment()
+        myProfileCreateBoard.setOnClickListener {
+            var intent = Intent(activity, CreateBoardActivity::class.java)
+            startActivity(intent)
+        }
+
+
+
+
         myProfileMultimedia.setBackgroundResource(R.drawable.rounded_button_feed)
         myProfileMultimedia.setTextColor(Color.parseColor("#FFFFFF"))
 
@@ -63,6 +73,8 @@ class MyProfileFragment: Fragment() {
             myProfileMultimedia.setTextColor(Color.parseColor("#FFFFFF"))
             myProfileTableros.setBackgroundColor(Color.TRANSPARENT)
             myProfileTableros.setTextColor(Color.parseColor("#000000"))
+
+            loadMultimediaFragment()
         }
 
         myProfileTableros.setOnClickListener{
@@ -70,6 +82,8 @@ class MyProfileFragment: Fragment() {
             myProfileTableros.setTextColor(Color.parseColor("#FFFFFF"))
             myProfileMultimedia.setBackgroundColor(Color.TRANSPARENT)
             myProfileMultimedia.setTextColor(Color.parseColor("#000000"))
+
+            loadBoardsFragment()
         }
     }
 
@@ -108,7 +122,6 @@ class MyProfileFragment: Fragment() {
     }
 
 
-
     private fun loadMultimediaFragment() {
         val myPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val id = myPreferences.getString("id", "unknown")
@@ -118,6 +131,17 @@ class MyProfileFragment: Fragment() {
         transaction.addToBackStack(null)
         transaction.commit()
     }
+
+    private fun loadBoardsFragment(){
+        val myPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val id = myPreferences.getString("id", "unknown")
+
+        val transaction = childFragmentManager.beginTransaction()
+        transaction.replace(R.id.containerMyProfileFragment, ListBoardsFragment(id, true))
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
 
     fun loadFollow(context: Context?){
         val myPreferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -156,4 +180,6 @@ class MyProfileFragment: Fragment() {
 
 
     }
+
+
 }

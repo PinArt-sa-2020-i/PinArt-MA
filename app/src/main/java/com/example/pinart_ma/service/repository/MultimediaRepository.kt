@@ -19,7 +19,7 @@ import java.io.File
 
 class MultimediaRepository {
 
-    var URL: String = "http://ec2-54-92-134-33.compute-1.amazonaws.com:5000"
+    var URL: String = "http://ec2-3-209-34-155.compute-1.amazonaws.com:5000"
 
     companion object {
         @Volatile private var multimediaRepository: MultimediaRepository? = null
@@ -52,10 +52,10 @@ class MultimediaRepository {
         //Se realiza la llamada
         callApi.enqueue(object : Callback<JsonObject> {
             override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
-                liveData.value = null
+                liveData.value = arrayListOf()
             }
             override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
-                if (response?.body().toString() == null){liveData.value = null}
+                if (response?.body().toString() == null){liveData.value = arrayListOf()}
                 else{
                     var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
 
@@ -160,7 +160,7 @@ class MultimediaRepository {
         //Se realiza la llamada
         callApi.enqueue(object : Callback<JsonObject> {
             override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
-                liveData.value = null
+                liveData.value = arrayListOf()
             }
             override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
                 if (response?.body().toString() == null){liveData.value = arrayListOf()}

@@ -199,7 +199,7 @@ class AddMultimediaActivity: AppCompatActivity() {
                     
                     multimediaViewModel!!.addMultimedia(id, descripcion, idEtiquetas, url_imagen, formato, tamano, idBucket).observe(this, Observer { 
                         result ->
-                        Log.d("TAG", result.toString())
+                        Log.d("TAGA", result.toString())
 
                         var intent: Intent = Intent(this,  MainActivity::class.java)
                         intent.putExtra("typeFragment", "myProfileFragment")
