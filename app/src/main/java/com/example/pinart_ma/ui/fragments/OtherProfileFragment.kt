@@ -31,7 +31,6 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
         loadUser(context)
         loadFollowButton(context)
         loadFollow(context)
-        loadMultimediaFragment()
 
         return view
     }
@@ -39,6 +38,14 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         seguirButtonOtherProfile.setOnClickListener { loadFuntionlityFollowButton(context) }
+
+        otherProfileMultimedia.setOnClickListener {
+            loadMultimediaFragment()
+        }
+
+        otherProfileTableros.setOnClickListener {
+            loadBoardFragment()
+        }
     }
 
     fun loadUser(context: Context?){
@@ -74,6 +81,13 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
     private fun loadMultimediaFragment() {
         val transaction = childFragmentManager.beginTransaction()
         transaction.replace(R.id.containerOtherProfileFragment, ProfileMultimediaFragment.newInstance(idUsuario, false))
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+    private fun loadBoardFragment() {
+        val transaction = childFragmentManager.beginTransaction()
+        transaction.replace(R.id.containerOtherProfileFragment, ListBoardsFragment(idUsuario, false))
         transaction.addToBackStack(null)
         transaction.commit()
     }

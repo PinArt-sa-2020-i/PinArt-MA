@@ -85,6 +85,69 @@ class MultimediaRepository {
         return liveData
     }
 
+    fun getMultimediaByBoard(token: String?, idBoard: String?): MutableLiveData<MutableList<Multimedia>> {
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<MutableList<Multimedia>> = MutableLiveData<MutableList<Multimedia>>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "query{ getMultimediaByTable(id: \"$idBoard\"){ id descripcion url usuario_creador_id etiquetas_relacionadas_ids } }")
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+
+        var callApi = api.default(token, gsonObject)
+
+        //Se realiza la llamada
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = arrayListOf()
+            }
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null){liveData.value = arrayListOf()}
+                else{
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+
+                    if (dataAux is JsonNull) {liveData.value = arrayListOf()}
+                    else{
+                        var data: JsonObject = dataAux as JsonObject
+                        var multimediaJsonAux: JsonElement = data.get("getMultimediaByTable") as JsonElement
+
+                        if(multimediaJsonAux is JsonNull){
+                            liveData.value = arrayListOf()
+                        }
+                        else{
+                            var multimediaJsonList: JsonArray = data.getAsJsonArray("getMultimediaByTable")
+                            var multimediaList: MutableList<Multimedia> = mutableListOf<Multimedia>()
+
+                            for(i in 0 until multimediaJsonList.size()){
+                                var multimediaJsonAux: JsonObject = multimediaJsonList[i] as JsonObject
+
+                                var multimediaAux: Multimedia = Multimedia(
+                                    multimediaJsonAux.get("id").asString,
+                                    multimediaJsonAux.get("url").asString,
+                                    multimediaJsonAux.get("descripcion").asString,
+                                    multimediaJsonAux.get("usuario_creador_id").asString,null)
+
+
+                                multimediaList.add(multimediaAux)
+                            }
+                            liveData.value = multimediaList
+                        }
+                    }
+                }
+            }
+        })
+        return liveData
+    }
+
+
     fun getFeedUsers(token: String?, idUser: String?): MutableLiveData<MutableList<Multimedia>> {
         var api: APIGateway
         val retrofit: Retrofit = Retrofit.Builder()

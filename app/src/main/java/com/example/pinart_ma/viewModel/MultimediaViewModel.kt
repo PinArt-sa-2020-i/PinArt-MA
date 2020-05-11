@@ -40,4 +40,5 @@ class MultimediaViewModel(private val multimediaRepository: MultimediaRepository
 
     fun deleteMultimediaById(token: String?, idMultimedia: String?) = multimediaRepository.deleteMultimediaById(token, idMultimedia)
 
+    fun getMultimediaByBoard(token: String?, idBoard: String?) = multimediaRepository.getMultimediaByBoard(token, idBoard)
 }
