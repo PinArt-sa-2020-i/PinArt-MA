@@ -1,6 +1,7 @@
 package com.example.pinart_ma.ui.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +12,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.Board
-import com.example.pinart_ma.service.model.Multimedia
+import com.example.pinart_ma.ui.MainActivity
 import com.example.pinart_ma.utils.InjectorUtils
 import com.example.pinart_ma.viewModel.MultimediaViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_board.view.*
-import kotlinx.android.synthetic.main.list_item_feed.view.*
 
 class BoardsFeedAdapter(var boards : ArrayList<Board>, var fragment: Fragment) : RecyclerView.Adapter<BoardsFeedAdapter.BoardViewHolder>(){
 
@@ -75,9 +75,15 @@ class BoardsFeedAdapter(var boards : ArrayList<Board>, var fragment: Fragment) :
                 itemView.imageView03ListItemBoard.clipToOutline = true;
             })
 
-
             itemView.nameListItemBoard.text = board.name
 
+
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, MainActivity::class.java)
+                intent.putExtra("typeFragment", "boardFragment")
+                intent.putExtra("idBoard", board.id)
+                itemView.context.startActivity(intent)
+            }
 
         }
     }

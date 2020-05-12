@@ -39,6 +39,8 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
         super.onViewCreated(view, savedInstanceState)
         seguirButtonOtherProfile.setOnClickListener { loadFuntionlityFollowButton(context) }
 
+        loadMultimediaFragment()
+
         otherProfileMultimedia.setOnClickListener {
             loadMultimediaFragment()
         }
@@ -80,7 +82,7 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
 
     private fun loadMultimediaFragment() {
         val transaction = childFragmentManager.beginTransaction()
-        transaction.replace(R.id.containerOtherProfileFragment, ProfileMultimediaFragment.newInstance(idUsuario, false))
+        transaction.replace(R.id.containerOtherProfileFragment, ProfileMultimediaFragment.newInstance(idUsuario))
         transaction.addToBackStack(null)
         transaction.commit()
     }

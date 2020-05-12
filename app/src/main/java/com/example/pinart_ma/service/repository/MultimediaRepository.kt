@@ -265,7 +265,7 @@ class MultimediaRepository {
                       url_imagen: String?, formato: String?, tamano: String?, idBucket: String?) : MutableLiveData<Int>{
         var api: APIMultimedia
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("http://ec2-18-214-200-193.compute-1.amazonaws.com:3000")
+            .baseUrl("http://ec2-3-209-34-155.compute-1.amazonaws.com:3000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         api = retrofit.create(APIMultimedia::class.java)

@@ -22,9 +22,9 @@ import com.example.pinart_ma.viewModel.MultimediaViewModel
 import kotlinx.android.synthetic.main.fragment_feed_users.*
 import kotlinx.android.synthetic.main.profile_multimedia_fragment.*
 
-class ProfileMultimediaFragment(var idUsuario: String?, var mine: Boolean) : Fragment() {
+class ProfileMultimediaFragment(var idUsuario: String?) : Fragment() {
     companion object {
-        fun newInstance(idUsuario: String?, mine: Boolean): ProfileMultimediaFragment = ProfileMultimediaFragment(idUsuario, mine)
+        fun newInstance(idUsuario: String?): ProfileMultimediaFragment = ProfileMultimediaFragment(idUsuario)
     }
 
     var multimedia = ArrayList<Multimedia>()
@@ -51,7 +51,7 @@ class ProfileMultimediaFragment(var idUsuario: String?, var mine: Boolean) : Fra
                 }
 
                 recyclerViewProfileMultimedia.layoutManager = StaggeredGridLayoutManager( 2, StaggeredGridLayoutManager.VERTICAL)
-                recyclerViewProfileMultimedia.adapter = ProfileMultimediaAdapter(multimedia, mine)
+                recyclerViewProfileMultimedia.adapter = ProfileMultimediaAdapter(multimedia)
 
         })
     }

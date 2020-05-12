@@ -6,7 +6,7 @@
     >
 
     <TextView
-        android:id="@+id/nameBoardViewBoard"
+        android:id="@+id/nameBoard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
@@ -14,7 +14,7 @@
         ></TextView>
 
     <TextView
-        android:id="@+id/descriptionBoardViewBoard"
+        android:id="@+id/descriptionBoard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
@@ -23,7 +23,7 @@
 
 
     <TextView
-        android:id="@+id/nameUserBoardViewBoard"
+        android:id="@+id/nameUserBoard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
@@ -31,30 +31,36 @@
         ></TextView>
 
     <Button
-        android:id="@+id/followBoardViewBoard"
+        android:id="@+id/followBoard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Seguir Tablero"
         ></Button>
 
     <Button
-        android:id="@+id/editBoardViewBoard"
+        android:id="@+id/editBoard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Editar Tablero"
         ></Button>
 
     <Button
-        android:id="@+id/deleteBoardViewBoard"
+        android:id="@+id/deleteBoard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Eliminar Tablero"
         ></Button>
 
-    <FrameLayout
-        android:id="@+id/frameLayoutViewBoard"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
+        android:layout_height="match_parent"
+        android:id="@+id/refreshBoard"
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewBoard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>

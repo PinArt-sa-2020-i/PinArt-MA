@@ -316,5 +316,222 @@ class BoardRepository {
         return liveData
     }
 
+    fun getBoardById(token: String?, idBoard: String?): MutableLiveData<Board> {
 
+        //Se crea el retrofic api
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<Board> = MutableLiveData<Board>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "query{ boardById(id: $idBoard){ id name description user{ id } } }")
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+
+
+        //Se realiza la llamada
+        var callApi = api.default(token, gsonObject)
+
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = null
+            }
+
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null) {
+                    liveData.value = null
+                } else {
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+
+                    if (dataAux is JsonNull) {
+                        liveData.value = null
+                    } else {
+                        var data: JsonObject = dataAux as JsonObject
+                        var boardAux : JsonElement = data.get("boardById") as JsonElement
+
+                        if (boardAux is JsonNull){
+                            liveData.value = null
+                        }
+                        else{
+                            var boardJson : JsonObject = data.get("boardById") as JsonObject
+                            var userJson : JsonObject = boardJson.get("user") as JsonObject
+
+                            liveData.value = Board(
+                                boardJson.get("id").asString,
+                                boardJson.get("name").asString,
+                                boardJson.get("description").asString,
+                                userJson.get("id").asString
+                            )
+                        }
+                    }
+                }
+            }
+        })
+        return liveData
+    }
+
+
+    fun getAllBoardFollow(token: String?): MutableLiveData<ArrayList<ArrayList<String>>>{
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<ArrayList<ArrayList<String>>> = MutableLiveData<ArrayList<ArrayList<String>>>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "query{ allBoardFollow{ id user{ id } board{ id } } }")
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+        var callApi = api.getUserById(token, gsonObject)
+
+        //Se realiza la llamada
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = null
+            }
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null){liveData.value = arrayListOf()}
+                else{
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+
+                    if (dataAux is JsonNull) {liveData.value = arrayListOf()}
+                    else{
+                        var data: JsonObject = dataAux as JsonObject
+
+                        var listfollowsJson: JsonArray = data.getAsJsonArray("allBoardFollow")
+                        var listFollows: ArrayList<ArrayList<String>> = arrayListOf()
+
+                        for (i in 0 until listfollowsJson.size()){
+                            var followJson : JsonObject = listfollowsJson[i] as JsonObject
+                            var userJson: JsonObject = followJson.get("user") as JsonObject
+                            var boardJson: JsonObject = followJson.get("board") as JsonObject
+
+                            var follow : ArrayList<String> = arrayListOf(
+                                followJson.get("id").asString,
+                                userJson.get("id").asString,
+                                boardJson.get("id").asString
+                            )
+                            listFollows.add(follow)
+                        }
+                        liveData.value = listFollows
+                    }
+                }
+            }
+        })
+        return liveData
+    }
+
+
+    fun deleteUserFollowBoard(token: String?, idUserFollowBoard: String?): MutableLiveData<Int> {
+
+        //Se crea el retrofic api
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<Int> = MutableLiveData<Int>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "mutation{ deleteBoardFollow(id: $idUserFollowBoard)}")
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+
+
+        //Se realiza la llamada
+        var callApi = api.default(token, gsonObject)
+
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = 0
+            }
+
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null) {
+                    liveData.value = 0
+                } else {
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+
+                    if (dataAux is JsonNull) {
+                        liveData.value = 0
+                    } else {
+                        liveData.value = 1
+                    }
+                }
+            }
+        })
+        return liveData
+    }
+
+
+    fun addUserFollowBoard(token: String?, idUser: String?, idBoard: String?): MutableLiveData<Int> {
+
+        //Se crea el retrofic api
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<Int> = MutableLiveData<Int>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "mutation{createBoardFollow(boardfollow: {board_id: $idBoard user_id: $idUser}){id }}")
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+
+
+        //Se realiza la llamada
+        var callApi = api.default(token, gsonObject)
+
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = 0
+            }
+
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null) {
+                    liveData.value = 0
+                } else {
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+
+                    if (dataAux is JsonNull) {
+                        liveData.value = 0
+                    } else {
+                        var data: JsonObject = response?.body()?.get("data") as JsonObject
+                        var createBoardFollowAux: JsonElement = data.get("createBoardFollow") as JsonElement
+
+                        if (createBoardFollowAux is JsonNull) {
+                            liveData.value = 0
+                        }
+                        else{
+                            var createBoardFollow: JsonObject = data.get("createBoardFollow") as JsonObject
+                            liveData.value = createBoardFollow.get("id").asInt
+                        }
+
+                    }
+                }
+            }
+        })
+        return liveData
+    }
 }

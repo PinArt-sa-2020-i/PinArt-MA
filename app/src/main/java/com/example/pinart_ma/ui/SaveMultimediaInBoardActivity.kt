@@ -28,6 +28,10 @@ class SaveMultimediaInBoardActivity : AppCompatActivity(){
         //Trae la multimedia
         loadMultimedia(intent.getStringExtra("idMultimedia"), this)
 
+        buttonOkSaveMultimediaInBoard.setOnClickListener {
+            finish()
+        }
+
     }
 
 

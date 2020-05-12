@@ -177,9 +177,11 @@ class AddMultimediaActivity: AppCompatActivity() {
         var multimediaFactory = InjectorUtils.providerMultimediaViewModelFactory()
         var multimediaViewModel = ViewModelProviders.of(this, multimediaFactory).get(
             MultimediaViewModel::class.java)
+        Log.d("TAG", "Lega01")
         
         multimediaViewModel!!.upLoadFileBucket(fileX).observe(this, Observer {
                 idBucket ->
+                Log.d("TAG", "Lega02")
                 if(idBucket == null){}
                 else{
                     val myPreferences = PreferenceManager.getDefaultSharedPreferences(this)
@@ -199,6 +201,7 @@ class AddMultimediaActivity: AppCompatActivity() {
                     
                     multimediaViewModel!!.addMultimedia(id, descripcion, idEtiquetas, url_imagen, formato, tamano, idBucket).observe(this, Observer { 
                         result ->
+                        Log.d("TAG", "Lega02")
                         Log.d("TAGA", result.toString())
 
                         var intent: Intent = Intent(this,  MainActivity::class.java)

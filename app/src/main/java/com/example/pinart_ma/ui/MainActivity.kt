@@ -97,6 +97,9 @@ class MainActivity() : AppCompatActivity() {
                 "myProfileFragment" -> {
                     return MyProfileFragment.newInstance()
                 }
+                "boardFragment" ->{
+                    return BoardFragment.newInstance(intent.getStringExtra("idBoard"))
+                }
                 else -> {
                     return SearchInitFragment.newInstance()
                 }

@@ -64,7 +64,7 @@ class MyProfileFragment: Fragment() {
 
 
 
-
+        loadMultimediaFragment()
         myProfileMultimedia.setBackgroundResource(R.drawable.rounded_button_feed)
         myProfileMultimedia.setTextColor(Color.parseColor("#FFFFFF"))
 
@@ -127,7 +127,7 @@ class MyProfileFragment: Fragment() {
         val id = myPreferences.getString("id", "unknown")
 
         val transaction = childFragmentManager.beginTransaction()
-        transaction.replace(R.id.containerMyProfileFragment, ProfileMultimediaFragment.newInstance(id, true))
+        transaction.replace(R.id.containerMyProfileFragment, ProfileMultimediaFragment.newInstance(id))
         transaction.addToBackStack(null)
         transaction.commit()
     }

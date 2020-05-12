@@ -14,7 +14,7 @@ import com.example.pinart_ma.ui.ViewImageActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_feed.view.*
 
-class ProfileMultimediaAdapter(var multimediasProfile: ArrayList<Multimedia>, var mine: Boolean)
+class ProfileMultimediaAdapter(var multimediasProfile: ArrayList<Multimedia>)
     : RecyclerView.Adapter<ProfileMultimediaAdapter.MultimediaProfileViewHolder>() {
 
     lateinit var context: Context
