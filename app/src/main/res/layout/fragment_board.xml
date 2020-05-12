@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/nameBoard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Name Board"
+        ></TextView>
+
+    <TextView
+        android:id="@+id/descriptionBoard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Description Board"
+        ></TextView>
+
+
+    <TextView
+        android:id="@+id/nameUserBoard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Name Creator"
+        ></TextView>
+
+    <Button
+        android:id="@+id/followBoard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seguir Tablero"
+        ></Button>
+
+    <Button
+        android:id="@+id/editBoard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Editar Tablero"
+        ></Button>
+
+    <Button
+        android:id="@+id/deleteBoard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eliminar Tablero"
+        ></Button>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/refreshBoard"
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewBoard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>

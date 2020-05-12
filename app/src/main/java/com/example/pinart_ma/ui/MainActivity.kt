@@ -21,6 +21,8 @@ class MainActivity() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
         Handler().postDelayed(Runnable {
             //----------------------------
             //animacionCarga.visibility = View.GONE
@@ -94,6 +96,9 @@ class MainActivity() : AppCompatActivity() {
                 }
                 "myProfileFragment" -> {
                     return MyProfileFragment.newInstance()
+                }
+                "boardFragment" ->{
+                    return BoardFragment.newInstance(intent.getStringExtra("idBoard"))
                 }
                 else -> {
                     return SearchInitFragment.newInstance()

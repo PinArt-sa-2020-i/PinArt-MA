@@ -19,7 +19,7 @@ import java.io.File
 
 class MultimediaRepository {
 
-    var URL: String = "http://ec2-54-92-134-33.compute-1.amazonaws.com:5000"
+    var URL: String = "http://ec2-3-209-34-155.compute-1.amazonaws.com:5000"
 
     companion object {
         @Volatile private var multimediaRepository: MultimediaRepository? = null
@@ -52,10 +52,10 @@ class MultimediaRepository {
         //Se realiza la llamada
         callApi.enqueue(object : Callback<JsonObject> {
             override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
-                liveData.value = null
+                liveData.value = arrayListOf()
             }
             override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
-                if (response?.body().toString() == null){liveData.value = null}
+                if (response?.body().toString() == null){liveData.value = arrayListOf()}
                 else{
                     var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
 
@@ -72,7 +72,7 @@ class MultimediaRepository {
                                                             multimediaJsonAux.get("id").asString,
                                                             multimediaJsonAux.get("url").asString,
                                                             multimediaJsonAux.get("descripcion").asString,
-                                                            multimediaJsonAux.get("usuario_creador_id").asString,null)
+                                                            multimediaJsonAux.get("usuario_creador_id").asString,null, null)
 
 
                             multimediaList.add(multimediaAux)
@@ -84,6 +84,69 @@ class MultimediaRepository {
         })
         return liveData
     }
+
+    fun getMultimediaByBoard(token: String?, idBoard: String?): MutableLiveData<MutableList<Multimedia>> {
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<MutableList<Multimedia>> = MutableLiveData<MutableList<Multimedia>>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "query{ getMultimediaByTable(id: \"$idBoard\"){ id descripcion url usuario_creador_id etiquetas_relacionadas_ids } }")
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+
+        var callApi = api.default(token, gsonObject)
+
+        //Se realiza la llamada
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = arrayListOf()
+            }
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null){liveData.value = arrayListOf()}
+                else{
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+
+                    if (dataAux is JsonNull) {liveData.value = arrayListOf()}
+                    else{
+                        var data: JsonObject = dataAux as JsonObject
+                        var multimediaJsonAux: JsonElement = data.get("getMultimediaByTable") as JsonElement
+
+                        if(multimediaJsonAux is JsonNull){
+                            liveData.value = arrayListOf()
+                        }
+                        else{
+                            var multimediaJsonList: JsonArray = data.getAsJsonArray("getMultimediaByTable")
+                            var multimediaList: MutableList<Multimedia> = mutableListOf<Multimedia>()
+
+                            for(i in 0 until multimediaJsonList.size()){
+                                var multimediaJsonAux: JsonObject = multimediaJsonList[i] as JsonObject
+
+                                var multimediaAux: Multimedia = Multimedia(
+                                    multimediaJsonAux.get("id").asString,
+                                    multimediaJsonAux.get("url").asString,
+                                    multimediaJsonAux.get("descripcion").asString,
+                                    multimediaJsonAux.get("usuario_creador_id").asString,null, null)
+
+
+                                multimediaList.add(multimediaAux)
+                            }
+                            liveData.value = multimediaList
+                        }
+                    }
+                }
+            }
+        })
+        return liveData
+    }
+
 
     fun getFeedUsers(token: String?, idUser: String?): MutableLiveData<MutableList<Multimedia>> {
         var api: APIGateway
@@ -126,7 +189,7 @@ class MultimediaRepository {
                                 multimediaJsonAux.get("id").asString,
                                 multimediaJsonAux.get("url").asString,
                                 multimediaJsonAux.get("descripcion").asString,
-                                multimediaJsonAux.get("usuario_creador_id").asString,null)
+                                multimediaJsonAux.get("usuario_creador_id").asString,null, null)
 
                             multimediaList.add(multimediaAux)
                         }
@@ -160,7 +223,7 @@ class MultimediaRepository {
         //Se realiza la llamada
         callApi.enqueue(object : Callback<JsonObject> {
             override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
-                liveData.value = null
+                liveData.value = arrayListOf()
             }
             override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
                 if (response?.body().toString() == null){liveData.value = arrayListOf()}
@@ -183,7 +246,7 @@ class MultimediaRepository {
                                     multimediaJsonAux.get("id").asString,
                                     multimediaJsonAux.get("url").asString,
                                     multimediaJsonAux.get("descripcion").asString,
-                                    multimediaJsonAux.get("usuario_creador_id").asString,null)
+                                    multimediaJsonAux.get("usuario_creador_id").asString,null, null)
 
                                 multimediaList.add(multimediaAux)
                             }
@@ -202,7 +265,7 @@ class MultimediaRepository {
                       url_imagen: String?, formato: String?, tamano: String?, idBucket: String?) : MutableLiveData<Int>{
         var api: APIMultimedia
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("http://ec2-18-214-200-193.compute-1.amazonaws.com:3000")
+            .baseUrl("http://ec2-3-209-34-155.compute-1.amazonaws.com:3000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         api = retrofit.create(APIMultimedia::class.java)
@@ -325,7 +388,7 @@ class MultimediaRepository {
                                     multimediaJsonAux.get("id").asString,
                                     multimediaJsonAux.get("url").asString,
                                     multimediaJsonAux.get("descripcion").asString,
-                                    multimediaJsonAux.get("usuario_creador_id").asString,null)
+                                    multimediaJsonAux.get("usuario_creador_id").asString,null, null)
 
                                 multimediaList.add(multimediaAux)
                             }
@@ -353,7 +416,7 @@ class MultimediaRepository {
 
         //Mapeo los datos
         val jsonObj_ = JSONObject()
-        jsonObj_.put("query", "query{ getMultimediaById(id: \"$idMultimedia\"){ id descripcion url  id_bucket usuario_creador_id etiquetas_relacionadas_ids } }")
+        jsonObj_.put("query", "query{ getMultimediaById(id: \"$idMultimedia\"){ id descripcion url  id_bucket usuario_creador_id etiquetas_relacionadas_ids tableros_agregados_ids} }")
         var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
 
 
@@ -385,12 +448,20 @@ class MultimediaRepository {
                                 etiquetas.add(etiquetasAsociadas[i].asString)
                             }
 
+                            var tablerosAsociados: JsonArray = getMultimediaById.getAsJsonArray("tableros_agregados_ids")
+                            var tableros: ArrayList<String> = arrayListOf()
+                            for(i in 0 until  tablerosAsociados.size()){
+                                tableros.add(tablerosAsociados[i].asString)
+                            }
+
                             var multimedia: Multimedia = Multimedia(
                                 getMultimediaById.get("id").asString,
                                 getMultimediaById.get("url").asString,
                                 getMultimediaById.get("descripcion").asString,
                                 getMultimediaById.get("usuario_creador_id").asString,
-                                etiquetas)
+                                etiquetas,
+                                tableros
+                                )
                             liveData.value = multimedia
                         }
                     }

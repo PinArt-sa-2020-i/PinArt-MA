@@ -79,7 +79,14 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 />
-
+            <Button
+                android:id="@+id/buttonSaveInBoardViewImageActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Guardar"
+                android:textSize="20dp"
+                >
+            </Button>
         </LinearLayout>
 
     </ScrollView>

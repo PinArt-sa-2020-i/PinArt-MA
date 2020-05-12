@@ -117,6 +117,15 @@
             />
 
         <Button
+            android:id="@+id/myProfileCreateBoard"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="#00FF00"
+            android:layout_toLeftOf="@+id/myProfileUploadMultimedia"
+            android:layout_centerInParent="true"
+            />
+
+        <Button
             android:id="@+id/myProfileUploadMultimedia"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -150,7 +159,7 @@
     <FrameLayout
         android:id="@+id/containerMyProfileFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="5dp"
         />
 </LinearLayout>

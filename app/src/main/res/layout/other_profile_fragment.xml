@@ -82,7 +82,37 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        >
 
+    <Button
+        android:id="@+id/otherProfileMultimedia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="Multimedia"
+        android:layout_marginRight="15dp"
+        />
+
+    <Button
+        android:id="@+id/otherProfileTableros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="Tableros"
+        android:background="@android:color/transparent"
+        android:layout_toRightOf="@+id/otherProfileMultimedia"
+        />
+
+        
+    </RelativeLayout>
     <FrameLayout
         android:id="@+id/containerOtherProfileFragment"
         android:layout_width="match_parent"

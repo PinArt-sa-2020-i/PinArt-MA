@@ -71,6 +71,8 @@ class ViewImageActivity() : AppCompatActivity() {
                 loadUser(multimediaAux.idUsuarioCreador)
                 //Carga las etiquetas
                 loadTags(multimediaAux.etiquetasRelacionadas)
+                //Carga el boton de guardar
+                loadFuntionalitySaveButton()
             }
         })
     }
@@ -140,7 +142,6 @@ class ViewImageActivity() : AppCompatActivity() {
         })
     }
 
-
     fun loadFuntionalityDeleteButton(){
         buttonEliminarImagen.visibility = View.VISIBLE
         idMultimedia = intent.getStringExtra("idMultimedia")
@@ -163,6 +164,15 @@ class ViewImageActivity() : AppCompatActivity() {
                     finish();
                 }
             })
+        }
+
+    }
+
+    fun loadFuntionalitySaveButton(){
+        buttonSaveInBoardViewImageActivity.setOnClickListener {
+            var intent: Intent = Intent(this,  SaveMultimediaInBoardActivity::class.java)
+            intent.putExtra("idMultimedia", multimedia.id)
+            startActivity(intent)
         }
 
     }

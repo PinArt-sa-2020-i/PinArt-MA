@@ -46,6 +46,14 @@
                 android:background="@android:color/transparent"
                 />
 
+            <Button
+                android:id="@+id/boardsButtonFeed"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Tableros"
+                android:background="@android:color/transparent"
+                />
+
         </LinearLayout>
 
         <FrameLayout
