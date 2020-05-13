@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginBottom="50dp"
+    android:layout_margin="8dp"
     >
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Lista de tableros"
-        ></TextView>
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context=".ui.MainActivity"
+        >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/conatinerRecyclerViewListBoards"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/conatinerRecyclerViewListBoards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </androidx.recyclerview.widget.RecyclerView>
 
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
+
