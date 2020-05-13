@@ -49,20 +49,11 @@ class ProfileMultimediaFragment(var idUsuario: String?) : Fragment() {
             for(i in 0 until multimediaUserLive.size){
                 multimedia.add(multimediaUserLive[i])
             }
-            recyclerViewProfileMultimedia.layoutManager = StaggeredGridLayoutManagerWithOutScroll()
+            recyclerViewProfileMultimedia.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             recyclerViewProfileMultimedia.adapter = ProfileMultimediaAdapter(multimedia)
 
         })
     }
-
-}
-
-
-class StaggeredGridLayoutManagerWithOutScroll() : StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL) {
-    override fun canScrollVertically(): Boolean {
-        return false
-    }
-
 
 }
 
