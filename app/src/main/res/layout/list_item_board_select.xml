@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@drawable/rounded_search"
+    android:padding="7dp"
+    android:layout_margin="5dp"
+    android:id="@+id/itemBoardSelect"
+    >
 
     <TextView
         android:id="@+id/nameItemBoardSelect"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="name board"
-        android:textSize="20dp"
-        android:background="#ffffff"
+        android:textStyle="bold"
+        android:textColor="@color/colorSecondary"
+        android:textAlignment="center"
+        android:gravity="center"
         >
-
     </TextView>
 
-</LinearLayout>
+</RelativeLayout>

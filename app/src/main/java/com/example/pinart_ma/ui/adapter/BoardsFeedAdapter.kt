@@ -51,32 +51,25 @@ class BoardsFeedAdapter(var boards : ArrayList<Board>, var fragment: Fragment) :
 
             multimediaViewModel!!.getMultimediaByBoard(token, board.id).observeForever(Observer {
                 multimediaResult ->
+                /*
                 var urlImage01 = "https://addons-media.operacdn.com/media/CACHE/images/themes/75/123475/1.2-rev2/images/c186c706-84c7-40cd-9d8d-248eda9ba5da/75534491350f53839d850757ef164df3.jpg"
                 var urlImage02 = "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixlib=rb-1.2.1&w=1000&q=80"
                 var urlImage03 = "https://i.pinimg.com/736x/34/48/a3/3448a3fa4ed35e90e2ca5fd4831c8be9.jpg"
+                */
 
                 if(multimediaResult.size >= 1){
-                    urlImage01 = multimediaResult[0].url
+                    Picasso.get().load(multimediaResult[0].url).fit().centerCrop().into(itemView.imageView01ListItemBoard);
                 }
                 if(multimediaResult.size >= 2){
-                    urlImage02 = multimediaResult[1].url
+                    Picasso.get().load(multimediaResult[1].url).fit().centerCrop().into(itemView.imageView02ListItemBoard);
                 }
                 if(multimediaResult.size >=3){
-                    urlImage03 = multimediaResult[2].url
+                    Picasso.get().load(multimediaResult[2].url).fit().centerCrop().into(itemView.imageView03ListItemBoard);
                 }
-
-                Picasso.get().load(urlImage01).fit().centerCrop().into(itemView.imageView01ListItemBoard);
-                itemView.imageView01ListItemBoard.clipToOutline = true;
-
-                Picasso.get().load(urlImage02).fit().centerCrop().into(itemView.imageView02ListItemBoard);
-                itemView.imageView02ListItemBoard.clipToOutline = true;
-
-                Picasso.get().load(urlImage03).fit().centerCrop().into(itemView.imageView03ListItemBoard);
-                itemView.imageView03ListItemBoard.clipToOutline = true;
             })
 
             itemView.nameListItemBoard.text = board.name
-
+            itemView.boardContainerFeed.clipToOutline = true;
 
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, MainActivity::class.java)

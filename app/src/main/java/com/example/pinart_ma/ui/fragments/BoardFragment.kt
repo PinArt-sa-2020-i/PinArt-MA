@@ -24,6 +24,7 @@ import com.example.pinart_ma.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.activity_view_image_activity.*
 import kotlinx.android.synthetic.main.fragment_board.*
 import kotlinx.android.synthetic.main.profile_multimedia_fragment.*
+import android.graphics.Color
 
 class BoardFragment(var idBoard: String?) : Fragment() {
 
@@ -178,8 +179,16 @@ class BoardFragment(var idBoard: String?) : Fragment() {
                     }
                 }
 
-                if (idFollowBoard == "0"){ followBoard.text = "Seguir" }
-                else{followBoard.text = "Dejar de Seguir"}
+                if (idFollowBoard == "0"){
+                    followBoard.text = "Seguir"
+                    followBoard.setBackgroundResource(R.drawable.rounded_followbutton)
+                    followBoard.setTextColor(Color.parseColor("#FFFFFF"))
+                }
+                else{
+                    followBoard.text = "Dejar de Seguir"
+                    followBoard.setBackgroundResource(R.drawable.rounded_search)
+                    followBoard.setTextColor(Color.parseColor("#000000"))
+                }
 
                 //Cargar  funcionalidad
                 loadFutionalityFollowButton()
@@ -205,6 +214,8 @@ class BoardFragment(var idBoard: String?) : Fragment() {
                     if(result > 0){
                         idFollowBoard = result.toString()
                         followBoard.text = "Dejar de Seguir"
+                        followBoard.setBackgroundResource(R.drawable.rounded_search)
+                        followBoard.setTextColor(Color.parseColor("#000000"))
                     }
                     else{activity?.finish()}
 
@@ -216,6 +227,8 @@ class BoardFragment(var idBoard: String?) : Fragment() {
                     if(result > 0){
                         idFollowBoard = "0"
                         followBoard.text = "Seguir"
+                        followBoard.setBackgroundResource(R.drawable.rounded_followbutton)
+                        followBoard.setTextColor(Color.parseColor("#FFFFFF"))
                     }
                     else{activity?.finish()}
                 })

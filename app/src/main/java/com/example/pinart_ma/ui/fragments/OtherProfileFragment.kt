@@ -41,11 +41,24 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
 
         loadMultimediaFragment()
 
+        otherProfileMultimedia.setBackgroundResource(R.drawable.rounded_button_feed)
+        otherProfileMultimedia.setTextColor(Color.parseColor("#FFFFFF"))
+
         otherProfileMultimedia.setOnClickListener {
+            otherProfileMultimedia.setBackgroundResource(R.drawable.rounded_button_feed)
+            otherProfileMultimedia.setTextColor(Color.parseColor("#FFFFFF"))
+            otherProfileTableros.setBackgroundColor(Color.TRANSPARENT)
+            otherProfileTableros.setTextColor(Color.parseColor("#000000"))
+
             loadMultimediaFragment()
         }
 
         otherProfileTableros.setOnClickListener {
+            otherProfileTableros.setBackgroundResource(R.drawable.rounded_button_feed)
+            otherProfileTableros.setTextColor(Color.parseColor("#FFFFFF"))
+            otherProfileMultimedia.setBackgroundColor(Color.TRANSPARENT)
+            otherProfileMultimedia.setTextColor(Color.parseColor("#000000"))
+
             loadBoardFragment()
         }
     }

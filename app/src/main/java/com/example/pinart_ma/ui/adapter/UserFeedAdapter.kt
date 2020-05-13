@@ -47,6 +47,7 @@ class UserFeedAdapter(var feedUsers:  ArrayList<Multimedia>) : RecyclerView.Adap
                 intent.putExtra("idMultimedia", feedUser.id)
                 itemView.context.startActivity(intent)
             }
+            itemView.textViewListFeedItem.text = feedUser.descripcion
 
             if(feedUser.url.substring(feedUser.url.length-3, feedUser.url.length) == "gif"){
                 val urlGif = feedUser.url

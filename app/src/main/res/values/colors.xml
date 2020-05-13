@@ -4,7 +4,7 @@
     <color name="colorSecondary">#000000</color>
     <color name="colorPrimaryDark">#03DAC5</color>
     <color name="colorAccent">#00FFFF</color>
-    <color name="colorDefault">#BDBDBD</color>
+    <color name="colorDefault">#979797</color>
     <color name="colorSeletc">#FF5733</color>
     <color name="colorNotSeletc">#FBEEE6</color>
 </resources>

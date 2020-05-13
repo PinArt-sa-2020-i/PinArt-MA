@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradient_background"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="20dp"
     >
-
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Board"
+        android:text="Crea un tablero"
+        android:textAllCaps="false"
+        android:textSize="30sp"
+        android:layout_below="@+id/logoLogin"
+        android:textStyle="bold"
+        android:textAlignment="center"
         />
 
 
@@ -17,28 +26,67 @@
         android:id="@+id/nameCreateBoard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="name board"
-        ></EditText>
+        android:hint="Nombre"
+
+        android:padding="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="30dp"
+
+        android:inputType="textPersonName"
+        android:background="@drawable/rounded_edittext"
+        />
 
     <EditText
         android:id="@+id/descriptionCreateBoard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="descripcion board"
-        ></EditText>
+        android:hint="Descripción"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
 
-    <Button
-        android:id="@+id/buttonCreateCreateBoard"
+        android:background="@drawable/rounded_edittext"
+        />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Board"
-        ></Button>
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        >
 
-    <Button
-        android:id="@+id/buttonCancelCreateBoard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
-        ></Button>
+        <Button
+            android:id="@+id/buttonCancelCreateBoard"
+            android:text="Cancelar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/rounded_button"
+            android:textStyle="bold"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            />
+
+        <Button
+            android:id="@+id/buttonCreateCreateBoard"
+            android:text="Crear"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/rounded_followbutton"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            />
+
+    </LinearLayout>
+
+
+
+
 
 </LinearLayout>

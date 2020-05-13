@@ -1,70 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
+    android:orientation="vertical"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        >
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/tagsButtonFeed"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            >
-
-            <TextView
-                android:id="@+id/siguiendoTextViewFeed"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textAlignment="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"
-                android:text="Siguiendo"
-
-                />
-
-            <Button
-                android:id="@+id/userButtonFeed"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Usuarios"
-                android:background="@android:color/transparent"
-                />
-
-            <Button
-                android:id="@+id/tagsButtonFeed"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Etiquetas"
-                android:background="@android:color/transparent"
-                />
-
-            <Button
-                android:id="@+id/boardsButtonFeed"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Tableros"
-                android:background="@android:color/transparent"
-                />
-
-        </LinearLayout>
-
-        <FrameLayout
-            android:id="@+id/containerFeed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:text="Etiquetas"
+            android:background="@android:color/transparent"
             />
 
+        <Button
+            android:id="@+id/userButtonFeed"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Usuarios"
+            android:background="@android:color/transparent"
+            />
+
+        <Button
+            android:id="@+id/boardsButtonFeed"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Tableros"
+            android:background="@android:color/transparent"
+            />
 
     </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/containerFeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="50dp"
+        />
 
-</FrameLayout>
+</LinearLayout>
