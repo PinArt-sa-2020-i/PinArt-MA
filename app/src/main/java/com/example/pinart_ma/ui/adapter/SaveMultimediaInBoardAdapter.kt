@@ -52,7 +52,8 @@ class SaveMultimediaInBoardAdapter(
             //Pintar datos
             itemView.nameItemBoardSelect.text = board.name
             if(select==true){
-                itemView.nameItemBoardSelect.setBackgroundColor(Color.parseColor("#00FF00"))
+                itemView.itemBoardSelect.setBackgroundResource(R.drawable.rounded_followbutton)
+                itemView.nameItemBoardSelect.setTextColor(Color.parseColor("#FFFFFF"))
             }
 
             //Funcionalidad
@@ -68,7 +69,8 @@ class SaveMultimediaInBoardAdapter(
                     boardViewModel!!.addMultimediaBoard(token, idMultimedia, board.id).observe(activity, Observer {
                             result ->
                             if(result >0){
-                                itemView.nameItemBoardSelect.setBackgroundColor(Color.parseColor("#00FF00"))
+                                itemView.itemBoardSelect.setBackgroundResource(R.drawable.rounded_followbutton)
+                                itemView.nameItemBoardSelect.setTextColor(Color.parseColor("#FFFFFF"))
                                 selectAux = true
                             }
                     })
@@ -77,7 +79,8 @@ class SaveMultimediaInBoardAdapter(
                     boardViewModel!!.removeMultimediaBoard(token, idMultimedia, board.id).observe(activity, Observer {
                             result ->
                             if(result >0){
-                                itemView.nameItemBoardSelect.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                                itemView.itemBoardSelect.setBackgroundResource(R.drawable.rounded_search)
+                                itemView.nameItemBoardSelect.setTextColor(Color.parseColor("#000000"))
                                 selectAux = false
                             }
                     })
