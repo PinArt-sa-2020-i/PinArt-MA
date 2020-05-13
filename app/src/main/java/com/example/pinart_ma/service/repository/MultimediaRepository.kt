@@ -226,7 +226,7 @@ class MultimediaRepository {
                 liveData.value = arrayListOf()
             }
             override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
-                if (response?.body().toString() == null){liveData.value = arrayListOf()}
+                if (response?.body() == null){liveData.value = arrayListOf()}
                 else{
                     var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
 
