@@ -65,7 +65,7 @@
                     android:textColor="@color/colorSecondary"
                     android:background="@android:color/transparent"
                     android:textStyle="bold"
-                    android:paddingRight="20dp"
+                    android:paddingEnd="20dp"
                     android:textAllCaps="false"
                     />
 
@@ -76,7 +76,7 @@
                     android:textStyle="bold"
                     android:textColor="@color/colorSecondary"
                     android:background="@android:color/transparent"
-                    android:paddingLeft="20dp"
+                    android:paddingStart="20dp"
                     android:textAllCaps="false"
                     />
 
@@ -90,8 +90,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         >
 
         <Button
@@ -102,7 +102,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="Multimedia"
-            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
             />
 
         <Button
@@ -113,15 +113,15 @@
             android:paddingEnd="10dp"
             android:text="Tableros"
             android:background="@android:color/transparent"
-            android:layout_toRightOf="@+id/myProfileMultimedia"
+            android:layout_toEndOf="@+id/myProfileMultimedia"
             />
 
         <Button
             android:id="@+id/myProfileCreateBoard"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="#00FF00"
-            android:layout_toLeftOf="@+id/myProfileUploadMultimedia"
+            android:background="@drawable/ic_add_board"
+            android:layout_toStartOf="@+id/myProfileUploadMultimedia"
             android:layout_centerInParent="true"
             />
 
@@ -130,7 +130,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/ic_upload"
-            android:layout_toLeftOf="@+id/myProfileConfigurations"
+            android:layout_marginStart="10dp"
+            android:layout_toStartOf="@+id/myProfileConfigurations"
             android:layout_centerInParent="true"
             />
 
@@ -139,17 +140,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/ic_configuration"
-            android:layout_marginLeft="10dp"
-            android:layout_toLeftOf="@+id/cerrarSesionConfigurations"
-            android:layout_centerInParent="true"
-            />
-
-        <Button
-            android:id="@+id/cerrarSesionConfigurations"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/ic_logout"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_centerInParent="true"
             android:layout_alignParentEnd="true"
             />

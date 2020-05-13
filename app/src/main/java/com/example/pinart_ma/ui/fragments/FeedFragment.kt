@@ -35,28 +35,42 @@ class FeedFragment: Fragment() {
         tagsButtonFeed.setBackgroundResource(R.drawable.rounded_button_feed)
         tagsButtonFeed.setTextColor(Color.parseColor("#FFFFFF"))
 
-        //Cargando FeedUser
-        userButtonFeed.setOnClickListener {
-            userButtonFeed.setBackgroundResource(R.drawable.rounded_button_feed)
-            userButtonFeed.setTextColor(Color.parseColor("#FFFFFF"))
-            tagsButtonFeed.setBackgroundColor(Color.TRANSPARENT)
-            tagsButtonFeed.setTextColor(Color.parseColor("#000000"))
-            changeFeed(FeedUsersFragment.newInstance())
-        }
-
         //Cargando FeedTags
         tagsButtonFeed.setOnClickListener {
             tagsButtonFeed.setBackgroundResource(R.drawable.rounded_button_feed)
             tagsButtonFeed.setTextColor(Color.parseColor("#FFFFFF"))
             userButtonFeed.setBackgroundColor(Color.TRANSPARENT)
             userButtonFeed.setTextColor(Color.parseColor("#000000"))
+            boardsButtonFeed.setBackgroundColor(Color.TRANSPARENT)
+            boardsButtonFeed.setTextColor(Color.parseColor("#000000"))
+
             changeFeed(FeedTagsFragment.newInstance())
         }
 
+        //Cargando FeedUser
+        userButtonFeed.setOnClickListener {
+            userButtonFeed.setBackgroundResource(R.drawable.rounded_button_feed)
+            userButtonFeed.setTextColor(Color.parseColor("#FFFFFF"))
+            tagsButtonFeed.setBackgroundColor(Color.TRANSPARENT)
+            tagsButtonFeed.setTextColor(Color.parseColor("#000000"))
+            boardsButtonFeed.setBackgroundColor(Color.TRANSPARENT)
+            boardsButtonFeed.setTextColor(Color.parseColor("#000000"))
+
+            changeFeed(FeedUsersFragment.newInstance())
+        }
+
+        //Cargando FeedBoards
         boardsButtonFeed.setOnClickListener {
             val myPreferences = PreferenceManager.getDefaultSharedPreferences(context)
             val token = myPreferences.getString("token", "unknown")
             val id = myPreferences.getString("id", "unknown")
+
+            boardsButtonFeed.setBackgroundResource(R.drawable.rounded_button_feed)
+            boardsButtonFeed.setTextColor(Color.parseColor("#FFFFFF"))
+            tagsButtonFeed.setBackgroundColor(Color.TRANSPARENT)
+            tagsButtonFeed.setTextColor(Color.parseColor("#000000"))
+            userButtonFeed.setBackgroundColor(Color.TRANSPARENT)
+            userButtonFeed.setTextColor(Color.parseColor("#000000"))
 
             changeFeed(ListBoardsFragment.newInstance(id, true))
         }

@@ -42,11 +42,6 @@ class MyProfileFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        loadLogOutButton(context)
-
-
-
         myProfileUploadMultimedia.setOnClickListener {
             var intent = Intent(activity, AddMultimediaActivity::class.java)
             startActivity(intent)
@@ -163,23 +158,5 @@ class MyProfileFragment: Fragment() {
             myProfileFollowing.text = "$following siguiendo"
         })
     }
-
-
-    fun loadLogOutButton(context: Context?){
-            cerrarSesionConfigurations.setOnClickListener {
-                val myPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-                val myEditor = myPreferences.edit()
-                myEditor.clear()
-                myEditor.commit();
-
-                val intent = Intent(context, LoginActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                startActivity(intent)
-                activity?.finish()
-        }
-
-
-    }
-
 
 }

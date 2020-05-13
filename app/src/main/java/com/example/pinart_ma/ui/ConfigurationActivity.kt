@@ -51,6 +51,7 @@ class ConfigurationActivity: AppCompatActivity()  {
         loadUser()
         loadDescartarCambios()
         loadFuntionalityButtonUpload()
+        loadLogOutButton()
 
     }
 
@@ -226,5 +227,19 @@ class ConfigurationActivity: AppCompatActivity()  {
         })
     }
 
+    fun loadLogOutButton(){
+        cerrarSesionConfigurations.setOnClickListener {
+            val myPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+            val myEditor = myPreferences.edit()
+            myEditor.clear()
+            myEditor.commit();
+
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
+            finish()
+        }
+
+    }
 
 }
