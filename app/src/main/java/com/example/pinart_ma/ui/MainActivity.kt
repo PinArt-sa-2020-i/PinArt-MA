@@ -22,14 +22,15 @@ class MainActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+        animacionCarga.visibility = View.GONE
+        /*
         Handler().postDelayed(Runnable {
             //----------------------------
             //animacionCarga.visibility = View.GONE
             animacionCarga.animate().alpha(0.0f);
             //----------------------------
         }, 1000)
-
+        */
 
         //Se obtienen el fragment por default
         var defaultFragment = recuperarFragment(intent)
@@ -101,6 +102,9 @@ class MainActivity() : AppCompatActivity() {
                 }
                 "boardFragment" ->{
                     return BoardFragment.newInstance(intent.getStringExtra("idBoard"))
+                }
+                "followsFragment" ->{
+                    return FollowsFragment.newInstance(intent.getStringExtra("typeList"))
                 }
                 else -> {
                     return SearchInitFragment.newInstance()

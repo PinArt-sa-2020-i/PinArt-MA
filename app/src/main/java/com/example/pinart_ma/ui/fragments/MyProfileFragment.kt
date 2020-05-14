@@ -12,15 +12,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.User
-import com.example.pinart_ma.ui.AddMultimediaActivity
 import com.example.pinart_ma.utils.InjectorUtils
 import com.example.pinart_ma.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_my_profile.*
 import android.graphics.Color
 import android.util.Log
-import com.example.pinart_ma.ui.ConfigurationActivity
-import com.example.pinart_ma.ui.CreateBoardActivity
-import com.example.pinart_ma.ui.LoginActivity
+import com.example.pinart_ma.ui.*
+import com.example.pinart_ma.viewModel.TagViewModel
 import com.squareup.picasso.Picasso
 
 class MyProfileFragment: Fragment() {
@@ -36,15 +34,18 @@ class MyProfileFragment: Fragment() {
         var view = inflater.inflate(R.layout.fragment_my_profile, container, false)
         loadUser(context)
         loadFollow(context)
+        loadTagsFollow(context)
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadFollow(context)
+        loadTagsFollow(context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //Proof
-
-
 
         myProfileUploadMultimedia.setOnClickListener {
             var intent = Intent(activity, AddMultimediaActivity::class.java)
@@ -58,6 +59,28 @@ class MyProfileFragment: Fragment() {
 
         myProfileCreateBoard.setOnClickListener {
             var intent = Intent(activity, CreateBoardActivity::class.java)
+            startActivity(intent)
+        }
+
+
+        myProfileFollowers.setOnClickListener {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.putExtra("typeFragment", "followsFragment")
+            intent.putExtra("typeList", "followers")
+            startActivity(intent)
+        }
+
+        myProfileFollowing.setOnClickListener {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.putExtra("typeFragment", "followsFragment")
+            intent.putExtra("typeList", "followings")
+            startActivity(intent)
+        }
+
+        myProfileTags.setOnClickListener {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.putExtra("typeFragment", "followsFragment")
+            intent.putExtra("typeList", "tags")
             startActivity(intent)
         }
 
@@ -158,8 +181,22 @@ class MyProfileFragment: Fragment() {
                 if(userFollows[i][2] == id){ followers++}
                 if(userFollows[i][1] == id){ following++}
             }
-            myProfileFollowers.text = "$followers seguidores"
-            myProfileFollowing.text = "$following siguiendo"
+            myProfileFollowers.text = "$followers \n seguidores"
+            myProfileFollowing.text = "$following \n siguiendo"
+        })
+    }
+
+    fun loadTagsFollow(context: Context?){
+        val myPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val token = myPreferences.getString("token", "unknown")
+        val id = myPreferences.getString("id", "unknown")
+
+        var tagFactory = InjectorUtils.providerTagViewModelFactory()
+        var tagViewModel = ViewModelProviders.of(this, tagFactory).get(TagViewModel::class.java);
+
+        tagViewModel!!.getTagFolledByUser(token, id).observe(viewLifecycleOwner, Observer {
+            results ->
+            myProfileTags.text = "${results.size} \n Etiquetas"
         })
     }
 
