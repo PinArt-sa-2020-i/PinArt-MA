@@ -22,4 +22,6 @@ class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
 
     fun updateUserProfile(token: String?, idUser:String?, foto: String?, descripcion: String, noTelefono: String, edad: String,genero: String)
             = userRepository.updateUserProfile(token, idUser, foto, descripcion, noTelefono, edad, genero)
+
+    fun deleteSesion(token: String?, idSesion: String?) =  userRepository.deleteSesion(token, idSesion)
 }

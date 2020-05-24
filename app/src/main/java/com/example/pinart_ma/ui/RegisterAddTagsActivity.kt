@@ -215,6 +215,7 @@ class RegisterAddTagsActivity : AppCompatActivity(){
             }
             else{
                 saveDataCacheFake("id", user.id.toString())
+                saveDataCacheFake("idSesion", user.idSesion.toString())
                 saveDataCacheFake("token", user.token.toString())
             }
         })

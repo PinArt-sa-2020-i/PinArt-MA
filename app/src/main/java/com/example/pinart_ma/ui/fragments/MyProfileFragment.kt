@@ -121,7 +121,7 @@ class MyProfileFragment: Fragment() {
         userViewModel!!.getUserById(token, id).observe(viewLifecycleOwner, Observer {
                 userData ->
                 if(userData==null){
-                    user = User(0, "Bot-001", "Boot", "001", null, null, null, null, null, null, null)
+                    user = User(0, "Bot-001", "Boot", "001", null, null, null, null, null, null, null, null)
                     mostrarInfoUsuario(context)
                 }
                 else{

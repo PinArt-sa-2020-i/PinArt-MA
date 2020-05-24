@@ -33,7 +33,8 @@ class SearchUsersAdapter(var userList: ArrayList<User>) : RecyclerView.Adapter<S
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         if(position >= usersFilterList.size){
-            holder.bindUser(User(0, "Bot-001", "Bot", "001", null, null, null, null, null, null, null))
+            holder.bindUser(User(0, "Bot-001", "Bot", "001", null, null, null, null, null, null, null, null
+            ))
         }
         else{
             val user = usersFilterList[position]

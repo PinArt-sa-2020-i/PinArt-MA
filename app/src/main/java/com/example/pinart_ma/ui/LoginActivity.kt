@@ -57,7 +57,9 @@ class LoginActivity : AppCompatActivity() {
                 }
                 else{
                     saveDataCacheFake("id", user.id.toString())
+                    saveDataCacheFake("idSesion", user.idSesion.toString())
                     saveDataCacheFake("token", user.token.toString())
+
                     var intent: Intent = Intent(this,  MainActivity::class.java)
                     intent.putExtra("typeFragment", "feedFragment")
                     startActivity(intent)

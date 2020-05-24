@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class UserRepository {
 
-    var URL: String = "http://ec2-3-209-34-155.compute-1.amazonaws.com:5000"
+    var URL: String = "http://ec2-3-209-34-155.compute-1.amazonaws.com"
 
     companion object {
         @Volatile private var userRepository: UserRepository? = null
@@ -84,7 +84,7 @@ class UserRepository {
 
         //Mapeo los datos
         val jsonObj_ = JSONObject()
-        jsonObj_.put("query", "mutation{ authenticateUser(auth: {username: \"$username\" password: \"$password\" dispositivo: \"AndroidDefault\" }){ id username firstName lastName token }}")
+        jsonObj_.put("query", "mutation{ authenticateUser(auth: { username: \"$username\" password: \"$password\" dispositivo: \"Mobile\" }){ id idSesion username firstName lastName token } }")
         var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
 
         var callApi = api.registerUser(gsonObject)
@@ -99,7 +99,7 @@ class UserRepository {
                     liveData.value = null
                 }
                 else{
-
+                    Log.d("TAG", response?.body().toString())
                     var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
 
                     if (dataAux is JsonNull) {
@@ -114,8 +114,8 @@ class UserRepository {
                         var firstnameAux: String = authenticateUser.get("firstName").asString
                         var lastnameAux: String = authenticateUser.get("lastName").asString
                         var token: String = authenticateUser.get("token").asString
-
-                        liveData.value = User(idAux, usernameAux, firstnameAux, lastnameAux, null, token, null, null, null, null, null)
+                        var idSesion: Int = authenticateUser.get("idSesion").asInt
+                        liveData.value = User(idAux, usernameAux, firstnameAux, lastnameAux, null, token, null, null, null, null, null, idSesion)
                     }
                 }
             }
@@ -176,7 +176,7 @@ class UserRepository {
                                 userJsonAux.get("firstName").asString,
                                 userJsonAux.get("lastName").asString,
                                 null,
-                                null, null, foto, null, null, null)
+                                null, null, foto, null, null, null, null)
 
                             userList.add(userAux)
                         }
@@ -264,7 +264,8 @@ class UserRepository {
                             foto,
                             descripcion,
                             noTelefono,
-                            edad
+                            edad,
+                            null
                         )
                     }
                 }
@@ -408,6 +409,47 @@ class UserRepository {
                             var follow: JsonObject = data.get("createUserFollow") as JsonObject
                             liveData.value = follow.get("id").asInt
                         }
+                    }
+                }
+            }
+        })
+        return liveData
+    }
+
+
+    fun deleteSesion(token: String?, idSesion: String?): MutableLiveData<Int>{
+        var api: APIGateway
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        api = retrofit.create(APIGateway::class.java)
+
+        //Live data a retornar
+        val liveData: MutableLiveData<Int> = MutableLiveData<Int>()
+
+        //Mapeo los datos
+        val jsonObj_ = JSONObject()
+        jsonObj_.put("query", "mutation{ deleteSession(id: $idSesion) }")
+
+        var gsonObject = JsonParser().parse(jsonObj_.toString()) as JsonObject
+
+        var callApi = api.default(token, gsonObject)
+
+        //Se realiza la llamada
+        callApi.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                liveData.value = null
+            }
+            override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                if (response?.body().toString() == null){liveData.value = 0}
+                else{
+                    var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
+                    if(dataAux is JsonNull){
+                        liveData.value = 0
+                    }
+                    else{
+                        liveData.value = 1
                     }
                 }
             }

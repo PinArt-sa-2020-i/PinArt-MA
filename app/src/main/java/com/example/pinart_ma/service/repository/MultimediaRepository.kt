@@ -19,7 +19,7 @@ import java.io.File
 
 class MultimediaRepository {
 
-    var URL: String = "http://ec2-3-209-34-155.compute-1.amazonaws.com:5000"
+    var URL: String = "http://ec2-3-209-34-155.compute-1.amazonaws.com"
 
     companion object {
         @Volatile private var multimediaRepository: MultimediaRepository? = null
@@ -55,7 +55,7 @@ class MultimediaRepository {
                 liveData.value = arrayListOf()
             }
             override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
-                if (response?.body().toString() == null){liveData.value = arrayListOf()}
+                if (response?.body().toString() == "null"){liveData.value = arrayListOf()}
                 else{
                     var dataAux: JsonElement = response?.body()?.get("data") as JsonElement
 

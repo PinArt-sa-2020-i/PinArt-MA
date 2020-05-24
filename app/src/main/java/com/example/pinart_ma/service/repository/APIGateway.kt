@@ -8,28 +8,28 @@ import retrofit2.http.POST
 
 interface APIGateway {
 
-    @POST("/")
+    @POST("/graphql/")
     fun registerUser(@Body jsonBody: JsonObject)  : Call<JsonObject>
 
-    @POST("/")
+    @POST("/graphql/")
     fun authenticateUser(@Body jsonBody: JsonObject)  : Call<JsonObject>
 
-    @POST("/")
+    @POST("/graphql/")
     fun getMultimediaById(@Header("Authorization") token:String?, @Body jsonBody: JsonObject)  : Call<JsonObject>
 
-    @POST("/")
+    @POST("/graphql/")
     fun getFeedUsers(@Header("Authorization") token:String?, @Body jsonBody: JsonObject)  : Call<JsonObject>
 
-    @POST("/")
+    @POST("/graphql/")
     fun getFeedTags(@Header("Authorization") token:String?, @Body jsonBody: JsonObject)  : Call<JsonObject>
 
-    @POST("/")
+    @POST("/graphql/")
     fun getAllUser(@Header("Authorization") token:String?, @Body jsonBody: JsonObject)  : Call<JsonObject>
 
-    @POST("/")
+    @POST("/graphql/")
     fun getUserById(@Header("Authorization") token:String?, @Body jsonBody: JsonObject)  : Call<JsonObject>
 
-    @POST("/")
+    @POST("/graphql/")
     fun default(@Header("Authorization") token:String?, @Body jsonBody: JsonObject)  : Call<JsonObject>
 
 }

@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class TagRepository {
 
-    var URL: String = "http://ec2-3-209-34-155.compute-1.amazonaws.com:5000"
+    var URL: String = "http://ec2-3-209-34-155.compute-1.amazonaws.com"
 
     companion object {
         @Volatile private var tagRepository: TagRepository? = null

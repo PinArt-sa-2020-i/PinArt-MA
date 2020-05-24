@@ -12,6 +12,7 @@ class User( var id: Int,
             var foto: String?,
             var descripcion: String?,
             var noTelefono: String?,
-            var edad: String?
+            var edad: String?,
+            var idSesion: Int?
 ){
 }

@@ -67,7 +67,7 @@ class ConfigurationActivity: AppCompatActivity()  {
         userViewModel!!.getUserById(token, id).observe(this, Observer {
                 userData ->
             if(userData==null){
-                user = User(0, "Bot-001", "Boot", "001", null, null, null, null, null, null, null)
+                user = User(0, "Bot-001", "Boot", "001", null, null, null, null, null, null, null, null)
             }
             else{
                 user = userData
@@ -230,14 +230,29 @@ class ConfigurationActivity: AppCompatActivity()  {
     fun loadLogOutButton(){
         cerrarSesionConfigurations.setOnClickListener {
             val myPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-            val myEditor = myPreferences.edit()
-            myEditor.clear()
-            myEditor.commit();
 
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            startActivity(intent)
-            finish()
+            var id: String? = myPreferences.getString("id", "unknown")
+            val token = myPreferences.getString("token", "unknown")
+            val idSesion = myPreferences.getString("idSesion", "unknown")
+
+            var userFactory = InjectorUtils.provideUserViewModelFactory()
+            var userViewModel = ViewModelProviders.of(this, userFactory).get(UserViewModel::class.java);
+
+            userViewModel!!.deleteSesion(token, idSesion).observe(this, Observer {
+                response ->
+                val myEditor = myPreferences.edit()
+                myEditor.clear()
+                myEditor.commit();
+
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+                finish()
+            })
+
+
+
+
         }
 
     }
