@@ -234,6 +234,7 @@ class ConfigurationActivity: AppCompatActivity()  {
             var id: String? = myPreferences.getString("id", "unknown")
             val token = myPreferences.getString("token", "unknown")
             val idSesion = myPreferences.getString("idSesion", "unknown")
+            val token_fire_base = myPreferences.getString("toke-fire-base", "unknown")
 
             var userFactory = InjectorUtils.provideUserViewModelFactory()
             var userViewModel = ViewModelProviders.of(this, userFactory).get(UserViewModel::class.java);
@@ -242,6 +243,7 @@ class ConfigurationActivity: AppCompatActivity()  {
                 response ->
                 val myEditor = myPreferences.edit()
                 myEditor.clear()
+                myEditor.putString("toke-fire-base", token_fire_base);
                 myEditor.commit();
 
                 val intent = Intent(this, LoginActivity::class.java)

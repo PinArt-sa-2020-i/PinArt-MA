@@ -15,6 +15,7 @@ import com.example.pinart_ma.R
 import com.example.pinart_ma.service.model.User
 import com.example.pinart_ma.ui.MainActivity
 import com.example.pinart_ma.utils.InjectorUtils
+import com.example.pinart_ma.viewModel.FCMViewModel
 import com.example.pinart_ma.viewModel.UserViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_configuration.*
@@ -100,6 +101,10 @@ class FollowUserAdapter(var follows: ArrayList<ArrayList<String>>, var typeFollo
             val myPreferences = PreferenceManager.getDefaultSharedPreferences(itemView.context)
             val token = myPreferences.getString("token", "unknown")
             val id = myPreferences.getString("id", "unknown")
+            val token_fire_base = myPreferences.getString("toke-fire-base", "unknown")
+
+            var fcmFactory = InjectorUtils.providerFCMViewModelFactory()
+            var fcmViewModel = ViewModelProviders.of(fragment, fcmFactory).get(FCMViewModel::class.java);
 
             var userFactory = InjectorUtils.provideUserViewModelFactory()
             var userViewModel = ViewModelProviders.of(fragment, userFactory).get(UserViewModel::class.java);
@@ -140,6 +145,8 @@ class FollowUserAdapter(var follows: ArrayList<ArrayList<String>>, var typeFollo
                         itemView.buttonItemView.setBackgroundColor(Color.GREEN)
                         idFollowAux = result.toString()
 
+                        fcmViewModel!!.suscriberTopic(idUserFollowing, token_fire_base).observe(fragment, Observer { result -> })
+
                     })
                 }
                 else{
@@ -148,6 +155,9 @@ class FollowUserAdapter(var follows: ArrayList<ArrayList<String>>, var typeFollo
                         itemView.buttonItemView.text = "Seguir"
                         itemView.buttonItemView.setBackgroundColor(Color.BLUE)
                         idFollowAux = "0"
+
+                        fcmViewModel!!.unsuscriberTopic(idUserFollowing, token_fire_base).observe(fragment, Observer { result -> })
+
                     })
                 }
             }

@@ -1,5 +1,6 @@
 package com.example.pinart_ma.service
 
+import android.preference.PreferenceManager
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -26,9 +27,17 @@ class MyFirebaseMessagingService : FirebaseMessagingService(){
     override fun onNewToken(p0: String?) {
         super.onNewToken(p0)
 
-        Log.d(TAG, "The Token refreshed $p0")
+        Log.d("TOKEN", "The Token refreshed $p0")
+        p0?.let { saveDataCacheFake("toke-fire-base", it) };
 
-        sendRegistrationToServer(p0)
+    }
+
+
+    fun saveDataCacheFake(key:String, data:String){
+        val myPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val myEditor = myPreferences.edit()
+        myEditor.putString(key, data);
+        myEditor.commit();
     }
 
 }

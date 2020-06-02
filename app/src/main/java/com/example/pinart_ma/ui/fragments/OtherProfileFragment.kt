@@ -17,6 +17,7 @@ import com.example.pinart_ma.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.android.synthetic.main.other_profile_fragment.*
 import android.graphics.Color
+import com.example.pinart_ma.viewModel.FCMViewModel
 import com.squareup.picasso.Picasso
 
 class OtherProfileFragment(var idUsuario: String): Fragment() {
@@ -158,6 +159,8 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
                     seguirButtonOtherProfile.setBackgroundResource(R.drawable.rounded_search)
                     seguirButtonOtherProfile.setTextColor(Color.parseColor("#000000"))
                     seguirButtonOtherProfile.text = "Dejar de seguir"
+
+                    suscriberTopic(context, idUsuario);
                 }
                 loadFollow(context)
             })
@@ -171,6 +174,8 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
                     seguirButtonOtherProfile.setBackgroundResource(R.drawable.rounded_followbutton)
                     seguirButtonOtherProfile.setTextColor(Color.parseColor("#FFFFFF"))
                     seguirButtonOtherProfile.text = "Seguir"
+
+                    unsuscriberTopic(context, idUsuario);
                 }
                 loadFollow(context)
             })
@@ -200,6 +205,35 @@ class OtherProfileFragment(var idUsuario: String): Fragment() {
             }
             otherProfileFollowers.text = "$followers seguidores"
             otherProfileFollowing.text = "$following siguiendo"
+        })
+    }
+
+    fun suscriberTopic(context: Context?, idUser: String){
+        val myPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val token_fire_base = myPreferences.getString("toke-fire-base", "unknown")
+
+        var fcmFactory = InjectorUtils.providerFCMViewModelFactory()
+        var fcmViewModel = ViewModelProviders.of(this, fcmFactory).get(FCMViewModel::class.java);
+
+
+        fcmViewModel!!.suscriberTopic(idUser, token_fire_base).observe(viewLifecycleOwner, Observer {
+                intR ->
+            Log.d("TAG", "$intR");
+        })
+    }
+
+
+    fun unsuscriberTopic(context: Context?, idUser: String){
+        val myPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val token_fire_base = myPreferences.getString("toke-fire-base", "unknown")
+
+        var fcmFactory = InjectorUtils.providerFCMViewModelFactory()
+        var fcmViewModel = ViewModelProviders.of(this, fcmFactory).get(FCMViewModel::class.java);
+
+
+        fcmViewModel!!.unsuscriberTopic(idUser, token_fire_base).observe(viewLifecycleOwner, Observer {
+                intR ->
+            Log.d("TAG", "$intR");
         })
     }
 }

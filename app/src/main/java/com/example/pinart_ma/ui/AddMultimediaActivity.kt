@@ -32,6 +32,9 @@ import java.io.OutputStream
 import java.util.*
 import kotlin.collections.ArrayList
 import android.graphics.Color
+import com.example.pinart_ma.service.model.User
+import com.example.pinart_ma.viewModel.FCMViewModel
+import com.example.pinart_ma.viewModel.UserViewModel
 
 
 class AddMultimediaActivity: AppCompatActivity() {
@@ -174,6 +177,14 @@ class AddMultimediaActivity: AppCompatActivity() {
     }
     
     fun addMultimedia(){
+        val myPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+
+        var fcmFactory = InjectorUtils.providerFCMViewModelFactory()
+        var fcmViewModel = ViewModelProviders.of(this, fcmFactory).get(FCMViewModel::class.java);
+
+        var userFactory = InjectorUtils.provideUserViewModelFactory()
+        var userViewModel = ViewModelProviders.of(this, userFactory).get(UserViewModel::class.java);
+
         var multimediaFactory = InjectorUtils.providerMultimediaViewModelFactory()
         var multimediaViewModel = ViewModelProviders.of(this, multimediaFactory).get(
             MultimediaViewModel::class.java)
@@ -184,7 +195,7 @@ class AddMultimediaActivity: AppCompatActivity() {
                 Log.d("TAG", "Lega02")
                 if(idBucket == null){}
                 else{
-                    val myPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+
                     
                     var id: String? = myPreferences.getString("id", "unknown")
                     var descripcion: String? = description.text.toString()
@@ -198,17 +209,30 @@ class AddMultimediaActivity: AppCompatActivity() {
                     }
 
                     selectedTags as ArrayList<String>
-                    
+
+
+
                     multimediaViewModel!!.addMultimedia(id, descripcion, idEtiquetas, url_imagen, formato, tamano, idBucket).observe(this, Observer { 
                         result ->
-                        Log.d("TAG", "Lega02")
-                        Log.d("TAGA", result.toString())
+
+                        userViewModel!!.getUserById(myPreferences.getString("token", "unknown"), id).observe(this, Observer {
+                            userResponse ->
+
+                            val tittle: String = "${userResponse.username.toUpperCase()} agrego nuevo contenido";
+                            val message: String = "${descripcion?.capitalize()}";
+                            fcmViewModel!!.notifyTopic(id, tittle, message).observe(this, Observer { result -> })
+                        })
+
 
                         var intent: Intent = Intent(this,  MainActivity::class.java)
                         intent.putExtra("typeFragment", "myProfileFragment")
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent)
                         finish();
+
+
+
+
                     })
                 }
             
