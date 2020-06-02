@@ -113,8 +113,6 @@ class FollowsFragment(var list: String?) : Fragment() {
             recyclerViewFollows.layoutManager = LinearLayoutManager(context)
             recyclerViewFollows.adapter = FollowTagAdapter(tags, this)
         })
-
-
     }
 
 

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "597460722544",
+    "firebase_url": "https://pinart-notifications.firebaseio.com",
+    "project_id": "pinart-notifications",
+    "storage_bucket": "pinart-notifications.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597460722544:android:e87416630290971fba25b5",
+        "android_client_info": {
+          "package_name": "com.example.pinart_ma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "597460722544-qgcepu4d2k3s10rmcd476s2v4b3ovcrv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pinart_ma",
+            "certificate_hash": "6db8e2b5248429e69a3f075436383b2822bea496"
+          }
+        },
+        {
+          "client_id": "597460722544-20l46luetnd3qv4v7m982fj1to9524cn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuwZFI_NOzHcoE0QtxEOcaCeoWkhOBo6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "597460722544-20l46luetnd3qv4v7m982fj1to9524cn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

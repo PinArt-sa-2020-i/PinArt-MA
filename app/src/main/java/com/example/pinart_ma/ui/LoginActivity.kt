@@ -3,14 +3,19 @@ package com.example.pinart_ma.ui
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pinart_ma.R
+import com.example.pinart_ma.ui.adapter.FollowUserAdapter
 import com.example.pinart_ma.utils.InjectorUtils
+import com.example.pinart_ma.viewModel.FCMViewModel
 import com.example.pinart_ma.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.fragment_follows.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -74,4 +79,7 @@ class LoginActivity : AppCompatActivity() {
         myEditor.putString(key, data);
         myEditor.commit();
     }
+
+
+
 }
