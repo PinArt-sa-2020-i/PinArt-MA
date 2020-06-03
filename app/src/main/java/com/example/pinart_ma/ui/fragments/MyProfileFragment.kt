@@ -181,8 +181,8 @@ class MyProfileFragment: Fragment() {
                 if(userFollows[i][2] == id){ followers++}
                 if(userFollows[i][1] == id){ following++}
             }
-            myProfileFollowers.text = "$followers \n seguidores"
-            myProfileFollowing.text = "$following \n siguiendo"
+            myProfileFollowers.text = "$followers\nSeguidores"
+            myProfileFollowing.text = "$following\nSiguiendo"
         })
     }
 
@@ -196,7 +196,7 @@ class MyProfileFragment: Fragment() {
 
         tagViewModel!!.getTagFolledByUser(token, id).observe(viewLifecycleOwner, Observer {
             results ->
-            myProfileTags.text = "${results.size} \n Etiquetas"
+            myProfileTags.text = "${results.size}\nEtiquetas"
         })
     }
 

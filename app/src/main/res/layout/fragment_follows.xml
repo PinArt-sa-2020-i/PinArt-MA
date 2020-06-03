@@ -6,26 +6,48 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        >
+
         <Button
             android:id="@+id/followersFollows"
             android:text="Seguidores"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </Button>
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            />
+
 
         <Button
             android:id="@+id/followingFollows"
             android:text="Seguidos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </Button>
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            />
+
         <Button
             android:id="@+id/tagsFollows"
             android:text="Etiquetas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </Button>
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            />
+
+        <Button
+            android:id="@+id/likesFollows"
+            android:text="Mis gustos"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            />
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -33,4 +55,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </androidx.recyclerview.widget.RecyclerView>
+
 </LinearLayout>
