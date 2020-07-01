@@ -63,12 +63,14 @@ class FollowUserAdapter(var follows: ArrayList<ArrayList<String>>, var typeFollo
                 if(userResult.foto == null){Picasso.get().load("https://uwosh.edu/deanofstudents/wp-content/uploads/sites/156/2019/02/profile-default.jpg").into(itemView.imageViewItemFollow);}
                 else{Picasso.get().load(userResult.foto).into(itemView.imageViewItemFollow)}
 
-                itemView.nameItemFollow.text = userResult.username
+                itemView.userItemFollow.text = userResult.username
+                itemView.nameItemFollow.text = (userResult.firstname + " " + userResult.lastname)
                 itemView.buttonItemView.text = "Eliminar"
+                itemView.buttonItemView.setBackgroundResource(R.drawable.rounded_button)
             })
 
             //Ver
-            itemView.nameItemFollow.setOnClickListener {
+            itemView.userItemFollow.setOnClickListener {
                 val intent = Intent(itemView.context, MainActivity::class.java)
                 intent.putExtra("typeFragment", "otherProfileFragment")
                 intent.putExtra("idUsuario", idUserFollower.toString())
@@ -81,8 +83,6 @@ class FollowUserAdapter(var follows: ArrayList<ArrayList<String>>, var typeFollo
                 intent.putExtra("idUsuario", idUserFollower.toString())
                 itemView.context.startActivity(intent)
             }
-
-
 
             //Dejar de Seguir
             itemView.buttonItemView.setOnClickListener {
@@ -115,13 +115,15 @@ class FollowUserAdapter(var follows: ArrayList<ArrayList<String>>, var typeFollo
                 if(userResult.foto == null){Picasso.get().load("https://uwosh.edu/deanofstudents/wp-content/uploads/sites/156/2019/02/profile-default.jpg").into(itemView.imageViewItemFollow);}
                 else{Picasso.get().load(userResult.foto).into(itemView.imageViewItemFollow)}
 
-                itemView.nameItemFollow.text = userResult.username
-                itemView.buttonItemView.text = "Siguiendo"
-                itemView.buttonItemView.setBackgroundColor(Color.GREEN)
+                itemView.userItemFollow.text = userResult.username
+                itemView.nameItemFollow.text = (userResult.firstname + " " + userResult.lastname)
+                itemView.buttonItemView.text = "Dejar de seguir"
+                itemView.buttonItemView.setBackgroundResource(R.drawable.rounded_search)
+                itemView.buttonItemView.setTextColor(Color.parseColor("#000000"))
             })
 
             //Ver usuario
-            itemView.nameItemFollow.setOnClickListener {
+            itemView.userItemFollow.setOnClickListener {
                 val intent = Intent(itemView.context, MainActivity::class.java)
                 intent.putExtra("typeFragment", "otherProfileFragment")
                 intent.putExtra("idUsuario", idUserFollowing.toString())
@@ -141,8 +143,9 @@ class FollowUserAdapter(var follows: ArrayList<ArrayList<String>>, var typeFollo
                 if(idFollowAux == "0"){
                     userViewModel!!.createUserFollow(token, id, idUserFollowing).observe(fragment, Observer {
                         result ->
-                        itemView.buttonItemView.text = "Siguiendo"
-                        itemView.buttonItemView.setBackgroundColor(Color.GREEN)
+                        itemView.buttonItemView.text = "Dejar de seguir"
+                        itemView.buttonItemView.setBackgroundResource(R.drawable.rounded_search)
+                        itemView.buttonItemView.setTextColor(Color.parseColor("#000000"))
                         idFollowAux = result.toString()
 
                         fcmViewModel!!.suscriberTopic(idUserFollowing, token_fire_base).observe(fragment, Observer { result -> })
@@ -153,7 +156,8 @@ class FollowUserAdapter(var follows: ArrayList<ArrayList<String>>, var typeFollo
                     userViewModel!!.deleteUserFollow(token, idFollowAux).observe(fragment, Observer {
                         result ->
                         itemView.buttonItemView.text = "Seguir"
-                        itemView.buttonItemView.setBackgroundColor(Color.BLUE)
+                        itemView.buttonItemView.setBackgroundResource(R.drawable.rounded_followbutton)
+                        itemView.buttonItemView.setTextColor(Color.parseColor("#FFFFFF"))
                         idFollowAux = "0"
 
                         fcmViewModel!!.unsuscriberTopic(idUserFollowing, token_fire_base).observe(fragment, Observer { result -> })

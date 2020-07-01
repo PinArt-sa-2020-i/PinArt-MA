@@ -62,7 +62,6 @@ class MyProfileFragment: Fragment() {
             startActivity(intent)
         }
 
-
         myProfileFollowers.setOnClickListener {
             val intent = Intent(context, MainActivity::class.java)
             intent.putExtra("typeFragment", "followsFragment")
@@ -83,8 +82,6 @@ class MyProfileFragment: Fragment() {
             intent.putExtra("typeList", "tags")
             startActivity(intent)
         }
-
-
 
         loadMultimediaFragment()
         myProfileMultimedia.setBackgroundResource(R.drawable.rounded_button_feed)

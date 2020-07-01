@@ -3,7 +3,6 @@ package com.example.pinart_ma.ui.fragments
 import android.graphics.Color
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,8 +28,7 @@ class FollowsFragment(var list: String?) : Fragment() {
     var tags: ArrayList<String> = arrayListOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view = inflater.inflate(R.layout.fragment_follows, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_follows, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -79,7 +77,6 @@ class FollowsFragment(var list: String?) : Fragment() {
         }
 
         likesFollows.setOnClickListener{
-            list = "likes"
             likesFollows.setBackgroundResource(R.drawable.rounded_button_feed)
             likesFollows.setTextColor(Color.parseColor("#FFFFFF"))
             followersFollows.setBackgroundColor(Color.TRANSPARENT)
@@ -95,9 +92,39 @@ class FollowsFragment(var list: String?) : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if(list == "followers"){showFollowers()}
-        if(list == "followings"){showFollowings()}
-        if(list == "tags"){showTags()}
+        if(list == "followers"){
+            followersFollows.setBackgroundResource(R.drawable.rounded_button_feed)
+            followersFollows.setTextColor(Color.parseColor("#FFFFFF"))
+            followingFollows.setBackgroundColor(Color.TRANSPARENT)
+            followingFollows.setTextColor(Color.parseColor("#000000"))
+            tagsFollows.setBackgroundColor(Color.TRANSPARENT)
+            tagsFollows.setTextColor(Color.parseColor("#000000"))
+            likesFollows.setBackgroundColor(Color.TRANSPARENT)
+            likesFollows.setTextColor(Color.parseColor("#000000"))
+            showFollowers()
+        }
+        if(list == "followings"){
+            followingFollows.setBackgroundResource(R.drawable.rounded_button_feed)
+            followingFollows.setTextColor(Color.parseColor("#FFFFFF"))
+            followersFollows.setBackgroundColor(Color.TRANSPARENT)
+            followersFollows.setTextColor(Color.parseColor("#000000"))
+            tagsFollows.setBackgroundColor(Color.TRANSPARENT)
+            tagsFollows.setTextColor(Color.parseColor("#000000"))
+            likesFollows.setBackgroundColor(Color.TRANSPARENT)
+            likesFollows.setTextColor(Color.parseColor("#000000"))
+            showFollowings()
+        }
+        if(list == "tags"){
+            tagsFollows.setBackgroundResource(R.drawable.rounded_button_feed)
+            tagsFollows.setTextColor(Color.parseColor("#FFFFFF"))
+            followersFollows.setBackgroundColor(Color.TRANSPARENT)
+            followersFollows.setTextColor(Color.parseColor("#000000"))
+            followingFollows.setBackgroundColor(Color.TRANSPARENT)
+            followingFollows.setTextColor(Color.parseColor("#000000"))
+            likesFollows.setBackgroundColor(Color.TRANSPARENT)
+            likesFollows.setTextColor(Color.parseColor("#000000"))
+            showTags()
+        }
     }
 
 
