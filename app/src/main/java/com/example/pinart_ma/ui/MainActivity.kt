@@ -33,14 +33,14 @@ class MainActivity() : AppCompatActivity() {
 
 
         animacionCarga.visibility = View.GONE
-        /*
+
         Handler().postDelayed(Runnable {
             //----------------------------
             //animacionCarga.visibility = View.GONE
             animacionCarga.animate().alpha(0.0f);
             //----------------------------
         }, 1000)
-        */
+
 
         //Se obtienen el fragment por default
         var defaultFragment = recuperarFragment(intent)

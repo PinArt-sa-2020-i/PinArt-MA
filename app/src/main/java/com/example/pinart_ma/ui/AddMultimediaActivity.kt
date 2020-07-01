@@ -200,7 +200,7 @@ class AddMultimediaActivity: AppCompatActivity() {
                     var id: String? = myPreferences.getString("id", "unknown")
                     var descripcion: String? = description.text.toString()
                     var idEtiquetas: ArrayList<String?> = arrayListOf()
-                    var url_imagen: String? = "https://pinart-images-storage.s3.amazonaws.com/"+idBucket
+                    var url_imagen: String? = "https://pin-art-images-storage.s3.amazonaws.com/"+idBucket
                     var formato: String? = "JPG"
                     var tamano: String? = "Tamano"
                     
