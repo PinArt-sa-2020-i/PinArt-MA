@@ -19,7 +19,7 @@ import java.io.File
 
 class MultimediaRepository {
 
-    var URL: String = "http://ec2-3-209-34-155.compute-1.amazonaws.com"
+    var URL: String = "http://ec2-52-3-175-38.compute-1.amazonaws.com:5000"
 
     companion object {
         @Volatile private var multimediaRepository: MultimediaRepository? = null
@@ -265,7 +265,7 @@ class MultimediaRepository {
                       url_imagen: String?, formato: String?, tamano: String?, idBucket: String?) : MutableLiveData<Int>{
         var api: APIMultimedia
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("http://ec2-3-209-34-155.compute-1.amazonaws.com:3000")
+            .baseUrl("http://ec2-52-3-175-38.compute-1.amazonaws.com:3000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         api = retrofit.create(APIMultimedia::class.java)
@@ -317,7 +317,7 @@ class MultimediaRepository {
 
         var api: BucketMS
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("http://ec2-3-227-65-124.compute-1.amazonaws.com:8081")
+            .baseUrl("http://ec2-52-3-175-38.compute-1.amazonaws.com:8085")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         api = retrofit.create(BucketMS::class.java)

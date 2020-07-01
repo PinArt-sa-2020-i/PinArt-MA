@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class UserRepository {
 
-    var URL: String = "http://ec2-3-209-34-155.compute-1.amazonaws.com"
+    var URL: String = "http://ec2-52-3-175-38.compute-1.amazonaws.com:5000"
 
     companion object {
         @Volatile private var userRepository: UserRepository? = null

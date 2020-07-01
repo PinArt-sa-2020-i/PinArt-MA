@@ -198,7 +198,7 @@ class ConfigurationActivity: AppCompatActivity()  {
                 val myPreferences = PreferenceManager.getDefaultSharedPreferences(this)
                 var id: String? = myPreferences.getString("id", "unknown")
                 val token = myPreferences.getString("token", "unknown")
-                var url_imagen: String? ="https://pinart-images-storage.s3.amazonaws.com/" + idBucket
+                var url_imagen: String? ="https://pin-art-images-storage.s3.amazonaws.com/" + idBucket
 
 
                 var userFactory = InjectorUtils.provideUserViewModelFactory()
