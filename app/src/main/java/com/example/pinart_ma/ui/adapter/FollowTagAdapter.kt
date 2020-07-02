@@ -55,9 +55,10 @@ class FollowTagAdapter(var idTags: ArrayList<String>, var fragment: Fragment) :
                 tagResult ->
 
                 Picasso.get().load("https://image.flaticon.com/icons/png/512/94/94699.png").into(itemView.imageViewItemFollow)
-                itemView.nameItemFollow.text = tagResult.name
-                itemView.buttonItemView.text = "Siguiendo"
-                itemView.buttonItemView.setBackgroundColor(Color.GREEN)
+                itemView.userItemFollow.text = tagResult.name
+                itemView.buttonItemView.text = "Dejar de seguir"
+                itemView.buttonItemView.setBackgroundResource(R.drawable.rounded_search)
+                itemView.buttonItemView.setTextColor(Color.parseColor("#000000"))
             })
 
             //Mostar Etiqueta
@@ -82,8 +83,9 @@ class FollowTagAdapter(var idTags: ArrayList<String>, var fragment: Fragment) :
                     tagViewModel!!.followTag(token, id, idTag).observe(fragment, Observer {
                         result ->
                         followTag = true
-                        itemView.buttonItemView.text = "Siguiendo"
-                        itemView.buttonItemView.setBackgroundColor(Color.GREEN)
+                        itemView.buttonItemView.text = "Dejar de seguir"
+                        itemView.buttonItemView.setBackgroundResource(R.drawable.rounded_search)
+                        itemView.buttonItemView.setTextColor(Color.parseColor("#000000"))
                     })
                 }
                 else{
@@ -91,7 +93,8 @@ class FollowTagAdapter(var idTags: ArrayList<String>, var fragment: Fragment) :
                         result ->
                         followTag = false
                         itemView.buttonItemView.text = "Seguir"
-                        itemView.buttonItemView.setBackgroundColor(Color.BLUE)
+                        itemView.buttonItemView.setBackgroundResource(R.drawable.rounded_followbutton)
+                        itemView.buttonItemView.setTextColor(Color.parseColor("#FFFFFF"))
                     })
                 }
             }
